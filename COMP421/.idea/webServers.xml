@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2940c033-076f-4fac-a869-dca161a413e6" name="mcgill-comp421">
+        <fileTransfer rootFolder="/home/cs421g19" accessType="SFTP" host="winter2026-comp421.cs.mcgill.ca" port="22" sshConfigId="219fc01e-d2f7-4586-9252-f503940e34da" sshConfig="cs421g19@winter2026-comp421.cs.mcgill.ca:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
