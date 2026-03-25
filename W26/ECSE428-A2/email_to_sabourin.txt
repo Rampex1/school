@@ -1,0 +1,30 @@
+Subject: ECSE 428 Assignment B - Clarification on Paper Topic (Defect Resolution vs. Software Development Processes)
+
+Dear Professor Sabourin,
+
+My name is David Vo, and I am working on Assignment B with my partner David Zhou (student IDs 261170038 and 261135446).
+
+We have a few questions before finalising our submission and would really appreciate your guidance.
+
+1. Paper topic: defect resolution or software development processes?
+
+This is our main source of confusion. The assignment slides state that the paper topic is "Defect Resolution During Product Development," and that each interviewee should describe three examples: a typical case, a success, and a failure related to defect resolution.
+
+However, the sample paper from a previous year that was provided to us is titled "Software Development Processes from the Developers' Perspective" and covers general software development practices such as Agile, standups, task distribution, and QA, with no specific focus on defect resolution.
+
+We are not sure which one we should follow. Should our paper focus specifically on defect resolution as the current slides say, or is covering general software development processes acceptable as the sample paper suggests? Or are both valid depending on the year? We want to make sure we are answering the right question before we submit.
+
+2. Interviewee eligibility: co-op students
+
+Our two interviewees are McGill Software Engineering co-op students who recently completed internships. Eric Deng worked at Ericsson Canada from May to December 2024, and Nathan Audegond worked at Intact Financial Corporation during Summer 2025. The assignment says "software engineering professional of their choice." Do co-op students with direct industry experience qualify, or do the interviewees need to be full-time practising engineers?
+
+3. Group of two: no baseline interview needed?
+
+We are a group of two, so we understand that we each interview a different person and write a joint paper comparing both. We just want to confirm that we do not need to compare against an instructor-supplied baseline interview, since the slides indicate that requirement applies only to groups of one.
+
+Thank you for your time. We want to make sure we are on the right track before we submit.
+
+Best regards,
+David Vo (261170038) - david.vo2@mail.mcgill.ca
+David Zhou (261135446) - david.zhou3@mail.mcgill.ca
+ECSE 428 - Software Engineering in Practice

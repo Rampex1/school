@@ -1,0 +1,105 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstdefinestyle{plaintext}{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    breakatwhitespace=false,
+    frame=single,
+    backgroundcolor=\color{gray!8},
+    xleftmargin=10pt
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{COMP-421 Project 2}
+\lhead{GenAI Usage Disclosure}
+\rfoot{Page \thepage}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\title{
+    \vspace{-1cm}
+    \textbf{COMP-421 Database Systems}\\[0.3em]
+    \large School of Computer Science, McGill University\\[0.5em]
+    \LARGE\textbf{Project 2: GenAI Usage Disclosure}\\[0.3em]
+    \large Hotel Booking Platform
+}
+\author{
+    Group 19\\
+    David Vo \quad David Zhou \quad David Namgung \quad Jessie Maeda-Yang
+}
+\date{Due: March 11, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{GenAI Tool Used}
+
+\textbf{Tool:} Claude (claude-sonnet-4-6) by Anthropic\\
+\textbf{Purpose:} Generating realistic sample records for the \texttt{Customer} table (80 additional rows, IDs 21--100) to meet the creativity section's 100-record minimum requirement.
+
+\bigskip
+\noindent GenAI was \textbf{not} used to write any SQL queries, schema definitions, views, check constraints, or any other part of the project submission.
+
+\section*{Question Asked}
+
+The following prompt was submitted to Claude:
+
+\begin{lstlisting}[style=plaintext]
+Generate 80 realistic Canadian customer records for a hotel booking database.
+Each record must have:
+  - customerID: integers 21 through 100
+  - fName, lName: realistic first and last names mixing French-Canadian
+    (e.g. Tremblay, Gagnon, Roy, Bouchard) and English-Canadian
+    (e.g. Mitchell, Campbell, MacDonald, O'Connor) names
+  - email: formatted as firstname.lastname@domain.com using common
+    domains (gmail, hotmail, email, outlook, yahoo)
+  - phoneNumber: Canadian format using area codes 514 / 438 (Montreal),
+    418 (Quebec City), 416 / 613 (Toronto / Ottawa), 604 (Vancouver)
+  - dateOfBirth: realistic dates between 1967 and 2000
+  - registrationDate: between 2018 and 2024
+  - loyaltyPoints and tierName must be consistent:
+      Bronze   0 - 999 points
+      Silver   1000 - 4999 points
+      Gold     5000 - 14999 points
+      Platinum 15000 - 29999 points
+      Diamond  30000+ points
+Format the output as SQL INSERT rows ready to paste into loaddata.sql.
+\end{lstlisting}
+
+\section*{Answer Received}
+
+Claude produced 80 SQL value tuples. A representative excerpt is shown below (full output was incorporated directly into \texttt{loaddata.sql}):
+
+\begin{lstlisting}[style=plaintext]
+(21,  'Gabriel',    'Tremblay',    'g.tremblay@gmail.com',        '514-555-0121', '1987-06-15', '2022-04-10', 3400,  'Silver'),
+(22,  'Sophie',     'Gagnon',      'sophie.gagnon@hotmail.com',   '418-555-0122', '1992-09-03', '2023-01-08', 650,   'Bronze'),
+(23,  'Nicolas',    'Roy',         'nicolas.roy@email.com',       '514-555-0123', '1984-12-22', '2021-07-25', 7800,  'Gold'),
+...
+(64,  'Matthew',    'Jackson',     'matthew.jackson@hotmail.com', '604-555-0164', '1970-12-03', '2018-06-30', 32000, 'Diamond'),
+...
+(99,  'Spencer',    'Mahon',       'spencer.mahon@hotmail.com',   '416-555-0199', '1971-11-27', '2018-04-09', 35000, 'Diamond'),
+(100, 'Victoria',   'Chambers',    'victoria.chambers@email.com', '613-555-0200', '1989-08-02', '2022-11-14', 2600,  'Silver'),
+\end{lstlisting}
+
+\section*{How the Output Was Used}
+
+\begin{enumerate}
+    \item The 80 generated rows were reviewed manually to verify that every \texttt{loyaltyPoints} value fell within the correct range for its \texttt{tierName}. All 80 rows passed this check without modification.
+
+    \item The rows were appended to the existing 20-record \texttt{Customer} INSERT block in \texttt{loaddata.sql}, forming a single \texttt{INSERT INTO Customer \ldots VALUES (\ldots)} statement covering all 100 rows (IDs 1--100).
+
+    \item The \texttt{Section 6.1} text in \texttt{project2.pdf} was updated to document the 100-record count and to describe the realistic attributes (real names, Canadian area codes, date ranges, tier-consistent loyalty points).
+\end{enumerate}
+
+\noindent No SQL queries, schema definitions, views, check constraints, or analytical logic were generated or influenced by GenAI. All creative and technical decisions in those sections were made entirely by the group.
+
+\end{document}

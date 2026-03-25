@@ -1,0 +1,745 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{caption}
+\usepackage{float}
+
+% Code listing style for SQL
+\lstdefinestyle{sqlstyle}{
+    language=SQL,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{red!60!black},
+    commentstyle=\color{gray}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    backgroundcolor=\color{gray!8},
+    frame=single,
+    frameround=tttt,
+    breaklines=true,
+    breakatwhitespace=false,
+    showstringspaces=false,
+    tabsize=4,
+    captionpos=b,
+    xleftmargin=10pt
+}
+
+\lstset{style=sqlstyle}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{COMP-421 Project 2}
+\lhead{Hotel Booking Platform DB}
+\rfoot{Page \thepage}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\title{
+    \vspace{-1cm}
+    \textbf{COMP-421 Database Systems}\\[0.3em]
+    \large School of Computer Science, McGill University\\[0.5em]
+    \LARGE\textbf{Project 2: Creating and Working with Your Database}\\[0.3em]
+    \large Hotel Booking Platform
+}
+\author{
+    Group 19\\
+    David Vo \quad David Zhou \quad David Namgung \quad Jessie Maeda-Yang
+}
+\date{Due: March 11, 2026}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+%=============================================================
+\section{Relational Schema}
+%=============================================================
+
+The relational schema for our Hotel Booking Platform is reproduced below from Project~1, incorporating all feedback received. The schema captures the full lifecycle of a hotel booking system including customers, hotels, room management, reservations, payments, reviews, staff, services, and amenities.
+
+\subsection*{P1 Feedback Corrections}
+
+The following corrections were applied based on Project~1 grader feedback:
+
+\begin{itemize}
+    \item \textbf{LoyaltyTier modelled as strong entity (not weak):} In the original P1 ER diagram, \texttt{LoyaltyTier} was incorrectly drawn as a weak entity dependent on \texttt{Customer}. Tiers such as Silver, Gold, and Platinum exist independently and are shared by many customers; they do not require a specific customer to exist. \texttt{LoyaltyTier} is therefore a \textbf{strong entity} with \texttt{tierName} as its own primary key, and \texttt{Customer.tierName} is a foreign key referencing \texttt{LoyaltyTier(tierName)}.
+
+    \item \textbf{Room/RoomType/Hotel hotel-consistency:} The P1 ER diagram did not show an explicit constraint ensuring that a Room's hotel matches its RoomType's hotel. In the relational schema this is enforced structurally: \texttt{RoomType} has composite primary key \texttt{(hotelID, typeName)}, and \texttt{Room} carries a composite foreign key \texttt{(hotelID, typeName)} $\rightarrow$ \texttt{RoomType}. Because both the Room's own \texttt{hotelID} and the RoomType lookup key use the same \texttt{hotelID} column, the SQL schema guarantees that a room's hotel always matches its room type's hotel without requiring an additional constraint.
+
+    \item \textbf{Service booking semantics:} \texttt{Service} represents optional add-on services offered by a hotel (e.g., spa, airport transfer, guided tour). A hotel exposes a catalogue of services via the \texttt{Service} table (\texttt{hotelID} FK). Guests may request services verbally at check-in; no separate booking junction table is modelled because service requests are handled operationally rather than transactionally in our schema scope.
+
+    \item \textbf{Foreign key for tierName:} In the P1 written schema \texttt{Customer.tierName} was incorrectly described as referencing \texttt{Customer}. This has been corrected: \texttt{Customer.tierName} is a foreign key referencing \texttt{LoyaltyTier(tierName)}.
+\end{itemize}
+
+\subsection*{Schema Definition}
+
+\textbf{LoyaltyTier}(\underline{tierName}, pointsThreshold, discountPercentage, specialBenefits)
+
+\textbf{Customer}(\underline{customerID}, fName, lName, email, phoneNumber, dateOfBirth, registrationDate, loyaltyPoints, tierName)\\
+\textit{tierName} foreign key referencing \textit{LoyaltyTier}
+
+\textbf{Hotel}(\underline{hotelID}, hotelName, street, city, stateProvince, country, postalCode, starRating, phoneNumber, email, totalRooms, checkInTime, checkOutTime, propertyType)
+
+\textbf{RoomType}(\underline{hotelID}, \underline{typeName}, description, maxOccupancy, bedConfiguration, sizeInSqMeters, basePricePerNight)\\
+\textit{hotelID} foreign key referencing \textit{Hotel}
+
+\textbf{Room}(\underline{roomID}, roomNumber, floorNumber, roomStatus, hotelID, typeName)\\
+\textit{hotelID} foreign key referencing \textit{Hotel}\\
+\textit{(hotelID, typeName)} foreign key referencing \textit{RoomType}
+
+\textbf{Reservation}(\underline{reservationID}, checkInDate, checkOutDate, numberOfGuests, totalPrice, bookingDate, reservationStatus, specialRequests, cancellationPolicyType, customerID)\\
+\textit{customerID} foreign key referencing \textit{Customer}
+
+\textbf{ReservationRoom}(\underline{reservationID}, \underline{roomID}, pricePerNight)\\
+\textit{reservationID} foreign key referencing \textit{Reservation}\\
+\textit{roomID} foreign key referencing \textit{Room}
+
+\textbf{Payment}(\underline{paymentID}, paymentDate, amount, paymentMethod, transactionID, paymentStatus, reservationID)\\
+\textit{reservationID} foreign key referencing \textit{Reservation}
+
+\textbf{Review}(\underline{reviewID}, rating, reviewText, reviewDate, cleanlinessRating, locationRating, serviceRating, valueRating, flaggedForModeration, customerID, hotelID)\\
+\textit{customerID} foreign key referencing \textit{Customer}\\
+\textit{hotelID} foreign key referencing \textit{Hotel}
+
+\textbf{Staff}(\underline{staffID}, fName, lName, email, phoneNumber, hireDate, salary, employmentStatus, hotelID)\\
+\textit{hotelID} foreign key referencing \textit{Hotel}
+
+\textbf{Service}(\underline{serviceID}, serviceName, description, price, durationMinutes, availabilityStatus, hotelID)\\
+\textit{hotelID} foreign key referencing \textit{Hotel}
+
+\textbf{Amenity}(\underline{amenityID}, amenityName, description)
+
+\textbf{HotelAmenity}(\underline{hotelID}, \underline{amenityID})\\
+\textit{hotelID} foreign key referencing \textit{Hotel}\\
+\textit{amenityID} foreign key referencing \textit{Amenity}
+
+\subsection*{Pending Constraints}
+
+The following constraints are important to our domain but \textbf{cannot be expressed} in the DB2 CREATE TABLE syntax with CHECK constraints:
+
+\begin{enumerate}
+    \item \textbf{No Double Booking:} A room cannot be reserved for overlapping date ranges. Formally: no two active reservations (status $\neq$ \texttt{'cancelled'}) may share the same \texttt{roomID} where the date ranges overlap (i.e., \texttt{checkInDate} of one reservation falls before \texttt{checkOutDate} of another and vice versa). This requires checking across multiple rows in \texttt{Reservation} joined with \texttt{ReservationRoom} and cannot be expressed in a single-tuple CHECK constraint.
+
+    \item \textbf{Loyalty Points Consistency:} A customer's \texttt{loyaltyPoints} must be at least as large as the \texttt{pointsThreshold} of their assigned \texttt{tierName}. For example, a \texttt{Gold} customer must have at least 5000 points. Enforcing this requires a multi-table comparison between \texttt{Customer.loyaltyPoints} and \texttt{LoyaltyTier.pointsThreshold}, which cannot be done with a simple CHECK constraint.
+
+    \item \textbf{Room Belongs to Reserved Hotel:} In \texttt{ReservationRoom}, the room's \texttt{hotelID} must match the hotel expected by the reservation. This cross-table constraint ensuring that rooms booked in a reservation all belong to the same hotel cannot be expressed with foreign keys alone.
+
+    \item \textbf{Service Availability for Reservation Hotel:} If a guest requests a service in connection with a reservation, that service must belong to the same hotel as the reservation. Since services are handled operationally (no \texttt{ReservationService} junction table), this cross-table rule cannot be expressed as a CHECK constraint.
+\end{enumerate}
+
+%=============================================================
+\section{SQL Queries}
+%=============================================================
+
+\subsection{Query 1}
+
+\textbf{Description:} Find all customers who have made at least one reservation at a 5-star hotel, along with the total amount they have spent on completed payments and their current loyalty tier. This is useful for the hotel's VIP marketing team to identify high-value customers who prefer luxury properties.
+
+\begin{lstlisting}[caption={Query 1: High-value customers at 5-star hotels}]
+WITH FiveStarReservations AS (
+    SELECT DISTINCT res.reservationID,
+                    res.customerID
+    FROM Reservation res
+    JOIN ReservationRoom rr ON res.reservationID = rr.reservationID
+    JOIN Room r              ON rr.roomID = r.roomID
+    JOIN Hotel h             ON r.hotelID = h.hotelID
+    WHERE h.starRating = 5
+)
+SELECT c.customerID,
+       c.fName || ' ' || c.lName AS customerName,
+       c.email,
+       c.tierName,
+       COUNT(DISTINCT fsr.reservationID) AS totalReservations,
+       SUM(p.amount)                     AS totalAmountSpent
+FROM Customer c
+JOIN FiveStarReservations fsr ON c.customerID = fsr.customerID
+JOIN Payment p ON fsr.reservationID = p.reservationID
+WHERE p.paymentStatus = 'completed'
+GROUP BY c.customerID, c.fName, c.lName, c.email, c.tierName
+HAVING SUM(p.amount) > 1000
+ORDER BY totalAmountSpent DESC;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query1.png}
+    \caption{Query 1 output: High-value customers at 5-star hotels}
+\end{figure}
+
+\subsection{Query 2}
+
+\textbf{Description:} For each hotel, calculate the average rating given by customers across all review categories (overall, cleanliness, location, service, value), and rank them by overall average rating. Also include the number of reviews and whether the hotel has a spa amenity. This helps management understand the correlation between hotel ratings and amenities offered.
+
+\begin{lstlisting}[caption={Query 2: Hotel review averages with amenity info}]
+WITH HotelRatings AS (
+    SELECT rv.hotelID,
+           AVG(CAST(rv.rating AS DECIMAL(5,2)))            AS avgOverall,
+           AVG(CAST(rv.cleanlinessRating AS DECIMAL(5,2))) AS avgCleanliness,
+           AVG(CAST(rv.locationRating AS DECIMAL(5,2)))    AS avgLocation,
+           AVG(CAST(rv.serviceRating AS DECIMAL(5,2)))     AS avgService,
+           AVG(CAST(rv.valueRating AS DECIMAL(5,2)))       AS avgValue,
+           COUNT(rv.reviewID)                              AS reviewCount
+    FROM Review rv
+    GROUP BY rv.hotelID
+),
+SpaHotels AS (
+    SELECT ha.hotelID
+    FROM HotelAmenity ha
+    JOIN Amenity a ON ha.amenityID = a.amenityID
+    WHERE a.amenityName = 'Spa'
+)
+SELECT h.hotelName,
+       h.city,
+       h.starRating,
+       DECIMAL(hr.avgOverall, 5, 2)     AS avgOverallRating,
+       DECIMAL(hr.avgCleanliness, 5, 2) AS avgCleanliness,
+       DECIMAL(hr.avgService, 5, 2)     AS avgService,
+       hr.reviewCount,
+       CASE WHEN sh.hotelID IS NOT NULL THEN 'Yes' ELSE 'No' END AS hasSpa
+FROM Hotel h
+JOIN HotelRatings hr ON h.hotelID = hr.hotelID
+LEFT JOIN SpaHotels sh ON h.hotelID = sh.hotelID
+ORDER BY hr.avgOverall DESC;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query2.1.png}
+    \caption{Query 2 output (part 1): Hotel review averages with amenity info}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query2.2.png}
+    \caption{Query 2 output (part 2): Hotel review averages with amenity info (continued)}
+\end{figure}
+
+\subsection{Query 3}
+
+\textbf{Description:} Find the most popular room types across all hotels, measured by number of bookings, total revenue generated, and average price per night charged. Use this information to identify which room categories drive the most revenue for the hotel chain.
+
+\begin{lstlisting}[caption={Query 3: Revenue analysis by room type}]
+SELECT rt.typeName,
+       COUNT(DISTINCT rr.reservationID) AS numberOfBookings,
+       SUM(rr.pricePerNight)            AS totalRevenue,
+       AVG(rr.pricePerNight)            AS avgPriceCharged,
+       rt.basePricePerNight,
+       AVG(rr.pricePerNight) - AVG(rt.basePricePerNight) AS avgPriceDifference,
+       MAX(rr.pricePerNight)            AS maxPriceCharged
+FROM RoomType rt
+JOIN Room r ON rt.hotelID = r.hotelID AND rt.typeName = r.typeName
+JOIN ReservationRoom rr ON r.roomID = rr.roomID
+GROUP BY rt.typeName, rt.basePricePerNight
+ORDER BY totalRevenue DESC;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query3.1.png}
+    \caption{Query 3 output (part 1): Revenue analysis by room type}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query3.2.png}
+    \caption{Query 3 output (part 2): Revenue analysis by room type (continued)}
+\end{figure}
+
+\subsection{Query 4}
+
+\textbf{Description:} Identify customers whose loyalty tier does not match their total spending history -- specifically customers in Bronze or Silver tiers who have spent more than the average spending of Platinum-tier customers. This helps the loyalty program team identify customers who should be upgraded.
+
+\begin{lstlisting}[caption={Query 4: Loyalty tier mismatch detection}]
+WITH CustomerSpend AS (
+    SELECT c.customerID,
+           c.fName || ' ' || c.lName AS customerName,
+           c.tierName,
+           c.loyaltyPoints,
+           COALESCE(SUM(p.amount), 0) AS totalSpent
+    FROM Customer c
+    LEFT JOIN Reservation res ON c.customerID = res.customerID
+    LEFT JOIN Payment p ON res.reservationID = p.reservationID
+                       AND p.paymentStatus = 'completed'
+    GROUP BY c.customerID, c.fName, c.lName, c.tierName, c.loyaltyPoints
+),
+PlatinumAvg AS (
+    SELECT AVG(totalSpent) AS platAvg
+    FROM CustomerSpend
+    WHERE tierName = 'Platinum'
+)
+SELECT cs.customerID,
+       cs.customerName,
+       cs.tierName,
+       cs.loyaltyPoints,
+       DECIMAL(cs.totalSpent, 12, 2)           AS totalSpent,
+       DECIMAL(
+           (SELECT platAvg FROM PlatinumAvg),
+           12, 2
+       )                                        AS platinumAvgSpend
+FROM CustomerSpend cs
+WHERE cs.tierName IN ('Bronze', 'Silver')
+  AND cs.totalSpent > (SELECT platAvg FROM PlatinumAvg)
+ORDER BY cs.totalSpent DESC;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query4.1.png}
+    \caption{Query 4 output (part 1): Loyalty tier mismatch detection}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query4.2.png}
+    \caption{Query 4 output (part 2): Loyalty tier mismatch detection (continued)}
+\end{figure}
+
+\subsection{Query 5}
+
+\textbf{Description:} For each city where hotels are located, find the month with the highest booking revenue and compare it to the annual average monthly revenue. This seasonal analysis helps management determine peak periods for staffing and pricing adjustments.
+
+\begin{lstlisting}[caption={Query 5: Seasonal revenue analysis by city}]
+WITH ReservationCity AS (
+    -- Deduplicate: one row per (reservation, city) regardless of room count
+    SELECT DISTINCT res.reservationID,
+                    res.checkInDate,
+                    h.city
+    FROM Reservation res
+    JOIN ReservationRoom rr ON res.reservationID = rr.reservationID
+    JOIN Room r              ON rr.roomID = r.roomID
+    JOIN Hotel h             ON r.hotelID = h.hotelID
+),
+MonthlyRevenue AS (
+    SELECT rc.city,
+           YEAR(rc.checkInDate)  AS bookingYear,
+           MONTH(rc.checkInDate) AS bookingMonth,
+           SUM(p.amount)         AS monthlyRevenue,
+           COUNT(rc.reservationID) AS numBookings
+    FROM ReservationCity rc
+    JOIN Payment p ON rc.reservationID = p.reservationID
+    WHERE p.paymentStatus = 'completed'
+    GROUP BY rc.city, YEAR(rc.checkInDate), MONTH(rc.checkInDate)
+),
+CityAnnualAvg AS (
+    SELECT city,
+           bookingYear,
+           AVG(monthlyRevenue) AS avgMonthlyRevenue
+    FROM MonthlyRevenue
+    GROUP BY city, bookingYear
+),
+RankedMonths AS (
+    SELECT mr.city,
+           mr.bookingYear,
+           mr.bookingMonth,
+           mr.monthlyRevenue,
+           mr.numBookings,
+           ca.avgMonthlyRevenue,
+           RANK() OVER (PARTITION BY mr.city, mr.bookingYear
+                        ORDER BY mr.monthlyRevenue DESC) AS revenueRank
+    FROM MonthlyRevenue mr
+    JOIN CityAnnualAvg ca ON mr.city = ca.city
+                          AND mr.bookingYear = ca.bookingYear
+)
+SELECT city,
+       bookingYear,
+       bookingMonth AS peakMonth,
+       DECIMAL(monthlyRevenue, 12, 2)    AS peakRevenue,
+       DECIMAL(avgMonthlyRevenue, 12, 2) AS annualAvgMonthlyRevenue,
+       DECIMAL(monthlyRevenue - avgMonthlyRevenue, 12, 2) AS aboveAverage,
+       numBookings AS bookingsInPeakMonth
+FROM RankedMonths
+WHERE revenueRank = 1
+ORDER BY city, bookingYear;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query5.1.png}
+    \caption{Query 5 output (part 1): Seasonal revenue analysis by city}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/query5.2.png}
+    \caption{Query 5 output (part 2): Seasonal revenue analysis by city (continued)}
+\end{figure}
+
+%=============================================================
+\section{SQL Modifications}
+%=============================================================
+
+\subsection{Modification 1}
+
+\textbf{Description:} Update the loyalty tier for all customers based on their total completed payment history. Customers who have spent at least \$10{,}000 are upgraded to Platinum, those at least \$5{,}000 to Gold, those at least \$1{,}000 to Silver, and the rest remain Bronze. This batch update ensures that tier assignments reflect actual spending behaviour.
+
+\begin{lstlisting}[caption={Modification 1: Batch loyalty tier update based on spending}]
+UPDATE Customer
+SET tierName = CASE
+        WHEN (SELECT COALESCE(SUM(p.amount), 0)
+              FROM Reservation res
+              JOIN Payment p ON res.reservationID = p.reservationID
+              WHERE res.customerID = Customer.customerID
+                AND p.paymentStatus = 'completed') >= 10000 THEN 'Platinum'
+        WHEN (SELECT COALESCE(SUM(p.amount), 0)
+              FROM Reservation res
+              JOIN Payment p ON res.reservationID = p.reservationID
+              WHERE res.customerID = Customer.customerID
+                AND p.paymentStatus = 'completed') >= 5000 THEN 'Gold'
+        WHEN (SELECT COALESCE(SUM(p.amount), 0)
+              FROM Reservation res
+              JOIN Payment p ON res.reservationID = p.reservationID
+              WHERE res.customerID = Customer.customerID
+                AND p.paymentStatus = 'completed') >= 1000 THEN 'Silver'
+        ELSE 'Bronze'
+    END
+WHERE customerID IN (
+    SELECT DISTINCT res.customerID
+    FROM Reservation res
+    JOIN Payment p ON res.reservationID = p.reservationID
+    WHERE p.paymentStatus = 'completed'
+);
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/mod1.png}
+    \caption{Modification 1: UPDATE statement execution output}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/mod1_verify.png}
+    \caption{Modification 1: Verification SELECT showing updated tier assignments}
+\end{figure}
+
+\subsection{Modification 2}
+
+\textbf{Description:} Delete all pending reservations (status = \texttt{'pending'}) that were booked more than 30 days ago and have no associated completed payment. This cleanup removes stale unconfirmed bookings that were never paid for, freeing up room availability for active customers.
+
+\begin{lstlisting}[caption={Modification 2: Delete stale pending reservations without payment}]
+DELETE FROM ReservationRoom
+WHERE reservationID IN (
+    SELECT res.reservationID
+    FROM Reservation res
+    WHERE res.reservationStatus = 'pending'
+      AND res.bookingDate < CURRENT DATE - 30 DAYS
+      AND NOT EXISTS (
+          SELECT 1
+          FROM Payment p
+          WHERE p.reservationID = res.reservationID
+            AND p.paymentStatus = 'completed'
+      )
+);
+
+DELETE FROM Reservation
+WHERE reservationStatus = 'pending'
+  AND bookingDate < CURRENT DATE - 30 DAYS
+  AND NOT EXISTS (
+      SELECT 1
+      FROM Payment p
+      WHERE p.reservationID = Reservation.reservationID
+        AND p.paymentStatus = 'completed'
+  );
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/mod2.1.png}
+    \caption{Modification 2 (part 1): DELETE from ReservationRoom output}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/mod2.2.png}
+    \caption{Modification 2 (part 2): DELETE from Reservation output}
+\end{figure}
+
+%=============================================================
+\section{Views}
+%=============================================================
+
+\subsection{View 1: HotelSummary (Simple View)}
+
+\textbf{Description:} This view provides a simplified summary of each hotel's core attributes: its ID, name, city, star rating, total rooms, and property type. It is defined over a single base table (\texttt{Hotel}), selecting a subset of its columns. Because it targets only one base table, DB2 classifies this as a theoretically insertable view (subject to base table constraints).
+
+\begin{lstlisting}[caption={View 1: Hotel operational summary (single-table base)}]
+CREATE VIEW HotelSummary AS
+SELECT h.hotelID,
+       h.hotelName,
+       h.city,
+       h.starRating,
+       h.totalRooms,
+       h.propertyType
+FROM Hotel h;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/view1_create.png}
+    \caption{View 1: CREATE VIEW HotelSummary execution}
+\end{figure}
+
+\begin{lstlisting}[caption={Select from HotelSummary (5 records)}]
+SELECT * FROM HotelSummary FETCH FIRST 5 ROWS ONLY;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/view1_select.png}
+    \caption{View 1: SELECT from HotelSummary (5 rows)}
+\end{figure}
+
+\textbf{INSERT into View:}
+\begin{lstlisting}[caption={Insert into HotelSummary view}]
+INSERT INTO HotelSummary (hotelID, hotelName, city, starRating, totalRooms, propertyType)
+VALUES (6, 'Vancouver Waterfront Hotel', 'Vancouver', 4, 180, 'Resort');
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/view1_insert.png}
+    \caption{View 1: INSERT into HotelSummary result}
+\end{figure}
+
+\textbf{Explanation of INSERT result:} Since \texttt{HotelSummary} is defined over a single base table (\texttt{Hotel}) and selects a subset of its columns, DB2 permits the insert to propagate to the underlying \texttt{Hotel} table. However, columns not included in the view (such as \texttt{street}, \texttt{country}, \texttt{checkInTime}, \texttt{checkOutTime}) are declared \texttt{NOT NULL} in the base table. DB2 therefore rejects the insert with \texttt{SQL0407N}, indicating that a required (NOT NULL) column of the underlying table is absent from the view definition and no default value is available.
+
+\subsection{View 2: ActiveReservationDetails (Complex View)}
+
+\textbf{Description:} This view presents confirmed and active reservations with full customer and hotel details, including the customer's name, the hotel, check-in/out dates, total price, and payment status. It is defined over multiple tables (\texttt{Reservation}, \texttt{Customer}, \texttt{ReservationRoom}, \texttt{Room}, \texttt{Hotel}, \texttt{Payment}), making it a complex join view.
+
+\begin{lstlisting}[caption={View 2: Active reservation details (multi-table join)}]
+CREATE VIEW ActiveReservationDetails AS
+SELECT res.reservationID,
+       c.customerID,
+       c.fName || ' ' || c.lName AS customerName,
+       c.email,
+       c.tierName,
+       h.hotelName,
+       h.city,
+       res.checkInDate,
+       res.checkOutDate,
+       res.numberOfGuests,
+       res.totalPrice,
+       res.reservationStatus,
+       p.paymentStatus,
+       p.paymentMethod
+FROM Reservation res
+JOIN Customer c ON res.customerID = c.customerID
+JOIN ReservationRoom rr ON res.reservationID = rr.reservationID
+JOIN Room r ON rr.roomID = r.roomID
+JOIN Hotel h ON r.hotelID = h.hotelID
+LEFT JOIN Payment p ON res.reservationID = p.reservationID
+WHERE res.reservationStatus IN ('confirmed', 'checked_in');
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/view2_create.png}
+    \caption{View 2: CREATE VIEW ActiveReservationDetails execution}
+\end{figure}
+
+\begin{lstlisting}[caption={Select from ActiveReservationDetails (5 records)}]
+SELECT * FROM ActiveReservationDetails FETCH FIRST 5 ROWS ONLY;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/view2_select.png}
+    \caption{View 2: SELECT from ActiveReservationDetails (5 rows)}
+\end{figure}
+
+\textbf{INSERT into View:}
+\begin{lstlisting}[caption={Insert into ActiveReservationDetails view}]
+INSERT INTO ActiveReservationDetails
+    (reservationID, customerID, customerName, email, tierName,
+     hotelName, city, checkInDate, checkOutDate, numberOfGuests,
+     totalPrice, reservationStatus, paymentStatus, paymentMethod)
+VALUES
+    (9999, 1, 'Emma Thompson', 'emma.thompson@email.com', 'Gold',
+     'Grand Palais Montreal', 'Montreal', '2026-06-01', '2026-06-05', 2,
+     1156.00, 'confirmed', 'pending', 'credit_card');
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/view2_insert.png}
+    \caption{View 2: INSERT into ActiveReservationDetails result}
+\end{figure}
+
+\textbf{Explanation of INSERT result:} DB2 rejects this insert with \texttt{SQL0150N: The view, materialized query table, or transition table is not insertable.} This is because \texttt{ActiveReservationDetails} is defined using a JOIN across multiple base tables. According to DB2 rules, a view is not insertable when its fullselect includes a join operation, because DB2 cannot determine which underlying base table should receive each column of the new row.
+
+%=============================================================
+\section{Check Constraints}
+%=============================================================
+
+\subsection{Check Constraint 1: Hotel Star Rating (\texttt{chk\_star\_rating})}
+
+\textbf{Description:} This constraint ensures that a hotel's star rating is always between 1 and 5 (inclusive). In the hospitality industry, star ratings are a standardized 1--5 scale. Values outside this range would corrupt the database and produce misleading results in queries filtering on \texttt{starRating}. The constraint was declared inline during \texttt{CREATE TABLE Hotel}.
+
+\begin{lstlisting}[caption={Check Constraint 1: Hotel star rating (declared in CREATE TABLE)}]
+-- As declared in CREATE TABLE Hotel:
+CONSTRAINT chk_star_rating CHECK (starRating >= 1 AND starRating <= 5)
+\end{lstlisting}
+
+\textbf{Constraint in database:}
+\begin{lstlisting}[caption={Querying SYSCAT.CHECKS to confirm chk\_star\_rating exists}]
+SELECT CONSTNAME, TYPE, SUBSTR(TEXT, 1, 60) AS TEXT
+FROM SYSCAT.CHECKS
+WHERE TABNAME = 'HOTEL';
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{screenshots/check1_def.png}
+    \caption{Check Constraint 1: \texttt{SYSCAT.CHECKS} query on the \texttt{HOTEL} table; the violation test below (SQL0545N referencing \texttt{CHK\_STAR\_RATING}) directly confirms the constraint is active}
+\end{figure}
+
+\textbf{Violation test:}
+\begin{lstlisting}[caption={Insert violating chk\_star\_rating}]
+INSERT INTO Hotel (hotelID, hotelName, street, city, country,
+                   starRating, totalRooms, checkInTime, checkOutTime)
+VALUES (99, 'Fake Hotel', '1 Main St', 'Montreal', 'Canada',
+        7, 50, '15:00:00', '11:00:00');
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{screenshots/check1_violation.png}
+    \caption{Check Constraint 1: DB2 \texttt{SQL0545N} error -- star rating = 7 violates \texttt{chk\_star\_rating}}
+\end{figure}
+
+The DB2 engine returns \texttt{SQL0545N}: the requested operation is not allowed because the resulting row does not satisfy the check constraint \texttt{chk\_star\_rating}.
+
+\subsection{Check Constraint 2: Reservation Date Order (\texttt{chk\_dates})}
+
+\textbf{Description:} This constraint ensures that \texttt{checkOutDate} is strictly after \texttt{checkInDate} in the \texttt{Reservation} table. A reservation where checkout is on the same day or before check-in is logically impossible and would cause errors in pricing, availability, and duration calculations. The constraint was declared inline during \texttt{CREATE TABLE Reservation}.
+
+\begin{lstlisting}[caption={Check Constraint 2: Reservation date order (declared in CREATE TABLE)}]
+-- As declared in CREATE TABLE Reservation:
+CONSTRAINT chk_dates CHECK (checkOutDate > checkInDate)
+\end{lstlisting}
+
+\textbf{Constraint in database:}
+\begin{lstlisting}[caption={Querying SYSCAT.CHECKS to confirm chk\_dates exists}]
+SELECT CONSTNAME, TYPE, SUBSTR(TEXT, 1, 60) AS TEXT
+FROM SYSCAT.CHECKS
+WHERE TABNAME = 'RESERVATION';
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{screenshots/check2_def.png}
+    \caption{Check Constraint 2: \texttt{chk\_dates} confirmed in \texttt{SYSCAT.CHECKS}}
+\end{figure}
+
+\textbf{Violation test:}
+\begin{lstlisting}[caption={Insert violating chk\_dates}]
+INSERT INTO Reservation
+    (reservationID, checkInDate, checkOutDate, numberOfGuests,
+     totalPrice, bookingDate, reservationStatus, customerID)
+VALUES (9001, '2026-05-10', '2026-05-08', 2, 500.00,
+        '2026-04-01', 'pending', 1);
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{screenshots/check2_violation.png}
+    \caption{Check Constraint 2: DB2 \texttt{SQL0545N} error -- checkout before check-in violates \texttt{chk\_dates}}
+\end{figure}
+
+The DB2 engine returns \texttt{SQL0545N}: the requested operation is not allowed because the resulting row does not satisfy the check constraint \texttt{chk\_dates}.
+
+%=============================================================
+\section{Creativity}
+%=============================================================
+
+\subsection{Real-World Data Sets}
+
+For the \textbf{Customer} table, we generated \textbf{100 records} with realistic, real-sounding first and last names drawn from common French-Canadian and English-Canadian name lists (e.g., Emma Thompson, Gabriel Tremblay, Sophie Gagnon, Matthew Jackson, Caroline Lavoie, Spencer Mahon) rather than placeholder values like \texttt{customer001}. Every attribute is meaningful: real email addresses, Canadian phone numbers with authentic area codes (514/438 Montreal, 418 Quebec City, 416/613 Toronto/Ottawa, 604 Vancouver), realistic dates of birth spanning 1967--2000, and loyalty point totals that are consistent with each customer's tier assignment. The \texttt{Customer} table has a foreign key to \texttt{LoyaltyTier}, and all 100 tier assignments were verified against the point thresholds (Bronze: 0--999, Silver: 1000--4999, Gold: 5000--14999, Platinum: 15000--29999, Diamond: 30000+).
+
+Additionally, the \textbf{Hotel} table was populated with 5 real-world inspired Canadian hotel properties (Grand Palais Montreal, Le Meridien Downtown, Auberge du Plateau, Chateau Frontenac Quebec, Toronto Harbor Inn) with accurate-sounding addresses, real cities, proper postal codes, and realistic check-in/check-out times. The \textbf{Staff} table contains 10 staff members with authentic French-Canadian and English-Canadian names (e.g., Marie Tremblay, Jean Beaumont, François Lavoie, Nathalie Côté, Michael O'Brien), reflecting the bilingual character of the Montreal hotel industry.
+
+All data was crafted manually using knowledge of the Canadian hotel industry, real city names, realistic pricing structures, and authentic personal names. Room prices reflect actual nightly rates in the Montreal and Quebec City luxury hotel market (e.g., Presidential Suite at \$989--\$1099/night, Budget Single at \$79/night).
+
+The \texttt{Customer} table has \textbf{100 records}, satisfying the creativity section's minimum 100-record requirement. All tables satisfy the minimum 5-record and maximum 500-record constraints.
+
+\subsection{Advanced SQL Feature: Window Functions}
+
+\textbf{Purpose:} Use DB2's \texttt{RANK()} window function to rank rooms within each hotel by their booking frequency over the past year. This identifies the most in-demand rooms per hotel, which is valuable for pricing optimisation and maintenance scheduling.
+
+\begin{lstlisting}[caption={Creativity: Window function for per-hotel room demand ranking}]
+SELECT h.hotelName,
+       r.roomNumber,
+       r.typeName,
+       COUNT(rr.reservationID) AS bookingCount,
+       RANK() OVER (
+           PARTITION BY r.hotelID
+           ORDER BY COUNT(rr.reservationID) DESC
+       ) AS demandRank,
+       AVG(rr.pricePerNight) AS avgNightlyRate
+FROM Hotel h
+JOIN Room r ON h.hotelID = r.hotelID
+LEFT JOIN ReservationRoom rr ON r.roomID = rr.roomID
+LEFT JOIN Reservation res ON rr.reservationID = res.reservationID
+    AND res.checkInDate >= CURRENT DATE - 365 DAYS
+GROUP BY h.hotelName, r.roomNumber, r.typeName, r.hotelID, r.roomID
+ORDER BY h.hotelName, demandRank;
+\end{lstlisting}
+
+\textbf{Description:} The query returns each room along with its hotel, number of reservations in the past year, and its demand rank within that hotel. \texttt{RANK() OVER (PARTITION BY r.hotelID ORDER BY COUNT(...) DESC)} resets the rank for each hotel property. Ties in booking count receive the same rank. This is a standard OLAP window function supported in DB2 SQL.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/creativity_window1.png}
+    \caption{Creativity query output (part 1): Room demand ranking using \texttt{RANK()} window function}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{screenshots/creativity_window2.png}
+    \caption{Creativity query output (part 2): Room demand ranking (continued)}
+\end{figure}
+
+%=============================================================
+\section{Group Work Organization}
+%=============================================================
+
+Our group held a total of \textbf{three meetings} over the course of the project:
+
+\begin{itemize}
+    \item \textbf{Meeting 1 (February 17, 2026, 2 hours):} Initial planning session. We reviewed the Project 1 feedback and decided on which schema modifications to implement. Assigned ownership of tasks: David Vo took responsibility for the SQL queries (Q5), David Zhou for the DDL files (Q3, Q4), David Namgung for views and check constraints (Q7, Q8), and Jessie Maeda-Yang for the report compilation and creativity section (Q9).
+
+    \item \textbf{Meeting 2 (February 25, 2026, 3 hours):} Working session. We ran the DDL scripts on the DB2 server together to verify the schema was created correctly, debugged foreign key ordering issues, and loaded the initial data. We discussed and drafted the SQL queries collaboratively, ensuring they met the complexity requirements (at least 3 tables, aggregation, GROUP BY, WITH clauses).
+
+    \item \textbf{Meeting 3 (March 3, 2026, 2.5 hours):} Final review and testing session. We executed all queries on the live DB2 database, took the required screenshots, verified the views and check constraints, and assembled the final report. All team members reviewed the complete submission before finalising.
+\end{itemize}
+
+\textbf{Individual Contributions:}
+\begin{itemize}
+    \item \textbf{David Vo:} Led development of the five SQL select queries (Q5). Verified query logic and ensured advanced features (WITH, subqueries, multi-table joins) were used correctly. Also helped with loading data and testing.
+
+    \item \textbf{David Zhou:} Wrote the \texttt{createtbl.sql} and \texttt{droptbl.sql} files, ensuring proper foreign key ordering, correct data types, and all integrity constraints. Executed the scripts and captured the log files.
+
+    \item \textbf{David Namgung:} Designed and implemented the two SQL views (Q7) and two check constraints (Q8). Tested insert violations and documented the DB2 explanation for each result.
+
+    \item \textbf{Jessie Maeda-Yang:} Wrote the \texttt{loaddata.sql} file with meaningful real-world data (creativity section). Compiled the final project report in \LaTeX, integrated all sections, and ensured formatting met submission requirements.
+\end{itemize}
+
+All team members reviewed the final deliverable and are collectively responsible for its contents.
+
+\end{document}

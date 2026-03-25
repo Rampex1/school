@@ -1,0 +1,1142 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:00.570
+cloud.
+
+2
+00:00:03.270 --> 00:00:05.040
+Robert Sabourin, Mr: All right, can you still hear me.
+
+3
+00:00:05.460 --> 00:00:06.359
+Rebecca: I can, yes.
+
+4
+00:00:07.049 --> 00:00:10.769
+Robert Sabourin, Mr: Okay, I hear you loud and clear and i'll just kick this off.
+
+5
+00:00:12.120 --> 00:00:22.560
+Robert Sabourin, Mr: Okay, just good here move this over there alright, so thank you for agreeing to be interviewed the topic of today is static analysis.
+
+6
+00:00:23.070 --> 00:00:30.630
+Robert Sabourin, Mr: And there's a lot of different people who use the term static analysis, a lot of different ways so just wanted to say that I want to give a very broad.
+
+7
+00:00:31.380 --> 00:00:39.960
+Robert Sabourin, Mr: definition of it for the purposes of this interview static analysis just learning from non executing artifacts of a software engineering project.
+
+8
+00:00:40.650 --> 00:00:50.310
+Robert Sabourin, Mr: Now what I mean by artifact is very much like in archaeology it's something that's going to be there after the project is finished right so an artifact of the project, but we we consider usually code.
+
+9
+00:00:50.640 --> 00:00:59.340
+Robert Sabourin, Mr: Is an artifact requirements as an artifact designs as an artifact tests as artifact, but it can be broadly anything almost i've seen contracts.
+
+10
+00:01:00.270 --> 00:01:08.520
+Robert Sabourin, Mr: and other type of documents being used to to basically learn about them, usually learning about risks but it doesn't just have to be risky could be.
+
+11
+00:01:08.850 --> 00:01:14.880
+Robert Sabourin, Mr: Also, learning what progress on a project or learning about things that might be of interest to your business the.
+
+12
+00:01:15.780 --> 00:01:26.760
+Robert Sabourin, Mr: there's two types of broad types of a static analysis and I asked you to share experience in any of these that you might like one of them are called review oriented.
+
+13
+00:01:27.120 --> 00:01:32.490
+Robert Sabourin, Mr: Things like inspections walk through peer reviews, but he checks stuff like that, but there's also.
+
+14
+00:01:33.240 --> 00:01:52.440
+Robert Sabourin, Mr: A family of automated static analysis methods like code analyzers limiters security checkers and coverage analyzers and stuff like that So those are the two types of tools and what I asked you to do is to share with me a three three stories if you if you have some examples.
+
+15
+00:01:53.010 --> 00:02:05.250
+Robert Sabourin, Mr: of your your history, one would be an example as a successful yeah use of static analysis, one would be a failure of use of static analysis and in the case of static analysis, a failure, can be.
+
+16
+00:02:06.960 --> 00:02:17.190
+Robert Sabourin, Mr: An opportunity that was missed like we could have found this problem if we did static analysis, so it could also be we did it and it screwed up, but I just want to leave that open.
+
+17
+00:02:18.270 --> 00:02:29.790
+Robert Sabourin, Mr: And a typical story so maybe before we get there we'll just mentioned a little bit about so you're working for a company that's known as mackenzie.
+
+18
+00:02:31.620 --> 00:02:33.930
+Robert Sabourin, Mr: At the time of these stories, so what was your role.
+
+19
+00:02:35.640 --> 00:02:44.610
+Rebecca: um so I usually generally a senior software developer so somebody who is you know leading a team leading a team of developers.
+
+20
+00:02:45.960 --> 00:02:47.880
+Rebecca: Operating and building out services.
+
+21
+00:02:48.510 --> 00:02:51.150
+Robert Sabourin, Mr: Very good, and how long were you in that role.
+
+22
+00:02:52.410 --> 00:03:04.110
+Rebecca: um so being at McKinsey for about about eight years now, but the role of grown into the roles, maybe let's say two three years in that role, maybe you actually, I guess, even for now in a while.
+
+23
+00:03:05.100 --> 00:03:15.240
+Robert Sabourin, Mr: analytics so you mentioned the time in the company was about eight years, but for years in the current role other than that what's your amount of professional experience let's say, since you started working professionally.
+
+24
+00:03:16.410 --> 00:03:19.410
+Rebecca: Around around let's say 15 ish 15 ish.
+
+25
+00:03:19.530 --> 00:03:20.040
+Robert Sabourin, Mr: All right, alright.
+
+26
+00:03:20.550 --> 00:03:23.910
+Rebecca: 13 to 15 somewhere in there i'd have to i'd have to count more thoroughly but.
+
+27
+00:03:23.970 --> 00:03:26.040
+Robert Sabourin, Mr: Somewhere in there, so you're basically.
+
+28
+00:03:26.430 --> 00:03:28.800
+Robert Sabourin, Mr: Pretty experienced to see a lot of things done and i'm sure you've.
+
+29
+00:03:28.980 --> 00:03:29.310
+Robert Sabourin, Mr: seen what.
+
+30
+00:03:29.370 --> 00:03:31.290
+Rebecca: i've seen some things i've seen something.
+
+31
+00:03:31.350 --> 00:03:32.550
+Robert Sabourin, Mr: Oh alright.
+
+32
+00:03:32.640 --> 00:03:39.180
+Robert Sabourin, Mr: So i'll let you start with the whichever story, you want to start with first success failure typical sure.
+
+33
+00:03:41.190 --> 00:03:45.660
+Rebecca: Okay well why don't we start with a success, so this is.
+
+34
+00:03:46.740 --> 00:03:48.300
+Rebecca: So, so one of the tools.
+
+35
+00:03:49.500 --> 00:03:54.420
+Rebecca: One of the tools we've used on a couple of teams, now that i've worked on to great effect is textile.
+
+36
+00:03:55.020 --> 00:04:04.650
+Rebecca: Which is a tool in Java that basically does static analysis of your code at build time, so what we do is when when we're as we're building our code check style will run as part of the build process and.
+
+37
+00:04:05.160 --> 00:04:09.750
+Rebecca: We have it set up such that, if certain rules in the code or not followed the build will fail.
+
+38
+00:04:10.440 --> 00:04:17.610
+Rebecca: This is great, because it means the rules are followed optionally like they have to be followed, or else you know you're you're not going to be able to ship your code.
+
+39
+00:04:18.330 --> 00:04:25.470
+Rebecca: The other thing that's really nice about so much about it, you know will be using our current project for a few purposes, so one of the things is.
+
+40
+00:04:26.340 --> 00:04:33.330
+Rebecca: code reviews were catching things that were just you know things that could have been caught by static analysis like we do code reviews in our group.
+
+41
+00:04:33.660 --> 00:04:43.470
+Rebecca: And you know it's kind of just a pain when somebody has to point out the same thing happening over and over either in the same person's code or different persons code, where you know, things are just getting missed.
+
+42
+00:04:44.790 --> 00:04:52.830
+Rebecca: The other thing that was a bit of a pain this this probably sounds like a minor thing, but when you're reading through code reviews can be quite annoying is that is important, are changing.
+
+43
+00:04:53.040 --> 00:05:00.780
+Rebecca: So, like you're trying to look at the things that are changing before and after given code base and you're, just like the first half of it is just like have any given file is just.
+
+44
+00:05:00.990 --> 00:05:13.140
+Rebecca: Imports going all over the place, like I just kind of like distracting and annoying it's just like Why is this happening, we should all just be following one import order we shouldn't have unused imports So these are some things that we can just easily.
+
+45
+00:05:13.530 --> 00:05:17.700
+Rebecca: enforce with check style, so we can enforce import order, we can enforce.
+
+46
+00:05:18.780 --> 00:05:27.870
+Rebecca: We can enforce not yo we can, of course, not having unused imports and we can enforce some really interesting things that I really liked enforcing that I find is interesting, like, for example.
+
+47
+00:05:29.220 --> 00:05:36.390
+Rebecca: You can enforce things like not having a file or a method be huge like you can set a Max length that they can be.
+
+48
+00:05:36.870 --> 00:05:42.180
+Rebecca: And you can do overrides if there's some really compelling reason to do it longer but but, for example.
+
+49
+00:05:43.170 --> 00:05:46.980
+Rebecca: In clean code in Java there's this there's this book called clean code.
+
+50
+00:05:47.460 --> 00:05:58.410
+Rebecca: That talks about some of the practices that you want to follow and some of it is not having like gigantic files that are doing many things now static analysis can't completely stop you from doing that, but I can stop you like.
+
+51
+00:05:58.980 --> 00:06:03.630
+Rebecca: It can make you like okay you've written a method that's 100 lines long less probably not right, you know.
+
+52
+00:06:03.990 --> 00:06:11.940
+Rebecca: Like and if there is right, well, we can put an exception in there, but it probably helps for static analysis, just to say like nope you've you've done this like this thing is too long.
+
+53
+00:06:12.750 --> 00:06:20.010
+Rebecca: It doesn't make sense to have this you know all in one method white like it can actually help you with things like that, as well as well as just.
+
+54
+00:06:20.610 --> 00:06:29.460
+Rebecca: You know, general like cleanness things psychosomatic complexity is another one, you can you can do for the same reason, like you can have it analyzed psychosomatic complexity which is basically like the number of.
+
+55
+00:06:29.910 --> 00:06:34.380
+Rebecca: or or branches in your method and say you've got too much going on in this method it's too busy.
+
+56
+00:06:35.100 --> 00:06:44.250
+Rebecca: So you know there's too much going on here we're going to make this going to fail this building and allow you to like go back and actually can factor that could be something that's reasonable and maintain over people.
+
+57
+00:06:47.820 --> 00:06:50.670
+Robert Sabourin, Mr: And why would you say, this was a successful.
+
+58
+00:06:51.600 --> 00:07:03.240
+Rebecca: i'd say successful because it's cut down on the amount of the amount of obvious comments when needs to make in code review like if you have the cycle matic flexi rules on you're not going to have things like.
+
+59
+00:07:04.050 --> 00:07:16.530
+Rebecca: You know, again methods that are just really hard to follow because that's going to get caught by the by the analyzer again to import order thing, while it just kind of a visual annoyance in code reviews is gone now and, like.
+
+60
+00:07:17.130 --> 00:07:22.500
+Rebecca: Everybody just has their important to be set up in the same order and everybody just doesn't have unused imports, because.
+
+61
+00:07:22.800 --> 00:07:27.840
+Rebecca: It fails build so we don't have to deal with this kind of messiness in our code reviews so just a tedious messiness.
+
+62
+00:07:28.380 --> 00:07:39.510
+Rebecca: And just in general, the code is cleaner, as a result, without having to like now now basically our human reviewers can focus on things that you know humans can notice about the code and don't have the basically human.
+
+63
+00:07:39.870 --> 00:07:49.620
+Rebecca: Human automatic static analyzer they can spend their time on things that are more there are deeper problems in the code or deeper discussions, we want to have with the code, instead of just the same like.
+
+64
+00:07:49.950 --> 00:07:55.200
+Rebecca: you've missed a you know you've missed a new line or whatever it is type of stuff that doesn't mean that doesn't matter.
+
+65
+00:07:56.430 --> 00:07:59.640
+Robert Sabourin, Mr: So prior to the story prior prior to this story.
+
+66
+00:08:00.720 --> 00:08:03.480
+Robert Sabourin, Mr: The methods you use had those type of problems.
+
+67
+00:08:04.320 --> 00:08:05.820
+Rebecca: yeah we're basically using code waste.
+
+68
+00:08:06.750 --> 00:08:07.290
+Rebecca: So yeah.
+
+69
+00:08:07.350 --> 00:08:08.520
+Robert Sabourin, Mr: Essentially, recently.
+
+70
+00:08:08.850 --> 00:08:14.760
+Rebecca: i've been yeah so we still do code reviews code reviews are still important, but rather than relying on code reviews to catch things that.
+
+71
+00:08:15.000 --> 00:08:26.190
+Rebecca: are just again tedious Mrs or having coder viewers to get distracted by like just having to scroll through all these imports changing and just just generally being like well I can't even really see what's changed because it's just messy.
+
+72
+00:08:27.060 --> 00:08:31.290
+Rebecca: it's just nicer to be able to you know, have the human reviewers focus on.
+
+73
+00:08:31.620 --> 00:08:43.590
+Rebecca: You know, problems that can't be caught by a computer just running a check, because if the computer can run a check on something automatically like i'd rather have it do that then have a human waste their time and you know effort doing that.
+
+74
+00:08:43.950 --> 00:08:44.670
+Robert Sabourin, Mr: It just just.
+
+75
+00:08:45.120 --> 00:08:52.530
+Rebecca: Human reviewers time and it's like good again good, positive always positive feedback on these sort of things from our from our human reviewers.
+
+76
+00:08:53.250 --> 00:08:59.430
+Rebecca: Who like I mean adding the rules can be kind of a pain, because you got to sometimes go back and fix some old code that maybe some things slip through.
+
+77
+00:08:59.430 --> 00:09:04.800
+Rebecca: On but that also improves our code quality in the long run, so like ultimately it's it's a win, win.
+
+78
+00:09:05.160 --> 00:09:06.270
+Rebecca: The chat and.
+
+79
+00:09:07.290 --> 00:09:19.020
+Robert Sabourin, Mr: your team makes the rules so it's it's it's So if you take legacy code and Linda with or use the textile tool on it it'll apply the new rule to old code there might be some violations so.
+
+80
+00:09:19.860 --> 00:09:23.640
+Robert Sabourin, Mr: Let me just go back and fix them and, again, most of them are trivial violations to fix and it's.
+
+81
+00:09:24.000 --> 00:09:26.070
+Rebecca: just going to ultimately make your code much cleaner.
+
+82
+00:09:26.640 --> 00:09:31.530
+Robert Sabourin, Mr: bama for such things like things like psychosomatic complexity, or more are more interesting.
+
+83
+00:09:31.800 --> 00:09:46.680
+Rebecca: Things like psychosomatic complexity we've handled in a couple of ways, so on our newer code bases you just added and you're done like you don't have to worry about legacy code and previous in an older code bases that i've used it on, there are a couple of tricks, there are somewhere.
+
+84
+00:09:48.030 --> 00:09:52.830
+Rebecca: Sometime, so there are two ways, you can do it one of those you can just set the cycle matic complexity to like the worst that you.
+
+85
+00:09:53.130 --> 00:09:56.520
+Rebecca: currently have in your code base so at least you're aren't adding anything worse.
+
+86
+00:09:56.820 --> 00:10:04.050
+Rebecca: And you can slowly work it down like hey here's The worst thing in the code base let's go attack this one, and then slowly bring that number down.
+
+87
+00:10:04.290 --> 00:10:08.880
+Rebecca: The other thing you can do is there, I don't remember the name, but there are some tools that will only apply it to new code.
+
+88
+00:10:09.720 --> 00:10:17.790
+Rebecca: So there are some ways to apply some of these rules to just new code and leave a legacy code be which in some code bases is a better calls, so you don't have to deal with, as you say, like.
+
+89
+00:10:18.030 --> 00:10:24.840
+Rebecca: Some of the legacy for is just not worth refactoring at this time, but it can that can be useful as well.
+
+90
+00:10:26.190 --> 00:10:28.650
+Robert Sabourin, Mr: Alright, so this implementation.
+
+91
+00:10:29.970 --> 00:10:33.720
+Robert Sabourin, Mr: How did you come to choose the specific tool textile.
+
+92
+00:10:34.710 --> 00:10:45.090
+Rebecca: was used fairly broadly and in our company, so our company has like it's not necessarily that it's the only tool we've used the only option, but it was used it's used really broadly.
+
+93
+00:10:46.020 --> 00:10:54.780
+Rebecca: Some some teams barely use it at all and some teams use it a lot but it's one of the tools, where if you're looking to solve this kind of problem at this company basically we're just grabbing this tool, because.
+
+94
+00:10:54.840 --> 00:10:55.590
+Robert Sabourin, Mr: You know so.
+
+95
+00:10:56.070 --> 00:11:05.940
+Robert Sabourin, Mr: Many other teams use it and basically your team is aware of it, because other practitioners and other teams have been using it for a while.
+
+96
+00:11:06.360 --> 00:11:07.170
+Rebecca: Yes, exactly.
+
+97
+00:11:08.040 --> 00:11:14.610
+Robert Sabourin, Mr: You mentioned a reference specific reference to clean code I think you're talking about Bob martin's book is that my case.
+
+98
+00:11:16.020 --> 00:11:21.150
+Rebecca: I think, so I think I also don't recall the the author I think you're correct.
+
+99
+00:11:21.450 --> 00:11:23.850
+Rebecca: Okay, so yet Robert Robert Martin.
+
+100
+00:11:23.850 --> 00:11:24.780
+Rebecca: Yes, that's correct.
+
+101
+00:11:25.200 --> 00:11:29.940
+Robert Sabourin, Mr: So just I was just going to ask is he involved in the business his book is.
+
+102
+00:11:31.230 --> 00:11:40.770
+Robert Sabourin, Mr: That a beautiful beautiful list of rules and disciplines for for coding and he's also one of the earlier writers that area, so he's.
+
+103
+00:11:40.800 --> 00:11:44.700
+Robert Sabourin, Mr: he's pioneered this type thing, but was involved in this tool, or you don't know.
+
+104
+00:11:45.060 --> 00:11:46.980
+Rebecca: I don't know I don't I don't.
+
+105
+00:11:47.340 --> 00:11:54.660
+Rebecca: think so, but like ultimately it just it just when you look through some of the rules they're not all of them, but some of them some of it can be some of that can.
+
+106
+00:11:54.840 --> 00:12:07.860
+Rebecca: If not be fully enforced by static analysis at least a static analysis can flag places where there are potential problems in those areas that you should at least be considered so that's what I like what some of that these these automatic static analysis tools.
+
+107
+00:12:08.130 --> 00:12:12.240
+Robert Sabourin, Mr: yeah yeah alright so that's excellent, so thank you, I guess.
+
+108
+00:12:13.260 --> 00:12:13.770
+Robert Sabourin, Mr: that's.
+
+109
+00:12:17.160 --> 00:12:22.020
+Robert Sabourin, Mr: don't want to talk technically with the tool but it's a any competent Java programmer should be able to.
+
+110
+00:12:23.100 --> 00:12:24.690
+Robert Sabourin, Mr: edit the the rules basically.
+
+111
+00:12:24.810 --> 00:12:25.380
+Rebecca: Absolutely.
+
+112
+00:12:25.470 --> 00:12:31.440
+Rebecca: Yes, you can any competent Java programmer can edit the rules, change the change the code base to comply with the rules.
+
+113
+00:12:31.680 --> 00:12:40.740
+Rebecca: yo we decide on the rules like if somebody wants to add any war, they bring it up in a team meeting and we're like yeah cool or no, we don't want to, but generally yes and then we're cool is that we do it.
+
+114
+00:12:41.490 --> 00:12:51.390
+Robert Sabourin, Mr: and basically what you're seeing is the most important benefit here is that code reviews cannot be focused on things like algorithms and solution approaches, rather than things like.
+
+115
+00:12:52.740 --> 00:12:59.220
+Robert Sabourin, Mr: This like an appropriate order of imports or some syntactical thing that could have been done differently.
+
+116
+00:12:59.760 --> 00:13:07.290
+Rebecca: yeah or like hey this message too complicated, I mean those things still happen, but it's much less likely, if you have something like a psychosomatic complexity checker just baked in.
+
+117
+00:13:07.830 --> 00:13:11.010
+Robert Sabourin, Mr: By the way, are you familiar with the lit the culture of literacy programming.
+
+118
+00:13:12.240 --> 00:13:13.320
+Rebecca: literate programming know.
+
+119
+00:13:13.530 --> 00:13:15.300
+Robert Sabourin, Mr: You can read the code and by reading it.
+
+120
+00:13:15.420 --> 00:13:15.840
+Robert Sabourin, Mr: I would.
+
+121
+00:13:15.870 --> 00:13:19.860
+Rebecca: Yes, I think that we practice that if I don't know the name but it's something like very.
+
+122
+00:13:20.520 --> 00:13:28.560
+Rebecca: Like when i'm looking at a code review and we'll talk, maybe talk about code reviews later, but like one of the things that's important to me is is being able to like I can read it and understand what the heck i'm reading.
+
+123
+00:13:29.940 --> 00:13:30.150
+Rebecca: yeah.
+
+124
+00:13:30.180 --> 00:13:34.380
+Robert Sabourin, Mr: there's a beautiful book by by a series of articles by Donald knuth on that subject.
+
+125
+00:13:35.190 --> 00:13:43.680
+Robert Sabourin, Mr: yeah part of part of the sort of the history of clean coding goes back to Duncan is all right, well, thank you for sharing that that's a beautiful and i'm actually.
+
+126
+00:13:44.160 --> 00:13:50.160
+Robert Sabourin, Mr: Anxious to try the tool myself, even though I don't do a lot of Java programming, these days, but it says sounds like the right type of thing to do.
+
+127
+00:13:51.360 --> 00:13:53.850
+Robert Sabourin, Mr: Which which story, would you like to do next failure or typical.
+
+128
+00:13:54.270 --> 00:14:02.520
+Rebecca: let's do normal let's do it let's do a normal normal story, I think that the when you're talking about static analysis, at least on and on my team.
+
+129
+00:14:03.090 --> 00:14:12.360
+Rebecca: One of the biggest uses of static analysis is our code reviews, which is one of our manual static analysis processes and.
+
+130
+00:14:13.080 --> 00:14:27.840
+Rebecca: This is something that is very, very standard at our company pretty much every team does code reviews in some way i'm not going to say every team, there are ways to get around doing it, but in general, if you're shipping production software, you will be doing code reviews.
+
+131
+00:14:29.700 --> 00:14:33.240
+Rebecca: So production software, I mean anything that has a customer whether internal or external.
+
+132
+00:14:34.170 --> 00:14:37.290
+Rebecca: So you know in our team, we have, we have a rule.
+
+133
+00:14:37.830 --> 00:14:51.270
+Rebecca: Which is also static we analyzed such that our code can't ship if it's broken, but basically we have a rule that two members of the team have to review and approve any.
+
+134
+00:14:52.470 --> 00:15:02.310
+Rebecca: Any code change regardless of it could be one line of code that's just changing a configuration file, it could be a whole new feature it doesn't matter you have to have to approvals on everything.
+
+135
+00:15:03.510 --> 00:15:10.290
+Rebecca: That is, that is the rule and the way this works, this is again really normal like, if I could look at the most recent feature we've pushed out.
+
+136
+00:15:11.070 --> 00:15:19.740
+Rebecca: You know, which is just really just started some changing refactoring to some of our anyway it doesn't even really matter what it is because we follow the same process for everything.
+
+137
+00:15:20.460 --> 00:15:29.490
+Rebecca: Which is one of the things that I really like about it, it just everybody understands the rules it's the rules are same for everything there's no exceptions you every time you're putting up a code change you put it into code review.
+
+138
+00:15:30.690 --> 00:15:34.050
+Rebecca: Obviously we we do have we don't have rules, per se, but we have some.
+
+139
+00:15:34.470 --> 00:15:42.990
+Rebecca: team understanding of like you're not going to put up like a 50 page code review if you're doing a feature you're probably doing an incremental chunk so again, people can read and understand the code review.
+
+140
+00:15:43.800 --> 00:15:52.410
+Rebecca: So the code review will go up and when the code review goes up a couple things happen there's an automatic process that actually checks the code coverage.
+
+141
+00:15:52.800 --> 00:16:03.300
+Rebecca: And will fail the essentially essentially flagged the code review if you've gone below the current level of coverage, so if you if you're dropping coverage it'll have a flag on it essentially.
+
+142
+00:16:04.620 --> 00:16:09.480
+Robert Sabourin, Mr: A clarifying question, what do you mean by coverage of a review like how.
+
+143
+00:16:10.050 --> 00:16:13.170
+Rebecca: i'm talking about unit test code coverage so like if you have unit test code coverage.
+
+144
+00:16:14.100 --> 00:16:21.480
+Rebecca: it'll basically run unit test code analysis and check like so first of all there's like some static tools just on the code review before human even looks at it.
+
+145
+00:16:22.350 --> 00:16:24.750
+Rebecca: Sometimes we will end up shipping things that are.
+
+146
+00:16:24.810 --> 00:16:36.750
+Rebecca: dropping code coverage because, like the drop it by point 1% for some silly reason like we've deleted some statement that had code coverage in there for like this coverage draw you know, like things like that, where it's just like Okay, but it's not really dropping the quality.
+
+147
+00:16:37.380 --> 00:16:41.010
+Rebecca: So it's not a Blocker if this occurs, but it's something where we look at it.
+
+148
+00:16:41.520 --> 00:16:49.500
+Rebecca: Right um The other thing is there's there's some there's a couple of like little security type tools that run that check that.
+
+149
+00:16:50.400 --> 00:16:57.120
+Rebecca: Like passwords or whatever aren't in it like they check the check for for certain keywords that you don't want to have in your code.
+
+150
+00:16:57.900 --> 00:17:10.320
+Rebecca: they'll check for some things like, for example, there's been a big push for more inclusive language lately so they'll they'll there's actually standards for words like, for example, of master or slave occur in your code it'll flag that.
+
+151
+00:17:11.400 --> 00:17:14.850
+Rebecca: In the code review and say like hey these words are banned don't use them anymore.
+
+152
+00:17:15.840 --> 00:17:21.120
+Robert Sabourin, Mr: So those this review is a manual process but there's some sort of tool that you're using to help.
+
+153
+00:17:21.660 --> 00:17:31.050
+Rebecca: yeah so it's a man there's there's basically manual and automated processes so you put up the review and there's an automated checks that run that will actually put up comments on your review saying hey you.
+
+154
+00:17:31.140 --> 00:17:39.840
+Rebecca: know this is bad, this is bad like there's some some automated processes that do that on top of that, you then have some people looking at it, assuming that those checks have.
+
+155
+00:17:40.200 --> 00:17:47.490
+Rebecca: Passed or that you said, well, it failed that feel for a good reason here's why it's like okay fine so then people will go actually look at the code review.
+
+156
+00:17:48.000 --> 00:17:53.400
+Rebecca: they'll give feedback people will post new revisions if the feedback needs to be addressed, really.
+
+157
+00:17:54.240 --> 00:17:58.650
+Rebecca: Really common for us to have one person on the code review who sort of the expert in the area.
+
+158
+00:17:59.010 --> 00:18:04.290
+Rebecca: And one person who's like not or who is a more junior team Member like basically we want to have.
+
+159
+00:18:04.560 --> 00:18:11.580
+Rebecca: Both an expert and but we don't want to just have one person be the only person giving giving feedback, the only person who knows the code base so we always have to.
+
+160
+00:18:12.120 --> 00:18:15.510
+Rebecca: So let me the expert on the area and then someone who's learning the area.
+
+161
+00:18:15.900 --> 00:18:29.040
+Rebecca: So that we're sharing that knowledge and experience and they're seeing what the kind comments the experts are giving so it's also sort of a means in addition of reviewing the code it's also sort of a semi coaching mechanism to for both the person putting up the code and even the reviewers.
+
+162
+00:18:30.420 --> 00:18:31.200
+Robert Sabourin, Mr: Training basically.
+
+163
+00:18:31.290 --> 00:18:32.190
+Robert Sabourin, Mr: The side effect of the.
+
+164
+00:18:32.400 --> 00:18:33.330
+Rebecca: process side effect.
+
+165
+00:18:33.540 --> 00:18:43.170
+Rebecca: Exactly, and then you know once everybody is on board that disproving every but once those two reviewers are on board that this code should be shipped bill they'll basically give it a thumbs up.
+
+166
+00:18:43.530 --> 00:18:57.780
+Rebecca: And when those two thumbs up or achieve they basically have access to hit the button that says merge this code and then the code is is version and goes through, I mean it's a we catch bugs this way from pretty much all the time, you know, certainly we catch things like.
+
+167
+00:18:59.010 --> 00:19:02.610
+Rebecca: If not bugs, and this is like hey What about this requirement, what about that requirement.
+
+168
+00:19:02.970 --> 00:19:13.710
+Rebecca: We will will catch things like that, and it might be it wasn't missed it might be oh that'll be in the next review this is just covering xyz or it could be oh yeah I missed that i'll add a i'll add another method to handle that type of thing.
+
+169
+00:19:14.940 --> 00:19:15.810
+Rebecca: real issues this way.
+
+170
+00:19:15.990 --> 00:19:18.480
+Robert Sabourin, Mr: So what was an omission deliberate or was it.
+
+171
+00:19:19.830 --> 00:19:22.980
+Robert Sabourin, Mr: Like I forgot or excluded it and you'd have that discussion.
+
+172
+00:19:23.460 --> 00:19:29.760
+Rebecca: yeah exactly we'll have that discussion, and that that will be part of the part of the process right, we want to make sure that.
+
+173
+00:19:30.990 --> 00:19:36.060
+Rebecca: You know it's Okay, if things are missed if there's a plan to put them in before they go to customers are.
+
+174
+00:19:36.600 --> 00:19:39.030
+Robert Sabourin, Mr: Deliberate part of the club make sense yeah.
+
+175
+00:19:39.660 --> 00:19:41.580
+Robert Sabourin, Mr: Something to tool, a tool can't really do that.
+
+176
+00:19:41.880 --> 00:19:42.330
+Robert Sabourin, Mr: People have.
+
+177
+00:19:43.170 --> 00:19:52.680
+Rebecca: Exactly and that's why you know when we have we need human code reviews, we want the automated checks to just do the things that computers can catch but computers can't catch things like did you miss a requirement or.
+
+178
+00:19:53.280 --> 00:20:04.980
+Rebecca: I don't know that this code makes sense because or I don't think this code is in the right place, they can't they can't fix any of those things those things require a human, to look at it and that's what that's what the code review process does for us.
+
+179
+00:20:05.850 --> 00:20:06.690
+Robert Sabourin, Mr: Well, let me.
+
+180
+00:20:07.770 --> 00:20:12.480
+Robert Sabourin, Mr: So I guess that covers it then this, this is a typical way that you do it and.
+
+181
+00:20:12.540 --> 00:20:20.910
+Rebecca: yeah The one thing I would add one thing I would add, is there's also one of the things that's important is people talk about in the in a code review the testing is done.
+
+182
+00:20:21.480 --> 00:20:26.250
+Rebecca: So you both talk about your change and there's also like a testing done section of like here's how I tested it.
+
+183
+00:20:26.760 --> 00:20:37.590
+Rebecca: So people can ask like well okay you tested it and X way, but does that make sense, or like should we also test it and why way before we ship it so we can also have conversations about not just the testing in the code, but the testing that's been done.
+
+184
+00:20:37.770 --> 00:20:42.390
+Rebecca: The manual testing that's been done because you're talking about the test and you've been done for this code in the code review.
+
+185
+00:20:43.140 --> 00:20:48.630
+Robert Sabourin, Mr: So it's not just looking at the code is discussing how the code was was verified and validated.
+
+186
+00:20:48.690 --> 00:20:49.830
+Rebecca: Basic yeah yeah.
+
+187
+00:20:50.400 --> 00:20:54.330
+Robert Sabourin, Mr: Whether it's by the developer, or by other person or by another process.
+
+188
+00:20:54.540 --> 00:20:59.370
+Rebecca: yeah exactly we can see that you're testing the code, but we can also use this as a vehicle for discussing other things too.
+
+189
+00:21:01.500 --> 00:21:02.520
+Robert Sabourin, Mr: And every change.
+
+190
+00:21:03.480 --> 00:21:10.440
+Rebecca: yep every change, I mean obviously some changes or just like a yeah you changes, a config file ship it there's nothing to talk about here, but like yeah.
+
+191
+00:21:10.470 --> 00:21:13.170
+Robert Sabourin, Mr: Every change your love to still have two people that take a look at it, though.
+
+192
+00:21:13.200 --> 00:21:15.750
+Rebecca: it's always two people yep always do people, no matter what the change.
+
+193
+00:21:16.380 --> 00:21:24.990
+Robert Sabourin, Mr: So um this practices that's for my experience is very mature practice what led up to that being a typical practice, I know that.
+
+194
+00:21:25.380 --> 00:21:36.540
+Robert Sabourin, Mr: It may have been that way since before you were in the company, so I don't want to go back to the ancient history, but was there was there ever a time in your tenure that that wasn't the practice what led it to it to becoming the practice.
+
+195
+00:21:37.020 --> 00:21:47.970
+Rebecca: um yeah I would say it was sort of just warming up to be the practice when I joined it still again not something that's necessarily company wide mandated but it's become a very common practice and certainly any team.
+
+196
+00:21:48.600 --> 00:22:00.600
+Rebecca: That i'd been on in the last five six years if they weren't doing that one of the first things I would do is say well we're still going to start doing that i'm going to put an automated checking your deployments to make sure it's happening or else like you know that it's a very, very.
+
+197
+00:22:01.740 --> 00:22:07.380
+Rebecca: it's one of the like default practices that people find it very hard to argue against here it's worked really well for us.
+
+198
+00:22:09.120 --> 00:22:11.940
+Robert Sabourin, Mr: Excellent okay so that's the.
+
+199
+00:22:12.960 --> 00:22:22.890
+Robert Sabourin, Mr: Typical one yeah so always fun and I learned a lot from the failures I learned from my mistakes right so failure stories the next one, if you.
+
+200
+00:22:23.640 --> 00:22:24.690
+Robert Sabourin, Mr: If you have an answer.
+
+201
+00:22:25.740 --> 00:22:31.470
+Rebecca: I definitely have I definitely have one of its I would I consider a failure story um so.
+
+202
+00:22:32.130 --> 00:22:40.650
+Rebecca: there's a security review process for anything that for any significant changes that go out feel for example if you're adding a new feature a new API.
+
+203
+00:22:41.250 --> 00:22:50.550
+Rebecca: You should add a you should start a security review and the way a security review works is you basically open up this you open up a sort of like a ticket.
+
+204
+00:22:51.330 --> 00:23:02.070
+Rebecca: In this special workbench for security reviews and then somebody who's like an expert in security will come talk to you and you'll have you know you'll go through some questions about it.
+
+205
+00:23:02.670 --> 00:23:12.420
+Rebecca: But one of the key processes in this is standards there's a whole bunch of little security standards, but you basically will feed the security review here's my code.
+
+206
+00:23:12.930 --> 00:23:19.290
+Rebecca: And it'll run through all these scans and it'll tell you all the problems that are wrong with your code and some of these things are like.
+
+207
+00:23:19.890 --> 00:23:27.030
+Rebecca: Well, you set up this infrastructure thing this way, and you didn't add like you didn't add encryption to some particular thing.
+
+208
+00:23:27.630 --> 00:23:38.550
+Rebecca: Or you know you need you know some some or your your your permissions or two lakhs you have some permissions that you could you could be tightening up, and this is all just done by standards.
+
+209
+00:23:39.510 --> 00:23:44.580
+Rebecca: And you would think this is a success story, because it's catching security issues, so what's the problem here right.
+
+210
+00:23:45.180 --> 00:23:51.810
+Rebecca: And it's catching security issues that are real is catching issues that are real that exists that we should fix before we ship absolutely 100%.
+
+211
+00:23:52.560 --> 00:24:06.180
+Rebecca: My issue with the scanners is that they're catching the same things for every team that ever goes through this like anytime anyone can creates a new thing it's catching very, very similar issues.
+
+212
+00:24:07.290 --> 00:24:18.090
+Rebecca: And my question is like basically my issue is, I think this is a lot of rework and missed opportunity to make templates like why don't we not just have here's how you create a secure thing.
+
+213
+00:24:18.690 --> 00:24:20.550
+Rebecca: plop it into your code and like.
+
+214
+00:24:21.180 --> 00:24:32.790
+Rebecca: not have to worry about like having to have the scanner catch it after the fact, when it's already like when it's already been pushed and then you have to run this like you scan it with you can't even run it's a security team that has to run this thing.
+
+215
+00:24:33.060 --> 00:24:43.680
+Rebecca: So it's all a bunch of overhead that like if you just had the right, the right templates and process it for these artifacts like like s3 buckets and so forth, and dynamo db tables and.
+
+216
+00:24:44.340 --> 00:24:52.470
+Rebecca: All these you know all these web service things that you're configuring if you just had it set up properly in the first place, and you just had a template that everybody could follow.
+
+217
+00:24:53.100 --> 00:25:02.700
+Rebecca: You wouldn't have people catching them the same mistakes over and over and over a lot of it's just very tiresome to me, I think that a lot of it should, and one of the other funny parts about it is we have.
+
+218
+00:25:03.270 --> 00:25:15.060
+Rebecca: We do have some templates that just set up services for us, but they fail the security checks so like, why do you have templates that as soon as I set them up will fail or security reviews it just doesn't make a lot of sense to me.
+
+219
+00:25:15.510 --> 00:25:22.680
+Rebecca: Whether we have these scanners, we know what the rules should be because they're in the scanners, but why aren't they in the initial templates so we don't have to catch these mistakes 1000 times.
+
+220
+00:25:24.360 --> 00:25:36.990
+Rebecca: Anyway, that's that's my failure story which is it's an over reliance on the static analysis, instead of just having a template that will do the job and not waste every like waste time of many, many teams and many, many people over and over throughout the years and.
+
+221
+00:25:37.200 --> 00:25:37.620
+Robert Sabourin, Mr: Any just.
+
+222
+00:25:37.710 --> 00:25:41.520
+Rebecca: it's just a pain pain point for me I don't like that static analysis tool I don't think it's the wrong.
+
+223
+00:25:41.550 --> 00:25:43.650
+Robert Sabourin, Mr: place so so let me.
+
+224
+00:25:45.420 --> 00:25:47.970
+Robert Sabourin, Mr: I don't like vendors, but is it for to fall you're talking about.
+
+225
+00:25:48.630 --> 00:25:52.320
+Rebecca: um there's a know there's some there's some.
+
+226
+00:25:53.460 --> 00:25:55.380
+Rebecca: there's some homebrew tools let's say.
+
+227
+00:25:55.710 --> 00:25:56.460
+Robert Sabourin, Mr: There was just.
+
+228
+00:25:56.880 --> 00:25:57.330
+Rebecca: The hybrid.
+
+229
+00:25:57.630 --> 00:26:07.560
+Rebecca: And I like the tools fine, but I think that they should be in like they should be catching things rarely, if they're catching things like 20 things all the time that they're saying 20 things you should be looking at like why can't we catch this earlier.
+
+230
+00:26:07.830 --> 00:26:17.940
+Robert Sabourin, Mr: So, so this is interesting, because when when I get to this point, in an interview, I always ask what led up to the story now, this is an exact example of why I should ask that question what led up to the story.
+
+231
+00:26:18.330 --> 00:26:27.540
+Robert Sabourin, Mr: Because, quite frankly, someone has been given a lot of power and a lot of authority and didn't include the learning part of a feedback loop, which is basic process engineering right.
+
+232
+00:26:27.810 --> 00:26:37.470
+Robert Sabourin, Mr: You find the problem you change, not just use the product, but the method you create the product, which is what you're calling is your solution, maybe you use the word template but it's a practice.
+
+233
+00:26:37.500 --> 00:26:39.030
+Robert Sabourin, Mr: it's a way to develop software.
+
+234
+00:26:39.270 --> 00:26:47.520
+Robert Sabourin, Mr: And you should learn, and this is basic Deming this Deming basic Deming right, the results of the tests should be used to to prove the product.
+
+235
+00:26:47.940 --> 00:26:58.080
+Robert Sabourin, Mr: And also improve the process to develop the product they're not doing that, so you have this beautiful mature process for your success story your typical story and here you've got.
+
+236
+00:26:58.650 --> 00:27:05.430
+Robert Sabourin, Mr: Like, how do you get there, how what led to this that a person could have or group can have that sort of authority but not.
+
+237
+00:27:06.570 --> 00:27:07.320
+Robert Sabourin, Mr: Do the feedback.
+
+238
+00:27:08.460 --> 00:27:17.790
+Rebecca: yeah and I think part of it is just this one of those things where I can't say for sure I can speculate that I believe is organizational and the sense of security is sort of often their own.
+
+239
+00:27:18.300 --> 00:27:26.340
+Rebecca: disconnected space, like everything has to pass through them but they're not really part of any given team or product like they don't they're not really.
+
+240
+00:27:26.730 --> 00:27:28.710
+Rebecca: responsible for making anything.
+
+241
+00:27:28.740 --> 00:27:35.130
+Rebecca: Successful or building anything they're just responsible for stopping stuff, so I think if we could get some more of that in.
+
+242
+00:27:35.670 --> 00:27:39.480
+Rebecca: Again, I appreciate the work that they're doing I think it's important, but I want it done.
+
+243
+00:27:39.840 --> 00:27:49.710
+Rebecca: Before we're at the point where we need scanners to catch things over and over and over as you say, the learning is missing we're missing the part where we stopped making those mistakes over and over I think it's just because of the way the organization structured.
+
+244
+00:27:50.130 --> 00:27:53.580
+Robert Sabourin, Mr: But one of the reasons was some companies, I work with do that.
+
+245
+00:27:54.810 --> 00:28:03.480
+Robert Sabourin, Mr: was because the tools in the hands of someone who's not a security expert could give you warnings that need interpretation.
+
+246
+00:28:04.230 --> 00:28:14.070
+Robert Sabourin, Mr: And you might like run a static analyzer analysis of the code and get like 1000 warnings and so developers were just starting to ignore the warnings.
+
+247
+00:28:14.460 --> 00:28:22.500
+Robert Sabourin, Mr: And sometimes they're really important, but because there's so many of them you door them a guru gets hired this is everything's got to go through that guy.
+
+248
+00:28:22.770 --> 00:28:30.720
+Rebecca: yeah it's very much everyone has to go through that guy process, which again is fine if that that guy is then feeding it back in but that.
+
+249
+00:28:30.780 --> 00:28:32.610
+Rebecca: process, exactly as you say, is not there.
+
+250
+00:28:32.940 --> 00:28:41.070
+Robert Sabourin, Mr: At all he's a gatekeeper but he's not he's not worried about the stuff going through the gate he's worried about the blocking it.
+
+251
+00:28:41.130 --> 00:28:49.860
+Robert Sabourin, Mr: was an interesting that's that's fixable by process models, but but that's the beautiful cool well it's nice to see that you have such a variety of stuff.
+
+252
+00:28:51.150 --> 00:28:53.970
+Robert Sabourin, Mr: Variety so anything else you want to add to that story here that's.
+
+253
+00:28:54.000 --> 00:28:59.940
+Rebecca: pretty good, I think that, I mean and again every everything we do goes through that so it's a very generic story of every time we're.
+
+254
+00:29:00.000 --> 00:29:04.410
+Rebecca: Shipping anything we have to go through this this particular static analysis, in my opinion, failure.
+
+255
+00:29:05.670 --> 00:29:11.910
+Robert Sabourin, Mr: that's that's very, very, very, very good luck learning from that learning is the thing that's really frustrating.
+
+256
+00:29:13.200 --> 00:29:13.380
+Rebecca: yeah.
+
+257
+00:29:13.860 --> 00:29:14.400
+Robert Sabourin, Mr: first time you.
+
+258
+00:29:15.030 --> 00:29:21.870
+Rebecca: Work it's just, we need to be learning from them instead of just having them block everything going over the hill like put like lemons every time you know.
+
+259
+00:29:22.200 --> 00:29:22.590
+Robert Sabourin, Mr: Why do you.
+
+260
+00:29:23.640 --> 00:29:29.220
+Robert Sabourin, Mr: Like for new employees, it must be quite a shock to see I thought this code was gonna pass and it failed all the security does.
+
+261
+00:29:29.730 --> 00:29:32.310
+Rebecca: yeah and real and everybody, just like yeah that's normal just.
+
+262
+00:29:32.340 --> 00:29:38.190
+Rebecca: did a little gonna have to go back and fix 20 things that we, the same point things that probably 100 other people have fixed before you.
+
+263
+00:29:39.150 --> 00:29:42.840
+Robert Sabourin, Mr: Go So let me ask you that my final closing question.
+
+264
+00:29:44.940 --> 00:29:49.650
+Robert Sabourin, Mr: Is if you had a magic wand, you had a magic wand and you could change anything.
+
+265
+00:29:50.850 --> 00:29:52.980
+Robert Sabourin, Mr: related to the static analysis.
+
+266
+00:29:54.090 --> 00:29:56.610
+Robert Sabourin, Mr: At McKinsey yeah what What would you what would you change.
+
+267
+00:29:58.350 --> 00:30:03.030
+Rebecca: um again, I think we have good static analysis tooling.
+
+268
+00:30:04.080 --> 00:30:12.630
+Rebecca: I think we've actually done a really good job of making that mature, I do think again when you look at the the not the overreliance.
+
+269
+00:30:13.230 --> 00:30:22.770
+Rebecca: In that particular space we were just discussing in the security space, rather than the let's teach people how to make things, secure and then then scan it, but the standing failure should not should.
+
+270
+00:30:23.310 --> 00:30:31.080
+Rebecca: be a rarity as opposed to like we expect two dozen things to fail, I think, just the relying on it as a gate is is not.
+
+271
+00:30:31.530 --> 00:30:38.280
+Rebecca: I think it's I think it's efficient for stopping errors before they get to production that I think is less efficient than if people just were able to.
+
+272
+00:30:38.760 --> 00:30:47.550
+Rebecca: plop insecure code, from the start, and again, these things are like it's not like securing an s3 bucket or a table or something or dynamo table is something that like.
+
+273
+00:30:47.940 --> 00:30:57.570
+Rebecca: Every single person should have to learn from scratch from a security review scanning tool just just give them a template that does it and call it like they should just be able to use that for their purposes, like here's how you do it.
+
+274
+00:30:58.080 --> 00:31:00.480
+Rebecca: Instead of instead of having to go through this process all the time.
+
+275
+00:31:00.870 --> 00:31:02.280
+Robert Sabourin, Mr: And when you create something.
+
+276
+00:31:02.400 --> 00:31:09.930
+Robert Sabourin, Mr: That you've never done before with a method that you've never used before maybe there's going to be types of security risks that those tools will find it and it'll be useful.
+
+277
+00:31:10.440 --> 00:31:10.830
+Rebecca: yeah.
+
+278
+00:31:10.950 --> 00:31:21.420
+Rebecca: yeah exactly he can focus more on that, instead of the silly stuff that could have easily been dealt with earlier anyway, I did that, I think, ultimately, our tooling is really good just perhaps we need to.
+
+279
+00:31:22.170 --> 00:31:26.430
+Rebecca: invest in some other areas so that it's not just a static analysis tool and carrying all the loads there.
+
+280
+00:31:27.570 --> 00:31:31.500
+Robert Sabourin, Mr: Well, thank you, I think that covers it for me, did you have any questions you want to ask me.
+
+281
+00:31:32.100 --> 00:31:32.550
+Rebecca: I know.
+
+282
+00:31:33.060 --> 00:31:35.940
+Robert Sabourin, Mr: While we're chatting here so i'm going to stop the recording then and.
+
+283
+00:31:36.210 --> 00:31:37.770
+Robert Sabourin, Mr: i'll chat with you, after that, the second.
+
+284
+00:31:38.280 --> 00:31:39.660
+Robert Sabourin, Mr: chair actually press the button.
+
+285
+00:31:42.720 --> 00:31:42.960
+Robert Sabourin, Mr: Yes.
+

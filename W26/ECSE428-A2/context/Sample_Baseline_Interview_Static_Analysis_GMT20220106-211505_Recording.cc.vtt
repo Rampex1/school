@@ -1,0 +1,596 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:00.000
+that's good so that's, that'll be good. Well done. So I'm just going to load up my recorder here so that we record this.
+
+00:00:00.000 --> 00:00:04.000
+So we're going into record mode record to the cloud.
+
+00:00:04.000 --> 00:00:13.000
+All right. Can you still hear me. I can yes okay I hear you loud and clear. And I'll just kick this off.
+
+00:00:13.000 --> 00:00:29.000
+Okay, just put it here, move this over there. Alright, So, thank you for agreeing to be interviewed the topic today is static analysis, and there's a lot of different people who use the term static analysis, a lot of different ways so just wanted to say
+
+00:00:29.000 --> 00:00:34.000
+that I want to give a great broad definition of it for the purposes of this interview.
+
+00:00:34.000 --> 00:00:41.000
+Static analysis just learning from non executing artifacts of the software engineering project.
+
+00:00:41.000 --> 00:00:54.000
+Now what I mean by an artifact is very much like in archaeology, it's something that's going to be there after the project is finished right so an artifact of the project, but we consider usually code as an artifact requirements as an artifact designs
+
+00:00:54.000 --> 00:01:09.000
+is an artifact tests as artifact, but it can be broadly anything almost I've seen contracts and other type of documents being used to basically learn about them, usually learning about risks, but it doesn't just have to be risk could be also learning
+
+00:01:09.000 --> 00:01:15.000
+about progress on a project or learning about things that might be of interest to your business.
+
+00:01:15.000 --> 00:01:16.000
+The.
+
+00:01:16.000 --> 00:01:32.000
+There's two types of broad types of a static analysis and I'm asking you to share experience in any of these, that you might like one of them are called review oriented, things like inspections walkthrough is peer reviews buddy checks, stuff like that.
+
+00:01:32.000 --> 00:01:44.000
+But there's also a family of automated static analysis methods like code analyzers limiters security checkers and coverage analyzers and stuff like that.
+
+00:01:44.000 --> 00:02:01.000
+So those are the two types of tools and what I asked you to do is to share with me a three three stories if you have to have some examples of your, your history, what would be an example as successful.
+
+00:02:01.000 --> 00:02:11.000
+use of static analysis and in the case of static analysis, a failure can be one opportunity that was missed, like we could have found this problem, if we did static analysis.
+
+00:02:11.000 --> 00:02:20.000
+So it could also be, we did it and it screwed up but I just want to leave that open and a typical story.
+
+00:02:20.000 --> 00:02:26.000
+So, maybe before we get there, we'll just mention a little bit about.
+
+00:02:26.000 --> 00:02:31.000
+So you're working for a company that's known as Mackenzie.
+
+00:02:31.000 --> 00:02:35.000
+At the time of these stories, what was your role.
+
+00:02:35.000 --> 00:02:49.000
+Um, so I, you should generally a senior software developer so somebody who's, you know, leading a team, leading a team of developers operating and building out services.
+
+00:02:49.000 --> 00:02:53.000
+Very good. and how long were you in that role.
+
+00:02:53.000 --> 00:03:08.000
+So being at McKinsey for about, about eight years now. But the role, you're grown into the roles maybe let's say two three years in that role, maybe you can actually get even for now, you know what, you mentioned the term of the company was about eight
+
+00:03:08.000 --> 00:03:20.000
+years but four years in the current role. Other than that, what's your amount of professional experience, let's say, since you started working professionally around, around let's say 15 ish finish.
+
+00:03:20.000 --> 00:03:23.000
+All right. 13 to 15 somewhere in there, I'd have to, I'd have to count more thoroughly but somewhere in there.
+
+00:03:23.000 --> 00:03:38.000
+to count more thoroughly but somewhere in there. You're basically pretty experienced to see a lot of things done and I'm sure you can see something. Oh, alright. So, I'll let you start with the whichever story you want to start with first success, failure
+
+00:03:38.000 --> 00:03:39.000
+typical.
+
+00:03:39.000 --> 00:03:41.000
+Sure, which.
+
+00:03:41.000 --> 00:03:45.000
+Okay, well why don't we start with success.
+
+00:03:45.000 --> 00:03:50.000
+So this is a so so one of the tools.
+
+00:03:50.000 --> 00:04:02.000
+One of the tools we've used on a couple of teams now that I've worked on to great effect is check style, which is a tool and Jabba that basically does static analysis of your code at build time so what we do is when when we're as we're building our code
+
+00:04:02.000 --> 00:04:11.000
+check style will run as part of the build process, and we have it set up such that if certain rules in the code or not followed the build will fail.
+
+00:04:11.000 --> 00:04:18.000
+This is great because it means the rules aren't aren't followed option we like they have to be followed or else you know you're, you're not going to be able to ship your code.
+
+00:04:18.000 --> 00:04:31.000
+The other thing that's really nice about. It's about it, you know, we'll be using our current project for it for a few purposes so one of the things is code reviews we're catching things that were just, you know, things that could have been caught by
+
+00:04:31.000 --> 00:04:43.000
+static analysis like we do code reviews in our group. And, you know, it's kind of just a pain when somebody has to point out the same thing happening over and over, either in the same person's code or different person's code where you know things are
+
+00:04:43.000 --> 00:04:45.000
+just getting missed.
+
+00:04:45.000 --> 00:04:55.000
+The other thing that was a bit of a pain this this probably sounds like a minor thing but when you're reading through code reviews can be quite annoying is import order changing, so like you're trying to look at the things that are changing before and
+
+00:04:55.000 --> 00:05:07.000
+after given code base, and you're just like the first half of it is just like of any given file, it's just important going all over the place like it just kind of like distracting and annoying it's just like why is this happening we should all just be
+
+00:05:07.000 --> 00:05:16.000
+following one import order. We shouldn't have unused imports. So these are some things that we can just easily enforce with check style so we can enforce import order.
+
+00:05:16.000 --> 00:05:18.000
+We can enforce.
+
+00:05:18.000 --> 00:05:33.000
+We can enforce not, you know, we can enforce not having unused imports and we can enforce some really interesting things that I really liked enforcing that I find is interesting, like for example, you can enforce things like not having a file or a method
+
+00:05:33.000 --> 00:05:48.000
+method be huge like you can set a max length, that they can be. And you can do overrides if there's some really compelling reason to do it longer but but for example, in clean code in Java, there's this there's this book called clean code that talks about
+
+00:05:48.000 --> 00:06:01.000
+the practices that you want to follow. And some of it is not having like gigantic files that are doing many things now static analysis can't completely stop you from doing that but it can stop you like. It can make you like okay you've written a method that's 100 lines long
+
+00:06:01.000 --> 00:06:13.000
+that's 100 lines long list probably not right, you know, like, and if it is right. Well, we can put an exception in there but it probably helps for static analysis just to say like nope you've done this like this thing is too long.
+
+00:06:13.000 --> 00:06:26.000
+It doesn't make sense to have this you know, all in one method right like it can actually help you with things like that as well as well as just, you know, General like cleanness things psychosomatic complexity is another one you can you can do for the
+
+00:06:26.000 --> 00:06:38.000
+reason like you can have it analyzed psychometric complexity which is basically like the number of IPS or Phipps or branches in your method and say, you've got too much going on in this method, it's too busy, so you know there's too much going on here,
+
+00:06:38.000 --> 00:06:48.000
+we're going to take this going to fail this building and allow you to like go back and actually who factor that could be something that's readable and maintain it or four people.
+
+00:06:48.000 --> 00:06:52.000
+And why would you say this was successful.
+
+00:06:52.000 --> 00:07:06.000
+I'd say it's successful because it's cut down on the amount of the amount of obvious comments one needs to make in code review, like if you have the cycle Matic complexity rules on you're not going to have things like a, you know, again methods that are
+
+00:07:06.000 --> 00:07:16.000
+just really hard to follow, because that's going to get caught by the by the analyzer. Again the import order thing. Well, it just kind of a visual annoyance and code reviews is gone now.
+
+00:07:16.000 --> 00:07:28.000
+And like everybody just has their importance to be set up in the same order and everybody just doesn't have unused imports because it fails to build so we don't have to deal with this kind of messiness in our code reviews so just a tedious messiness.
+
+00:07:28.000 --> 00:07:42.000
+And just in general the code is cleaner as a result without having to, like, now, now basically our human reviewers can focus on things that you know humans can notice about the code and don't have to be basically human human automatic static analyzers
+
+00:07:42.000 --> 00:07:53.000
+they can spend their time on things that are more that are deeper problems in the code or deeper discussions we want to have with the code instead of just the same like you've missed a, you know, you've missed a new line or whatever.
+
+00:07:53.000 --> 00:07:56.000
+It's type of stuff that doesn't mean, doesn't matter.
+
+00:07:56.000 --> 00:08:01.000
+So prior to the story, prior to this story.
+
+00:08:01.000 --> 00:08:04.000
+The methods you use had those type of problems.
+
+00:08:04.000 --> 00:08:07.000
+Yeah, we're basically using code waste.
+
+00:08:07.000 --> 00:08:20.000
+So, essentially.
+
+00:08:20.000 --> 00:08:27.000
+just having to scroll through all these imports changing and just just generally being like well I can't even really see what's changed because it's just messy.
+
+00:08:27.000 --> 00:08:36.000
+It's just nicer to be able to, you know, have the human reviewers focus on, you know problems that can't be caught by a computer just running a check.
+
+00:08:36.000 --> 00:08:50.000
+Because, if the computer can run a check on something automatically like I'd rather have it do that then had a human waste their time and effort doing that is just human reviewers time and it's like good again good positive always positive feedback on
+
+00:08:50.000 --> 00:09:01.000
+these sort of things from our from our human reviewers who like I mean adding the rules can be kind of a pain because you've got to sometimes go back and fix some old code that maybe some things slip through on, but that also improves our code quality
+
+00:09:01.000 --> 00:09:10.000
+in the long run. So like, ultimately it's it's a win win. You're here. Your team makes the rules so it's it's it's.
+
+00:09:10.000 --> 00:09:25.000
+So if you take the legacy code and link it with or use the textile tool on it, it'll apply the new rules of code might be some violations that with me just go back and fix them and again, most of them are trivial violations to fix and it's just going
+
+00:09:25.000 --> 00:09:29.000
+to ultimately make your code much cleaner.
+
+00:09:29.000 --> 00:09:42.000
+Things like a chromatic complexity or more, are more interesting things like cycle Matic complexity. We've handled in a couple of ways so on our newer code bases you just add it and you're done, like you don't have to worry about legacy code and previous
+
+00:09:42.000 --> 00:09:45.000
+an older code bases that I've used it on.
+
+00:09:45.000 --> 00:09:48.000
+There are a couple of tricks. There are somewhere.
+
+00:09:48.000 --> 00:09:57.000
+Sometimes, so there are two ways you can do it one of those you can just set the psychosomatic complexity to like the worst that you currently have in your code base so at least you're aren't adding anything worse.
+
+00:09:57.000 --> 00:10:09.000
+And you can slowly work it down like hey here's the worst thing in the code base let's go attack this one, and then slowly bring that number down. The other thing you can do is there I don't remember the name but there are some tools that will only apply
+
+00:10:09.000 --> 00:10:10.000
+it to new code.
+
+00:10:10.000 --> 00:10:21.000
+So there are some ways to apply some of these rules to just new code and leave a legacy code B which in some code bases is a better call just so you don't have to deal with, as you said, like some of the legacy for is just not worth refactoring.
+
+00:10:21.000 --> 00:10:26.000
+At this time, but it can that can be useful as well.
+
+00:10:26.000 --> 00:10:30.000
+Right, so this implementation.
+
+00:10:30.000 --> 00:10:46.000
+How did you come to choose this specific tool textile was used fairly broadly and in our company. So our company has a. Like, it's not necessarily that it's the only tool you use the only option but it was used, it's used fairly broadly.
+
+00:10:46.000 --> 00:10:59.000
+Some, some teams barely use it at all and some teams use it a lot, but it's one of the tools where if you're looking to solve this kind of problem at this company basically you're just grabbing this tool because you know so many other teams use it, and
+
+00:10:59.000 --> 00:11:08.000
+basically your team is aware of it because other practitioners and other teams have been using it for a while. Yes, exactly.
+
+00:11:08.000 --> 00:11:17.000
+You mentioned a reference specific reference to clean code. I think you're talking about Bob Martin's book is that my case, Bob Murphy, I think so.
+
+00:11:17.000 --> 00:11:37.000
+I don't recall the, the author I think you're correct. Okay so yet Robert. Robert Martin Yes Yes, that's correct. So, just I was just going to ask, is he involved in the because this book is a beautiful, beautiful list of rules and disciplines for coding.
+
+00:11:37.000 --> 00:11:51.000
+And he's also one of the earlier writers in that area so he's, he's pioneered this type of thing, but was involved in this tool or you don't know, I don't know, I don't, I don't think so but like, ultimately, it just, it just when you look through some
+
+00:11:51.000 --> 00:12:02.000
+of the rules, they're not all of them but some of them. Some of it can be some of the can, if not be fully enforced by static analysis at least static analysis can flag places where there are potential problems in those areas that you should at least
+
+00:12:02.000 --> 00:12:03.000
+be considered.
+
+00:12:03.000 --> 00:12:09.000
+So that's what I like about some of that these these automatic static analysis tools. No.
+
+00:12:09.000 --> 00:12:17.000
+Alright so that's excellent so thank you I guess that's.
+
+00:12:17.000 --> 00:12:26.000
+I don't want to talk technically with the tool but it's a any competent Java programmers should be able to edit the rules, basically, Absolutely, yes you can.
+
+00:12:26.000 --> 00:12:38.000
+Any competent Java programmer to edit the rules change the change the code base to comply with the rules. Yo, we decide on the rules if somebody wants to add any war they bring it up in a team meeting and we're like yeah cool or no we don't want to but
+
+00:12:38.000 --> 00:12:42.000
+generally Yes, and then we're cool with it and do it.
+
+00:12:42.000 --> 00:12:58.000
+And basically what you're seeing is that the most important benefit here is that code reviews cannot be focused on things like algorithms and solution approaches, rather than things like this, like inappropriate order of importance or some syntactical
+
+00:12:58.000 --> 00:13:08.000
+thing that could have been done differently. Yeah, or or like hey this message is too complicated I mean those things still happen but it's much less likely if you have something like a cycle Matic complexity checker just take them.
+
+00:13:08.000 --> 00:13:16.000
+By the way you familiar with the concept of literate programming literate program know you can read the code and by reading it.
+
+00:13:16.000 --> 00:13:27.000
+Yes, I think that we practice that if I don't know the name but it's something like very, like, when I'm looking at a code review and we'll talk maybe chocolate code reviews later but like one of the things that's important to me is, is being able to
+
+00:13:27.000 --> 00:13:30.000
+like, I can read it and understand what the heck I'm reading.
+
+00:13:30.000 --> 00:13:36.000
+Yeah, there's a beautiful book by by a series of articles by Donald Knuth on that subject.
+
+00:13:36.000 --> 00:13:37.000
+Yeah.
+
+00:13:37.000 --> 00:13:48.000
+Part of part of the sort of clean history of clean coding goes goes back to, good. All right, well thank you for sharing that that's a beautiful one and I'm actually anxious to try the tool myself even though I don't do a lot of Java programming these
+
+00:13:48.000 --> 00:14:02.000
+days but it sounds like the right type of thing to do, which which story would you like to do next failure or typical. Let's do normal, let's do it let's do a normal, normal story I think that the way you talked about static analysis at least on it and
+
+00:14:02.000 --> 00:14:11.000
+on my team. One of the biggest uses of static analysis is our code reviews, which is one of our manual.
+
+00:14:11.000 --> 00:14:22.000
+Static Analysis processes and this is something that is very very standard at our company. Pretty much every team does code reviews in some way I'm not going to say every team.
+
+00:14:22.000 --> 00:14:30.000
+There are ways to get around doing it but in general if you're shipping production software you will be doing code reviews.
+
+00:14:30.000 --> 00:14:34.000
+So, production software I mean anything that has a customer whether internal or external.
+
+00:14:34.000 --> 00:14:54.000
+So, you know, on our team we have, we have a rule, which is also static we analyze such that our code can't ship, if it's broken. But basically, we have a rule that two members of the team have to review and approve any, any code change, regardless of,
+
+00:14:54.000 --> 00:15:03.000
+it could be one line of code that's just changing a configuration file it could be a whole new feature it doesn't matter. You have to have to approvals on everything.
+
+00:15:03.000 --> 00:15:15.000
+That is that is the rule. And the way this works this is again really normal like if I could look at the most recent feature we pushed out, you know, which is just really disturbed some changing refactoring to some of our.
+
+00:15:15.000 --> 00:15:25.000
+Anyway, it doesn't even really matter what it is because we follow the same process for everything, which is one of the things that I really liked about it it just everybody understands the rules.
+
+00:15:25.000 --> 00:15:38.000
+There's no exceptions, you every time you're putting up a code change you put it into code review. Obviously we, we do have, we don't have rules per se but we have some team understanding of like you're not going to put up like a 50 page code review if you're
+
+00:15:38.000 --> 00:15:43.000
+doing a feature, you're probably doing it and incremental chunks. So again, people can read and understand the code review.
+
+00:15:43.000 --> 00:16:00.000
+So the code review will go up. And when the code review goes up a couple things happen. There's an automatic process that actually checks the code coverage and will fail the, essentially, essentially flag the code review if you've gone below the current
+
+00:16:00.000 --> 00:16:07.000
+level of coverage. So if you, if you're dropping coverage it'll have a flag on it essentially a clarifying question.
+
+00:16:07.000 --> 00:16:20.000
+What do you mean by coverage of a review, like how I'm talking about unit test code coverage so like if you have unit test code coverage, but it'll basically run unit test code analysis and check like so first of all there's like some static tools just
+
+00:16:20.000 --> 00:16:32.000
+the code review before a human even looks at it. Sometimes we will end up shipping things that are dropping code coverage because like the drop into by point 1% for some silly reason like we've deleted some statement that had code coverage and therefore
+
+00:16:32.000 --> 00:16:38.000
+like this coverage draw, you know like, things like that where it's like okay but it's not really dropping the quality.
+
+00:16:38.000 --> 00:16:53.000
+So it's not a blocker If this occurs, but it's something where we look at it. Right, um, the other thing is, there's there's some, there's a couple of like little security type tools that run that check that, like, passwords or whatever and and yet like
+
+00:16:53.000 --> 00:17:07.000
+like they check the check for for certain keywords that you don't want to have in your code, they'll check for some things like for example, there's been a big push for more inclusive language lately so they'll, they'll, there's actually standards for
+
+00:17:07.000 --> 00:17:16.000
+words like for example of master or slave occur in your code it'll flag that in the code review and say like, hey, these words are banned, don't use them anymore.
+
+00:17:16.000 --> 00:17:29.000
+So those This review is a manual process but there's some sort of tool that you're using to help. Yeah, so it's a man, there's there's basically manual and automated processes so you put up the review and there's some automated checks that run that will
+
+00:17:29.000 --> 00:17:41.000
+actually put up comments on your review, saying, Hey, you, you, this is bad this is bad like there was some, some automated processes that do that. Now on top of that you then have some people looking at it, assuming that those checks have passed or that
+
+00:17:41.000 --> 00:17:45.000
+you said well it failed that failed for a good reason here's why it's like okay fine.
+
+00:17:45.000 --> 00:17:53.000
+So then people will go actually look at the code review, they'll give feedback people will post new revisions if the feedback needs to be addressed.
+
+00:17:53.000 --> 00:18:06.000
+Really, really common for us to have one person on the code reviews we sort of the expert in the area, and one person who's who's like, not or who is a more junior team member like basically we want to have both an expert and, but we don't want to just
+
+00:18:06.000 --> 00:18:12.000
+have one person be the only person giving giving feedback, the only person who knows the code base so we always have to.
+
+00:18:12.000 --> 00:18:23.000
+So, but need the expert on the area and then someone who's learning the area, so that they were sharing that knowledge and experience and they're seeing what the comments the experts are giving so it's also sort of a means, in addition of reviewing the
+
+00:18:23.000 --> 00:18:33.000
+code, it's also sort of a semi coaching mechanism to have for both the person putting up the code and even the reviewers training basically the side effect of the process side effect.
+
+00:18:33.000 --> 00:18:43.000
+Exactly. And then, you know, once, everybody is on board that despite you know everybody wants us to reviewers are on board that this code should be shipped they'll, they'll basically give it a thumbs up.
+
+00:18:43.000 --> 00:18:48.000
+And when those two thumbs up or achieve they now basically have access to hit the button that says merge this code.
+
+00:18:48.000 --> 00:19:01.000
+And then the code is version and goes through I mean it's a we catch bugs this way from pretty much all the time, you know, certainly we catch things like, if not bugs and Mrs like Hey, what about this requirement.
+
+00:19:01.000 --> 00:19:13.000
+What about that requirement. We will will catch things like that and it might be, it wasn't missed it might be Oh that'll be in the next review. This is just covering XYZ or it could be oh yeah I missed that I'll add a I'll add another method to handle
+
+00:19:13.000 --> 00:19:20.000
+that type of thing, real issues this way. So what was an omission deliberate, or was it.
+
+00:19:20.000 --> 00:19:25.000
+Like, I forgot or I excluded it, and you'd have that discussion. Yeah, exactly.
+
+00:19:25.000 --> 00:19:38.000
+We'll have that discussion, and that that will be part of the part of the process right we want to make sure that, you know, it's okay if things are missed if there's a plan to put them in before they go to customers are delivered as part of the, the
+
+00:19:38.000 --> 00:19:44.000
+sense. Yeah, tool a tool can't really do that people have.
+
+00:19:44.000 --> 00:19:55.000
+Exactly. And that's why you know when we have, we need human code reviewers we want the automated checks to just do the things that computers can catch but computers can't catch things like did you miss a requirement or, I don't know that this code makes
+
+00:19:55.000 --> 00:20:02.000
+sense because or, I don't think this code is in the right place, they can't they can't fix any of those things, those things require a human to look at it.
+
+00:20:02.000 --> 00:20:06.000
+And that's what that's what the code review process does for us.
+
+00:20:06.000 --> 00:20:08.000
+Well, let me.
+
+00:20:08.000 --> 00:20:21.000
+So I guess that covers it then this this is a typical way that you do it and yeah, the one thing I would add those right The one thing I would add is.
+
+00:20:21.000 --> 00:20:33.000
+done. So you're both talking about your change and there's also like a testing done section of like here's how I tested it, so people can ask like well okay you tested in an X ray but does that make sense, or like should we also tested and why way before
+
+00:20:33.000 --> 00:20:43.000
+we ship it so we can also have conversations about not just the testing in the code but the testing that's been done, the manual testing that's been done because you're talking about the testing you've been done for this code in the code review.
+
+00:20:43.000 --> 00:20:55.000
+So it's not just looking at the code is discussing how the code was was verified and validated basically Yeah, yeah, whether it's by the developer or by an other person, or by another process.
+
+00:20:55.000 --> 00:21:02.000
+Yeah, exactly. We can see that you're testing the code but we can also use this as a vehicle for discussing other things too.
+
+00:21:02.000 --> 00:21:03.000
+And every change.
+
+00:21:03.000 --> 00:21:13.000
+Yep every change, I mean obviously some changes are just like a yeah you changes, a config file ship it, there's nothing to talk about here but like, yeah, every change you have to still have two people to take a look at it.
+
+00:21:13.000 --> 00:21:16.000
+It's always two people Yep, always two people no matter what the change.
+
+00:21:16.000 --> 00:21:30.000
+So, this practices, that's for my expertise is very mature practice what led up to that being a typical practice I know that it may have been that way since before you were in the company so I don't want to go back to the ancient history.
+
+00:21:30.000 --> 00:21:43.000
+But was there was there ever a time in your tenure, that that wasn't the practice of what led to becoming the practice. Um, yeah, I would say it was sort of just warming up to be the practice when I joined it still again not something that's necessarily
+
+00:21:43.000 --> 00:21:55.000
+company wide mandated but it's become a very common practice and certainly any team that I've been on in the last five six years if they weren't doing that one of the first things I would do is say, well, we're still going to start doing that and we're
+
+00:21:55.000 --> 00:22:01.000
+going to put an automated check in your deployments to make sure it's happening or else like you know that it's a very very.
+
+00:22:01.000 --> 00:22:09.000
+It's one of the like default practices that people find it very hard to argue against here, because it's worked really well for us.
+
+00:22:09.000 --> 00:22:10.000
+Excellent.
+
+00:22:10.000 --> 00:22:14.000
+Okay, So that's the typical one.
+
+00:22:14.000 --> 00:22:26.000
+Yeah, so always fun. And I learned a lot from the failures I learned from my mistakes right so failure stories. The next one, if you, if you have.
+
+00:22:26.000 --> 00:22:42.000
+I definitely have, I definitely have one that I would, I consider a failure story. Um, so there's a security review process for anything that for any significant changes that go out feel for example if you're adding a new feature a new API, you should
+
+00:22:42.000 --> 00:22:52.000
+add a, you should start a security review. And the way a security review works is you basically open up this, you open up, sort of like a ticket.
+
+00:22:52.000 --> 00:23:03.000
+In this special workbench for security reviews and then somebody who's like an expert in security will come talk to you and you'll have, you know, you'll go through some questions about it.
+
+00:23:03.000 --> 00:23:17.000
+But one of the key processes in this is standards, there's a whole bunch of little security standards that you basically will feed the security review here's my code, and it'll run through all these scans and it'll tell you all the problems that are wrong
+
+00:23:17.000 --> 00:23:33.000
+with your code. And some of these things are like, well you set up this infrastructure thing this way and you didn't add like you didn't add encryption to some particular thing, or you know you need, you know, some, some or your your your permissions
+
+00:23:33.000 --> 00:23:45.000
+or two lakhs you have some permissions that you could you could be tightening up. And this is all just done by standards, and you would think this is a success story because it's catching security issues so what's the problem here.
+
+00:23:45.000 --> 00:23:45.000
+Right.
+
+00:23:45.000 --> 00:23:53.000
+And it's catching security issues that are real it's catching issues that are real that exists that we should fix before we ship absolutely 100%.
+
+00:23:53.000 --> 00:24:04.000
+My issue with the scanners is that they're catching the same things. For every team that ever goes through this, like, anytime anyone creates a new thing.
+
+00:24:04.000 --> 00:24:07.000
+It's, it's catching very very similar issues.
+
+00:24:07.000 --> 00:24:23.000
+And my question is, like basically My issue is I think this is a lot of rework and missed opportunity to make templates, like, why don't we not just have a here's how you create a secure thing, plop it into your code, and like, not have to worry about
+
+00:24:23.000 --> 00:24:33.000
+like having to have the scanner catch it after the fact, when it's already like when it's already been pushed and then you have to run this, like your scanner which you can't even run it's the security team that has to run this thing.
+
+00:24:33.000 --> 00:24:48.000
+So it's all a bunch of overhead that like if you just had the right the right templates and process it for these artifacts like like s3 buckets and so forth and Dynamo DB tables and all these, you know, all these web service things that you're configuring
+
+00:24:48.000 --> 00:24:57.000
+if you just had it set up properly in the first place and you just had a template that everybody can follow you wouldn't have people catching them the same mistakes over and over and over.
+
+00:24:57.000 --> 00:25:08.000
+A lot of it's just very tiresome to me I think that a lot of it should and one of the other funny parts about it is we have. We do have some templates that just set up services for us but they fail the security checks.
+
+00:25:08.000 --> 00:25:19.000
+So like why do you have templates that as soon as I set them up will fail or security reviews, it just doesn't make a lot of sense to me. Whether we have the scanners we know what the rule should be because they're in the standards but why aren't they
+
+00:25:19.000 --> 00:25:24.000
+in the initial template so we don't have to catch these mistakes 1000 times.
+
+00:25:24.000 --> 00:25:36.000
+Anyway that's that's my failure story which is it's an over reliance on the static analysis instead of just having a template that will do the job and not waste every like waste time have many, many teams and many many people over and over throughout
+
+00:25:36.000 --> 00:25:52.000
+years and any just it's just a pain pain point for me I don't like that static analysis to I don't think it's the wrong place for. So, for me. I don't like watching vendors but is it four to five you're talking about, there's no there's some, there's
+
+00:25:52.000 --> 00:25:54.000
+some.
+
+00:25:54.000 --> 00:26:06.000
+There's some homebrew tools, let us say the hybrid. I like the tools fine but I think that they should be like they should be catching things rarely if they're catching things like 20 things all the time that they're saying 20 things you should be looking
+
+00:26:06.000 --> 00:26:19.000
+at why, why can't we catch this earlier. So, so this is interesting because when I get to this point in an interview, I always ask what led up to the story now this is an exact example of why I should ask that question what led up to the story, because,
+
+00:26:19.000 --> 00:26:33.000
+quite frankly, someone has been given a lot of power, a lot of authority and didn't include the learning part of a feedback loop, which is basic process engineering right you find the problem, you change not just the product, but the method you create
+
+00:26:33.000 --> 00:26:46.000
+the product which is what you're calling is your solution, maybe you use the word template but it's a practice, it's a way to develop software, and you should learn, and this is basic Deming this Deming basic Deming right the results of the test should
+
+00:26:46.000 --> 00:26:57.000
+be used to, to prove the product, and also improve the process to develop the product, they're not doing that. So you have this beautiful mature process for your success story your typical story.
+
+00:26:57.000 --> 00:27:09.000
+And here, you've got, like, how do you get there what led to this, that a person could have a group that have that sort of authority, but not do the feedback.
+
+00:27:09.000 --> 00:27:22.000
+Yeah, and I think part of it is just. This is one of those things where I can't say for sure I can speculate that I believe is organizational and the sense of security is sort of often their own disconnected space like everything has to pass them but
+
+00:27:22.000 --> 00:27:33.000
+but they're not really part of any given team or product like they don't, they're not really responsible for making anything successful or building anything they're just responsible for stopping stuff.
+
+00:27:33.000 --> 00:27:44.000
+So I think if we could get some more of that in. Again, I appreciate the work that they're doing. I think it's important, but I want it done before, we're at the point where we need scanners to catch things over and over and over as you say the learning
+
+00:27:44.000 --> 00:27:57.000
+is missing we're missing the part where we stopped making those mistakes over and over. I think it's just because of the way the organization structured, but one of the reasons was some companies I work with, do that was because the tools in the hands
+
+00:27:57.000 --> 00:28:04.000
+of someone who's not a security expert could give you warnings that need interpretation.
+
+00:28:04.000 --> 00:28:20.000
+And you might like run a static analyze analysis of the code and get like 1000 warnings, and so developers were just starting to ignore the warnings, and sometimes they're really important but because there's so many of them you ignore them a guru gets
+
+00:28:20.000 --> 00:28:34.000
+hired and says, everything's got to go through that guy. Yeah, it's very much, everyone has to go through that guy process which again is fine if that, that guy is then feeding it back in but that process exactly as you say is not there at all.
+
+00:28:34.000 --> 00:28:44.000
+He's the gatekeeper, but he's not, he's not worried about the stuff going through the gate he's worried about the blocking it, which is interesting, that's that's fixable by process models.
+
+00:28:44.000 --> 00:28:51.000
+But, but that's the beautiful cool what's nice to see that you have such a variety of stuff.
+
+00:28:51.000 --> 00:28:57.000
+brightest of anything else you want to add to that story or that's pretty much I think that, I mean, and again every everything we do goes through that.
+
+00:28:57.000 --> 00:29:06.000
+So it's a very generic story of every time we're shipping anything we have to go through this, this particular static analysis in my opinion failure.
+
+00:29:06.000 --> 00:29:19.000
+That's that's very, very, very, very good not learning from not learning is the thing is that you know that's really frustrating and understand the first time you find it is work it's just we need to be learning from them instead of just having them block
+
+00:29:19.000 --> 00:29:30.000
+everything going over the hill like click like lemmings every time you know, why'd you for like for new employees, it must be quite a shock to see, I thought this code was going to pass and it failed all the security does.
+
+00:29:30.000 --> 00:29:40.000
+Yeah, everybody's like yeah that's normal it's just gonna have to go back and fix 20 things that we the same 20 things that probably 100 other people have fixed before you.
+
+00:29:40.000 --> 00:29:44.000
+So let me ask you that my final closing question.
+
+00:29:44.000 --> 00:29:59.000
+And that is if you had a magic wand right if you had a magic wand, and you could change anything related to the static analysis at McKinsey what would you, what would you change.
+
+00:29:59.000 --> 00:30:04.000
+Um, Again, I think we have good static analysis tooling.
+
+00:30:04.000 --> 00:30:08.000
+I think we've actually done a really good job of making that mature.
+
+00:30:08.000 --> 00:30:23.000
+I do think again when you look at the the not the overreliance in that particular space we were discussing in the security space rather than the let's teach people how to make things secure and then then scan it but the standing failures should not should
+
+00:30:23.000 --> 00:30:38.000
+be a rarity as opposed to like we expect two dozen things to fail. I think just the relying on it as a gate as is not. I think it's I think it's efficient for stopping errors before they get to production but i think is less efficient than if people just
+
+00:30:38.000 --> 00:30:51.000
+were able to plop insecure code from the start. And again, these things are like, it's not like securing an s3 bucket or a table or something, or Dynamo table is something that like every single person should have to learn from scratch from a security
+
+00:30:51.000 --> 00:30:58.000
+review scanning tool just just give them a template that does it and call it like they should just be able to use that for their purposes like here's how you do it.
+
+00:30:58.000 --> 00:31:09.000
+Instead of instead of having to go through this process all the time. And when you create something that you've never done before, with a method that you've never used before, maybe there's going to be types of security risks that those tools will find
+
+00:31:09.000 --> 00:31:39.000
+and it'll be useful. Yeah, yeah, exactly, you can focus more on that instead of the silly stuff that could have easily been dealt with earlier. Anyway, I get that.
+
