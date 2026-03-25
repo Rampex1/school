@@ -1,0 +1,1010 @@
+WEBVTT
+
+1
+00:00:02.650 --> 00:00:04.140
+Robert Sabourin, Mr: And
+
+2
+00:00:04.550 --> 00:00:07.080
+I'm gonna also show captions here.
+
+3
+00:00:07.640 --> 00:00:10.830
+Robert Sabourin, Mr: Caption language for the meeting is English.
+
+4
+00:00:11.970 --> 00:00:12.840
+Robert Sabourin, Mr: English.
+
+5
+00:00:13.970 --> 00:00:18.090
+Robert Sabourin, Mr: English. So the the captions are in English.
+
+6
+00:00:20.050 --> 00:00:22.440
+Adam White: and it's recording. Okay.
+
+7
+00:00:24.380 --> 00:00:41.029
+Robert Sabourin, Mr: it says, recording, all right. So Hi, my name is Rob Sabrina. I'm interviewing Adam White on the subject of defect resolution during product development. How are you today, Adam? I'm doing well. How are you, Rob?
+
+8
+00:00:41.900 --> 00:00:47.090
+Robert Sabourin, Mr: Quite good, quite good, overwhelmed with busyness here. But that's a good thing
+
+9
+00:00:47.750 --> 00:01:17.190
+Adam White: I was hoping you could give a a quick introduction to who are you? And what are you doing these days? Sure, I am currently a product manager for a B Twob lead delivery company. We're developing a product out of the 5 services that the company currently provides. And we're going to bring Sas. Bring a Saas product to life with
+
+10
+00:01:17.670 --> 00:01:22.669
+Adam White: the knowledge and expertise they've gathered from running the services business
+
+11
+00:01:23.210 --> 00:01:29.619
+Robert Sabourin, Mr: alright. And you've been in software engineering for many, many years. How long have you been involved in software engineering?
+
+12
+00:01:29.740 --> 00:01:43.190
+Adam White: I started studying computer science in the late 90 s. Mid, 90 S. Late 90 S. And started working in software in 2,001 as a full-time profession. And
+
+13
+00:01:43.240 --> 00:01:50.560
+Adam White: I took a short Sabbatical for one year and was a high school teacher. But other than that, I've been in technology.
+
+14
+00:01:50.780 --> 00:01:55.150
+Adam White: So yeah, so you definitely have around 30 years of the software engineering
+
+15
+00:01:55.210 --> 00:02:06.679
+Robert Sabourin, Mr: experience more or less makes me feel old when you say it like that. But yeah, alright, yeah, we we're gonna be asking you to share some experiences related to defect resolution
+
+16
+00:02:06.840 --> 00:02:18.739
+Robert Sabourin, Mr: during product development. And I'm just wondering if you are going to talk about your current company or a recent place. You worked on the
+
+17
+00:02:18.900 --> 00:02:37.710
+Robert Sabourin, Mr: the recent companies? Just because they're more top of mind, I'll try to keep the. So for the purpose of this discussion. Can we just call the company. Xyz, inc, sure. Yeah, yeah, alright. So xyz, inc.
+
+18
+00:02:37.920 --> 00:02:41.600
+Adam White: yeah. And all the stories will be from Xyz ink
+
+19
+00:02:41.780 --> 00:02:42.720
+Robert Sabourin, Mr: perfect.
+
+20
+00:02:43.040 --> 00:02:47.609
+Robert Sabourin, Mr: All right. So because we've done this before, I guess.
+
+21
+00:02:49.340 --> 00:03:00.399
+Robert Sabourin, Mr: I don't have to explain the process to. Just so I'm gonna give you a pretty open question. And I might ask some clarifying questions as you go, and I'm hoping that you can share
+
+22
+00:03:00.480 --> 00:03:05.349
+Robert Sabourin, Mr: stories in the first person. So your own personal experience stuff that you're aware of.
+
+23
+00:03:05.400 --> 00:03:22.960
+Robert Sabourin, Mr: And we're interested in defect resolution during product development as opposed to defect resolution for Field reported bugs after product development to distinguish the 2. So would you like to start with a typical case, a a success story, or a failed story?
+
+24
+00:03:24.140 --> 00:03:28.480
+Adam White: I mean, let's start with a typical one for that.
+
+25
+00:03:29.670 --> 00:03:30.750
+Adam White: so
+
+26
+00:03:31.020 --> 00:03:33.460
+Adam White: a a typical one would be.
+
+27
+00:03:33.510 --> 00:03:39.780
+Adam White: II I'll I'll talk generically about it is is it's it's a pretty standard thing like
+
+28
+00:03:39.870 --> 00:03:51.740
+Adam White: the development team is working off of usually a user story or some kind of task and a and a work item system. Usually Jira. In in this case at Xyz. It was Jira
+
+29
+00:03:52.050 --> 00:03:54.330
+Adam White:  and
+
+30
+00:03:54.560 --> 00:04:01.399
+Adam White:  sometimes there's acceptance criteria written in the issue.
+
+31
+00:04:01.700 --> 00:04:06.170
+Adam White: To varying levels of detail, and then someone will
+
+32
+00:04:06.260 --> 00:04:12.570
+Adam White: pick it up. It doesn't necessarily have to be a someone with a formal title of Tester
+
+33
+00:04:12.660 --> 00:04:15.400
+Adam White:  someone will.
+
+34
+00:04:15.460 --> 00:04:27.339
+Adam White: After the the development team is done writing the code. Someone will pick it up and walk through the acceptance criteria just to make sure that it meets their criteria that's outlined.
+
+35
+00:04:28.270 --> 00:04:35.370
+Adam White: And if they're really skilled and I try to get everyone to do this as they try to think about
+
+36
+00:04:35.900 --> 00:04:40.079
+Adam White: other areas that the code might have effected.
+
+37
+00:04:40.150 --> 00:04:46.480
+Adam White: While they were working, or while they were developing the the new stuff. Is there any
+
+38
+00:04:46.660 --> 00:04:57.629
+Adam White: upstream or downstream effects because of the change? So that that's a typical one where. you know, I somebody, somebody will
+
+39
+00:04:57.960 --> 00:05:04.569
+Adam White: be working on something. We'll we'll go through it and then just make sure that it's working appropriately.
+
+40
+00:05:12.520 --> 00:05:16.469
+Robert Sabourin, Mr: Pause. Did you wanna give me a specific example?
+
+41
+00:05:16.900 --> 00:05:20.060
+Adam White:  if you can recall one?
+
+42
+00:05:20.870 --> 00:05:25.360
+Robert Sabourin, Mr: I think I've got the typical case understood here. But.
+
+43
+00:05:25.750 --> 00:05:27.570
+Robert Sabourin, Mr: member specific one
+
+44
+00:05:27.580 --> 00:05:30.280
+Adam White: I can give. Yeah, hold on
+
+45
+00:05:31.080 --> 00:05:32.020
+Adam White: a
+
+46
+00:05:43.400 --> 00:05:48.809
+Adam White: okay. There was one where I had. Actually, I was the one who wrote the user story.
+
+47
+00:05:49.480 --> 00:05:54.050
+Adam White: and the user story was around reporting from the system.
+
+48
+00:05:54.660 --> 00:05:56.100
+Adam White: And
+
+49
+00:05:58.080 --> 00:06:04.030
+when the development team finished I was the one that to take the story and verify it
+
+50
+00:06:04.210 --> 00:06:10.270
+Adam White: but then I noticed that I hadn't written down all the things that I needed
+
+51
+00:06:10.430 --> 00:06:20.200
+Adam White: to to get. It was it was related to to reporting on a certain aspect of the of the product. And so I hadn't been
+
+52
+00:06:20.600 --> 00:06:42.450
+Adam White:  I didn't add in every single field that I needed, and so I had to kick that back to the development team. First, I had to update the ticket with oh, I forgot to write this down, and then I had to kick that back to the development team and that that came back through. So that's that does happen quite a bit where we kind of
+
+53
+00:06:43.930 --> 00:06:51.149
+Adam White: sometimes it's hard to catch all the requirements at the beginning. Right? Say, you don't know until you going through it. And you see it.
+
+54
+00:06:51.180 --> 00:06:59.599
+Adam White: And I I'm saying this under the typical case, because it's it actually happens a lot
+
+55
+00:06:59.660 --> 00:07:11.509
+Robert Sabourin, Mr: great. That's a beautiful example. Thank you. Let me just get go through this to make sure that I that I that I captured things that I got sort of in the right order. So your your generic model is that
+
+56
+00:07:11.680 --> 00:07:13.550
+Robert Sabourin, Mr: you're working on it.
+
+57
+00:07:13.700 --> 00:07:24.680
+Robert Sabourin, Mr: what you said a work item, the system like Jira and work items are stories or other tasks, stories or tasks that require
+
+58
+00:07:24.680 --> 00:07:46.309
+Robert Sabourin, Mr: development and testing every work item has in the system that you were using and acceptance criteria in the item, something that's written down as part of the what people call a ticket. Right you said Pick. You picked it up, or someone would pick it up. I assume that that's a call, a pull model. So someone you choose the ticket you're gonna do. It's not assigned to.
+
+59
+00:07:46.800 --> 00:07:51.630
+Adam White: Yeah. So we follow pretty standard scrum model where
+
+60
+00:07:51.710 --> 00:07:57.889
+Adam White: the work items will trend. Go through different you know, in progress. And then
+
+61
+00:07:58.030 --> 00:08:02.010
+Adam White: this company in particular has a ready for review column.
+
+62
+00:08:02.210 --> 00:08:06.849
+Adam White: And so that's currently where the testing is happening is when.
+
+63
+00:08:06.980 --> 00:08:14.080
+Adam White: yeah. And so it's actually, I think it's called product review, which means product management
+
+64
+00:08:14.090 --> 00:08:17.249
+Adam White: is ready to take a look at it.
+
+65
+00:08:17.410 --> 00:08:19.100
+Adam White: And then
+
+66
+00:08:19.260 --> 00:08:26.350
+Adam White: we. We currently leave the ticket assigned to the person who was originally working on it.
+
+67
+00:08:26.600 --> 00:08:36.250
+Adam White: I, personally don't like that model. I like the ticket to then change hands to show that it's been officially handed over to someone.
+
+68
+00:08:36.280 --> 00:08:43.970
+Adam White: But for now I'm working in the model where I just I watched the product review column. And then if something shows up there, then I go through it.
+
+69
+00:08:44.159 --> 00:08:53.139
+Robert Sabourin, Mr: So it's basically the the same. The same person who was developing it is given the the assignment to
+
+70
+00:08:53.320 --> 00:09:05.869
+Robert Sabourin, Mr: to rework it or to test it. Basically. Yeah, if if and when I it, something comes up it would it would. I would just have to drag it back it to in progress, and it would stay with them.
+
+71
+00:09:06.840 --> 00:09:20.570
+Adam White: yeah, alright, just to continue then. So after that, a team member picks it up when it's in this review state. Let's call it the review state and the team member picks it up, walks through the acceptance criteria.
+
+72
+00:09:20.610 --> 00:09:24.310
+Robert Sabourin, Mr: Make sure that the acceptance criteria are met.
+
+73
+00:09:24.450 --> 00:09:36.419
+Robert Sabourin, Mr: They also look through other areas of the code that could have been affected. So that means that II suppose, that they review what was changed right?
+
+74
+00:09:36.700 --> 00:09:41.650
+Robert Sabourin, Mr: So just does it meet the criteria. You review what was changed?
+
+75
+00:09:44.900 --> 00:09:49.559
+Robert Sabourin, Mr: Exercise things that are other areas that could have been affected.
+
+76
+00:09:49.670 --> 00:09:57.139
+Robert Sabourin, Mr: Look for any what you call upstream or downstream effects. Make sure things work appropriately
+
+77
+00:09:57.170 --> 00:10:04.389
+Robert Sabourin, Mr: and from from then, if you find a problem, you would kick it back
+
+78
+00:10:04.530 --> 00:10:06.720
+Adam White: to the Dev team. Right? That's right.
+
+79
+00:10:07.180 --> 00:10:10.220
+Robert Sabourin, Mr: Buying the problem kickback
+
+80
+00:10:11.420 --> 00:10:17.270
+Robert Sabourin, Mr: to dev team. And then I asked you for a specific example.
+
+81
+00:10:17.350 --> 00:10:42.320
+Robert Sabourin, Mr: and you chose a a story. How would you? You claim, I think that you wrote it yourself. The story reporting pro reporting from system user story, something like that you took it to was developed, and then you took it and verified it. You found out that there were some things missing some fields were missing the list to your term the list was not complete.
+
+82
+00:10:42.360 --> 00:10:56.250
+Adam White: And some of the reporting fields are missing. So you updated the ticket, kicked it back to the development. This is a case that you say is quite typical, because it was a missed requirement. So it was. Something should have been there that wasn't there, that you observed when you were doing.
+
+83
+00:10:56.330 --> 00:10:59.649
+Robert Sabourin, Mr: The testing. So that basically the defect
+
+84
+00:10:59.690 --> 00:11:09.360
+Robert Sabourin, Mr: found and resolved is basically a missing something that was missing the requirements related to a field, and that's a kickback
+
+85
+00:11:09.610 --> 00:11:13.630
+Robert Sabourin, Mr: to the Dev team. and I assume they reworked it.
+
+86
+00:11:14.290 --> 00:11:15.140
+Adam White: Yes.
+
+87
+00:11:15.320 --> 00:11:17.469
+Adam White: yeah. So they reworked it.
+
+88
+00:11:18.250 --> 00:11:21.439
+Adam White: I don't think I missed any steps. No.
+
+89
+00:11:21.670 --> 00:11:29.350
+Robert Sabourin, Mr: that's typical case. Can you just give me an idea, the timing of that? How long does it take, or did it take in the case of the example to do the rework
+
+90
+00:11:31.070 --> 00:11:57.949
+Adam White: couple of minutes a couple of days. So I mean the the actual hands-on keyboard work was just a couple of minutes, but the the issue was just in that case it took it took longer, just because that one developers multi, not multi wait for the guy to be available. Yeah, right? Availability is the issue, not the not. The time, was technically not a complex thing to solve. But you have to wait for the right guy to do it right.
+
+91
+00:11:58.300 --> 00:12:03.580
+Robert Sabourin, Mr: And that's so. I think I think the turnaround on that was a few days, which so
+
+92
+00:12:03.780 --> 00:12:09.719
+Adam White: that's fine. Few, few, few seconds of coding that took a few days to fit it into the process. Yeah.
+
+93
+00:12:09.870 --> 00:12:12.020
+Robert Sabourin, Mr: okay, okay.
+
+94
+00:12:12.210 --> 00:12:14.879
+Robert Sabourin, Mr: I think that's great. That's
+
+95
+00:12:14.910 --> 00:12:16.810
+Robert Sabourin, Mr: The good story
+
+96
+00:12:17.460 --> 00:12:20.569
+Robert Sabourin, Mr: II do have, I guess.
+
+97
+00:12:20.740 --> 00:12:32.589
+Robert Sabourin, Mr: Usually I would ask, how did you learn about it? But you pull it from Jira. So that's that's how it works. And when it was reworked it was also they you learned through Jira. I guess that it was
+
+98
+00:12:33.470 --> 00:12:37.150
+Adam White: yeah ready. That's right. Yeah. So watching the the
+
+99
+00:12:37.470 --> 00:12:40.610
+Adam White: yeah. So the workflow management tool is basically
+
+100
+00:12:41.370 --> 00:12:43.410
+Adam White: doing its job. Yeah.
+
+101
+00:12:44.080 --> 00:12:44.820
+Robert Sabourin, Mr: yeah.
+
+102
+00:12:44.990 --> 00:12:47.769
+Robert Sabourin, Mr: okay, and that's a typical case. Beautiful.
+
+103
+00:12:48.550 --> 00:13:07.730
+Robert Sabourin, Mr: So thank you for sharing that. Yeah, I appreciate that. Would you like to take a pause or check on life? Which would you like to share next? Then would you like to share. Xyz. Inc. A success or a failed
+
+104
+00:13:07.750 --> 00:13:12.039
+Adam White: defect. Resolution. Well, I you know I don't know
+
+105
+00:13:12.280 --> 00:13:24.739
+Adam White: exactly how to describe a failed defect resolution, because all of them are by choice. So whether we do or do don't fix it.
+
+106
+00:13:24.810 --> 00:13:42.929
+Adam White: If it's known during development, that's actually a choice. So II was actually struggling to think of a failed example. I don't know if you mean a failed like where I where I we found something, and then we actively decided not to fix it, or like we couldn't fix it, or
+
+107
+00:13:42.960 --> 00:13:46.660
+Adam White: you. Well, I let you choose, and you'll tell me what you mean by fail.
+
+108
+00:13:46.960 --> 00:14:06.169
+Adam White: I could tell you after the interview, what I would do. But it's it's success from your perspective, or failed from your perspective.
+
+109
+00:14:06.840 --> 00:14:08.790
+Adam White: maybe as a failed one.
+
+110
+00:14:09.260 --> 00:14:27.919
+Adam White: Well, let me talk it out loud, and then I'll see. Well, let me. Okay. So II you're talk. You're gonna tell me if it's filled in. I'm gonna classify it for the time being. As if it's a failed story. We can change that afterwards. So alright, so once upon a time, go ahead. So what's once upon a time.
+
+111
+00:14:28.490 --> 00:14:31.590
+Adam White: our new system had to send an email
+
+112
+00:14:32.210 --> 00:14:39.050
+Adam White: to  an actor in the system.
+
+113
+00:14:40.660 --> 00:14:43.489
+Adam White: We're using a third party. Api for this
+
+114
+00:14:45.560 --> 00:15:03.949
+Adam White:  Sorry. I'm slowing down because II feel like you're typing. And I want you to catch up. I got. I'm I'm I'm always. I'm always you got it? Okay? So we're using a third party, Api to to send this email out.
+
+115
+00:15:04.890 --> 00:15:12.359
+Adam White: We had a situation where a certain individual on our team who was a Vip
+
+116
+00:15:12.580 --> 00:15:14.969
+Adam White: was not receiving an email.
+
+117
+00:15:15.440 --> 00:15:20.739
+Adam White: But all the rest of us were and
+
+118
+00:15:22.180 --> 00:15:28.350
+Adam White: in the troubleshooting of this issue. So we had to have. Because it was a vip
+
+119
+00:15:28.500 --> 00:15:29.900
+Adam White: meaning
+
+120
+00:15:30.410 --> 00:15:35.860
+Adam White: th there was. There's there's no higher vip than you can get in the organization.
+
+121
+00:15:35.940 --> 00:15:40.850
+Adam White: and yeah, yes. So
+
+122
+00:15:41.020 --> 00:15:47.179
+Adam White: I convened a group of developers to figure out what was going on with the system.
+
+123
+00:15:48.780 --> 00:15:55.990
+Adam White:  the developer was sending the email, and we could see record of the email being sent.
+
+124
+00:15:56.600 --> 00:16:00.409
+Adam White: but on the It side we had
+
+125
+00:16:00.540 --> 00:16:08.480
+Adam White: a member of the It team, and he could see that that particular member was not getting the email. And
+
+126
+00:16:09.280 --> 00:16:13.539
+Adam White: I would say most of us were new to this
+
+127
+00:16:13.970 --> 00:16:17.380
+Adam White: to this third party vendor we were using for emails.
+
+128
+00:16:18.270 --> 00:16:19.120
+And
+
+129
+00:16:20.650 --> 00:16:30.409
+Adam White: as we were talking it through like what? What would be stopping this like? It's not going into spam. It's not going. But the Api was returning a 200 status code.
+
+130
+00:16:31.140 --> 00:16:34.960
+Adam White: So the developer was quite confident that the email was going out.
+
+131
+00:16:35.960 --> 00:16:46.910
+Adam White: And so now the question is, where do we look? Do we look more on the, you know the Google Workspace side. That's the email provider we use. And or do we look in the
+
+132
+00:16:47.050 --> 00:16:51.710
+Adam White: third party? They're called Email Service Provider, Esp.
+
+133
+00:16:52.980 --> 00:17:00.979
+Adam White: So as we're talking, I'm sharing my screen. And somebody mentioned, well, maybe he's on an unsubscribe list.
+
+134
+00:17:02.560 --> 00:17:03.950
+Adam White: And
+
+135
+00:17:04.109 --> 00:17:21.200
+Adam White:  I didn't really know my way around the Esp tool, but I was kind of fumbling as everyone was talking, and I was listening. Come to find out that this Vip was had been on an unsubscribed list since 2,022
+
+136
+00:17:21.810 --> 00:17:23.910
+Adam White: and
+
+137
+00:17:24.369 --> 00:17:33.970
+Adam White:  that's why they weren't getting the email. Which, explained I. There was a piece. I forgot to to tell backing up a little bit.
+
+138
+00:17:33.980 --> 00:17:48.190
+Adam White: we would send him an email. The system would register 200, but he wouldn't get it. So we we have aliases at our company. So it worked with the alias, which we found to be very curious behavior.
+
+139
+00:17:48.920 --> 00:17:52.680
+Adam White:  and so the workaround.
+
+140
+00:17:52.860 --> 00:18:01.010
+Adam White: The immediate workaround was, well, let's just keep using his alias email until we figure out what's actually going on with the real email.
+
+141
+00:18:01.620 --> 00:18:02.710
+Adam White: So
+
+142
+00:18:04.020 --> 00:18:12.630
+Adam White: once once we found that he was on the global unsubscribe list. We realized that the 200 call
+
+143
+00:18:13.290 --> 00:18:28.949
+Adam White: wasn't actually a successful email sent. It was just a registration that the the Esp had seen the call kind of thing, and that there's a whole series of methods and Apis to get the status of the email back.
+
+144
+00:18:29.380 --> 00:18:32.060
+Adam White:  and so
+
+145
+00:18:33.100 --> 00:18:46.990
+Adam White: we, we have not implemented that yet. So this is recent. This was last week like this is really fresh off. This is hot off the press like. I think a week ago to the day. So
+
+146
+00:18:47.600 --> 00:18:50.820
+Adam White: So what what we did there was
+
+147
+00:18:51.130 --> 00:19:13.870
+Adam White: it was successful, and that we worked around it. It was a failure in that when we designed the system, we didn't add in this ability upfront to read the status of the emails and and figure out whether it was bounced or on an unsubscribed list. Or and now, since then I've learned that there's a whole series of categories that an email could be in
+
+148
+00:19:13.880 --> 00:19:27.059
+Adam White:  And so I wrote up a follow up. Some follow up work for that particular feature which we're calling the notification framework to be basically read those responses back.
+
+149
+00:19:27.090 --> 00:19:45.500
+Adam White: The developer did some research cause. It was baffling him, too. And so I wrote up future work and put it in the backlog for us to address in a further iteration. So it it's it's a conflicting example. I feel like it was successful, but unsuccessful. Ultimately, ultimately, the problem
+
+150
+00:19:45.640 --> 00:19:50.009
+Robert Sabourin, Mr: was was resolved. So so
+
+151
+00:19:50.710 --> 00:20:01.169
+Robert Sabourin, Mr: it doesn't doesn't necessarily. First of all, if I could comment on this, II love this problem. Thank you for sharing that one. And this is so close to my heart. II just
+
+152
+00:20:01.280 --> 00:20:03.970
+Robert Sabourin, Mr: run into young
+
+153
+00:20:04.070 --> 00:20:22.420
+Robert Sabourin, Mr: testers and developers who look at the return codes from Apo calls and think it tells you something about the business logic working, and as it has nothing to do with the business logic working. That's like a handshake protocol. How do you test if? How do you test? If an Api says it worked?
+
+154
+00:20:22.420 --> 00:20:38.770
+Robert Sabourin, Mr: Does that mean it worked? No, the Api said it worked. Maybe the bug is. It says it works and it's not working. How do you test that? So? No, when you set something to test it. You gotta somehow query and hopefully query, indirectly, too, so that, you know, find 3 different means to assess correctness.
+
+155
+00:20:38.870 --> 00:20:40.630
+Robert Sabourin, Mr: Trusting return codes
+
+156
+00:20:40.720 --> 00:20:59.720
+Robert Sabourin, Mr: are are missing the bug, that what the return code is wrong, and and this this return code you're getting is saying. No, the Api went through. But there's 8,000 possible states of an email. And I did that with Google, a huge study of Gmail like, didn't you ever see my Gmail study? I don't think I did so. What we did is we took the gmail.
+
+157
+00:20:59.750 --> 00:21:03.119
+Robert Sabourin, Mr: and we identified variables in the in the Send
+
+158
+00:21:03.300 --> 00:21:22.910
+Robert Sabourin, Mr: setting with image attachments of Gmail, and we got some like 140 different variables that that are related to that. And then we took a whole bunch of them. We did an analysis of the variables, including a domain analysis with equivalence classes of the variables, and especially the one you're talking about, which is the 2 right, the 2, one.
+
+159
+00:21:23.220 --> 00:21:45.939
+Robert Sabourin, Mr: and classes in there includes stuff like you're talking about like, is it on a list? Is it an old one? Is a new one? Is it blocked. Is it the firewall grabbing it? All of these things are cases that you have to test when you do a Domain analysis of an email address. You also have expired emails, domains that have changed names that have changed all sorts of really crazy cases. All of them would give you a 200 code back?
+
+160
+00:21:46.780 --> 00:21:56.019
+Robert Sabourin, Mr: Right? Yeah, no, that because it's an email, we're parsing. The correct thing is it didn't get sent. That's the correct behavior. So you get a 200 code. It's like that.
+
+161
+00:21:56.030 --> 00:21:58.989
+Adam White: It's right that that that was
+
+162
+00:21:59.130 --> 00:22:11.940
+Adam White: yeah, it. It was interesting, because we're all the the people working on the project. We're all fairly senior, and we're all fairly surprised. So III don't have too many clarified questions, but I do. I do believe that.
+
+163
+00:22:11.950 --> 00:22:36.350
+Robert Sabourin, Mr: The fact is that that their your team was naive when they when they built the when they use this Esp tool. They, they were naive, and they? They were trusting the Api call, and they learned the hard way that they forgot to write the business logic around. Did this email really go through and the sad part of it, I guess, is that it's a high stakeholder that got blocked.
+
+164
+00:22:36.350 --> 00:22:43.850
+Robert Sabourin, Mr: But fact is, you found it inside the company, not outside, which is great. So it's
+
+165
+00:22:43.900 --> 00:22:48.319
+Robert Sabourin, Mr: you're right. And I think that's not a failure. Yeah, it. It's also
+
+166
+00:22:48.400 --> 00:22:50.719
+Adam White: it was a very
+
+167
+00:22:51.420 --> 00:23:00.419
+Adam White: you know, being the product manager when this product goes, live like, I need to know if that kind of stuff is happening. So it was a lesson learned for me.
+
+168
+00:23:00.600 --> 00:23:14.950
+Adam White: As well. And we there's there's some more stuff with W that we learned about the Esp. Like the the Esp is being used for other purposes just besides, just our product. So when you log into the account, the statistics
+
+169
+00:23:15.000 --> 00:23:41.249
+Adam White: are just for what we're doing, it's the. There's statistics for other stuff in there. So it muddied the waters I was like is this that, and and trying to track it down. So there's lots of other stuff. There's lots of other services in there that that you weren't necessarily using, but that you had to filter out that noise. Yeah, to get through there. Okay, let's see, II couple of questions to to just make sure that I didn't miss something. So I think I got the idea, the
+
+170
+00:23:41.350 --> 00:23:55.209
+Robert Sabourin, Mr: somehow, the the vip, I wasn't receiving emails. It was an important stakeholder. They communicated this to you. Did you hear this through Jira or through the personal email or something personal email.
+
+171
+00:23:55.380 --> 00:23:59.919
+Robert Sabourin, Mr: Yeah. So it was not reported in the normal chain. Right? It was personal
+
+172
+00:24:00.500 --> 00:24:01.740
+Robert Sabourin, Mr: email.
+
+173
+00:24:04.630 --> 00:24:05.670
+Robert Sabourin, Mr: which is.
+
+174
+00:24:05.710 --> 00:24:17.280
+Robert Sabourin, Mr: when important stakeholders have it, they don't even know how to log into Jira. you you gang! You got the gang together, you you got a group of people together to try to brainstorm on what to do.
+
+175
+00:24:17.470 --> 00:24:21.750
+Robert Sabourin, Mr: You studied the
+
+176
+00:24:22.210 --> 00:24:33.150
+Robert Sabourin, Mr: I guess you studied the behavior of the system, and finally, you eventually discovered that it wasn't on your side. It was some sort of third party blocking list,
+
+177
+00:24:33.400 --> 00:24:35.630
+Robert Sabourin, Mr: and so which call it unsubscribe list.
+
+178
+00:24:36.320 --> 00:24:45.530
+Robert Sabourin, Mr: Well, I guess there was a lot of trial and errors on this before you got there, because your logs looks like you checked your logs. The logs were okay. The it guy said that never went through.
+
+179
+00:24:45.710 --> 00:24:50.899
+Robert Sabourin, Mr: Someone suggested it could be an unsubscribe list. Who was that that suggested that
+
+180
+00:24:53.270 --> 00:24:57.470
+Adam White: it was someone it guy, yeah, it would. Yeah. It was.
+
+181
+00:24:58.250 --> 00:25:03.629
+Adam White: yeah, someone on the call just mentioned it, like in passing, as we were talking about. Like.
+
+182
+00:25:03.690 --> 00:25:13.659
+Adam White: right? I think we were talking about spam like, could it be marked as spam? Could it be? Not even leaving Google's servers?
+
+183
+00:25:13.940 --> 00:25:16.820
+Adam White:  and
+
+184
+00:25:17.160 --> 00:25:25.359
+Robert Sabourin, Mr:  okay, good, good, good. All right. And now, just when? Because this was reported
+
+185
+00:25:25.400 --> 00:25:40.190
+Robert Sabourin, Mr: through informal channels, how did this work its way into Jira? Did you eventually create a Jira ticket or something? Or was that not part of this equation at all. II did when we so because we found the workaround, I didn't write up a formal bug.
+
+186
+00:25:40.250 --> 00:25:46.269
+Adam White: so the workaround was the alias. Right? That's right. Yeah. So I didn't. I didn't write up a formal bug for it.
+
+187
+00:25:46.290 --> 00:25:56.309
+Adam White: But I did write up a a Jira task for the or maybe I might have wrote it as a story for the
+
+188
+00:25:56.330 --> 00:26:00.360
+Adam White: follow up work to add reading the response codes and
+
+189
+00:26:02.220 --> 00:26:08.300
+Robert Sabourin, Mr: time to implement the business logic. Right? Yeah, and the logging, and and add the logging and things like that.
+
+190
+00:26:10.050 --> 00:26:12.700
+Robert Sabourin, Mr: Excellent. alright
+
+191
+00:26:12.910 --> 00:26:14.980
+Robert Sabourin, Mr: good, great story.
+
+192
+00:26:15.010 --> 00:26:22.670
+Robert Sabourin, Mr: Anything else you wanted to add to that, or that's it. Very good. That's a great story. Okay? So I'm going to classify that as a as a failure. But it's
+
+193
+00:26:22.730 --> 00:26:25.530
+Adam White: it could be looked at many different ways.
+
+194
+00:26:26.320 --> 00:26:32.370
+Robert Sabourin, Mr: How about a particularly successful Xyz inc
+
+195
+00:26:32.400 --> 00:26:38.310
+Adam White: defect resolution during product development? Yeah, give me just give me a second.
+
+196
+00:26:56.180 --> 00:26:57.010
+Adam White: hmm!
+
+197
+00:27:01.300 --> 00:27:02.130
+Adam White: I got
+
+198
+00:27:02.510 --> 00:27:08.470
+Adam White:  I changed the project name in Jira. And now all my filters are messed up.
+
+199
+00:27:08.700 --> 00:27:16.470
+Robert Sabourin, Mr: Sorry while we're talking. You're actually checking in 0. Okay, so that's very good. This is fresh stuff. These are a lot. Yeah, these are
+
+200
+00:27:16.560 --> 00:27:19.009
+Adam White: live projects. Yeah.
+
+201
+00:27:19.680 --> 00:27:23.150
+Adam White: I gave the example of the one where I missed the data.
+
+202
+00:27:23.710 --> 00:27:35.120
+Adam White: Yeah, you missed the field jump. That's right. Yeah. And you gave the one about the email, alias alias Bug, yeah, with the blocking things because it was on the unsubscribe list.
+
+203
+00:27:35.940 --> 00:27:38.390
+Adam White: Yeah. just give me one. Sec.
+
+204
+00:27:41.060 --> 00:27:41.910
+Adam White: Hmm.
+
+205
+00:27:54.260 --> 00:27:57.030
+Adam White: I am having a hard time finding one.
+
+206
+00:27:57.280 --> 00:28:04.210
+Robert Sabourin, Mr:  you know. Well, you can also just tell me that the typical case is is sort of your success case.
+
+207
+00:28:04.260 --> 00:28:05.770
+Adam White: Well, we
+
+208
+00:28:05.790 --> 00:28:10.449
+Adam White: we're allowed to do that. You don't have to find an extra story. If you don't have one.
+
+209
+00:28:11.240 --> 00:28:12.540
+Adam White: it's because
+
+210
+00:28:14.430 --> 00:28:19.390
+Adam White: I never really consider a a bug founding found in
+
+211
+00:28:19.420 --> 00:28:26.149
+Adam White: development to be a failure. I'm like, yeah, that's a hard one.
+
+212
+00:28:26.610 --> 00:28:35.390
+Robert Sabourin, Mr: Yeah. So so some people would consider something that was found by the programmer in the ide before they check in the code
+
+213
+00:28:35.440 --> 00:28:38.679
+Robert Sabourin, Mr: as a success story.
+
+214
+00:28:40.520 --> 00:28:44.990
+Robert Sabourin, Mr: So in other words, it's a bug that you find when you're running your own private unit tests before you
+
+215
+00:28:45.080 --> 00:28:51.670
+Robert Sabourin, Mr: check in the code. Yeah, I see. That's what some people would say. That's successful, because it was resolved before you.
+
+216
+00:28:52.320 --> 00:28:57.629
+Adam White: But you know, for a third party had to look at the code. Yeah. I got it.
+
+217
+00:28:58.510 --> 00:29:04.870
+Robert Sabourin, Mr: But those might not be recorded in Jira. They're no, they're not. No, I wouldn't. I wouldn't know those yeah.
+
+218
+00:29:05.740 --> 00:29:09.040
+Adam White: as much. Just hold on. I'm just.
+
+219
+00:29:15.610 --> 00:29:24.340
+Adam White: But what would be a failure in that case? Like, that's the one we're looking for here, right is like a failure to me is a bug that we just can't fix.
+
+220
+00:29:25.390 --> 00:29:39.010
+Robert Sabourin, Mr: Yeah, or you believe you fixed it. And for example, it, instead of being fix. It was fixed as stated, but it shifted. I see something like that are the classic case would have been what I was doing.
+
+221
+00:29:39.440 --> 00:29:43.059
+Robert Sabourin, Mr: Virus scanning software on email attachments
+
+222
+00:29:43.090 --> 00:30:05.289
+Robert Sabourin, Mr: and the bug was related to the first attachment. We fixed that. But then it moved to the third or fourth attachment. It did. The bug didn't really go away. It just shifted much less frequent. By the way, it's the first attachment. You'll catch it a lot up. And the third or fourth attachment. Wow! Those are hard to.
+
+223
+00:30:05.480 --> 00:30:11.599
+Adam White: Yeah, I'm I'm looking through the list here. I don't really have a great one.
+
+224
+00:30:12.680 --> 00:30:19.810
+Adam White: alright. So why why don't we, just for the purpose of this interview? Then say that the success case of the typical case are.
+
+225
+00:30:19.910 --> 00:30:25.209
+Robert Sabourin, Mr: are are the same. Case is successful in your organization. Right?
+
+226
+00:30:26.360 --> 00:30:32.330
+Robert Sabourin, Mr: So we'll do that and see typical case
+
+227
+00:30:33.250 --> 00:30:44.199
+Robert Sabourin, Mr: alright. So that's great. So I think I've got the workflow and dynamic pretty well understood. If you had a magic wand.
+
+228
+00:30:44.460 --> 00:30:54.930
+Robert Sabourin, Mr: what would you do? Different? What would you change in the way that defect, resolution, resolution is managed in your organization at XYZ. Inc.
+
+229
+00:30:55.070 --> 00:30:57.599
+Adam White: jeez, I would.
+
+230
+00:31:01.550 --> 00:31:12.340
+Adam White: I would ask that the people working on the product take a little bit more of a SA systemic view of the software in the system
+
+231
+00:31:12.420 --> 00:31:15.090
+Adam White: as opposed to just thinking about their little
+
+232
+00:31:15.120 --> 00:31:24.990
+Adam White:  chunk. So how does this code impact the rest of the system, or you know what might need to be Redone
+
+233
+00:31:25.160 --> 00:31:34.960
+Adam White: or retested because of this change, and just looking at it more from a system wide impact instead of just fixing it in isolation.
+
+234
+00:31:35.330 --> 00:31:44.059
+Adam White:  yeah, that that you're saying that a lot of the work that they're doing is very. It's work in isolation. And they're not looking at.
+
+235
+00:31:44.160 --> 00:31:59.690
+Adam White: How the might impact other features up and down stream and stuff like that. That. You said, yeah. And it's also an interesting stage of the project. Because we're working. We've got a back end team who's kind of creating Api's. We've got a front end team that is
+
+236
+00:32:00.380 --> 00:32:10.770
+Adam White: not connecting to those Apis at the moment. So I I've got different classes of problems depending on which group of people I'm I'm talking to
+
+237
+00:32:10.880 --> 00:32:18.090
+Adam White:  And so the the reporting example falls more under the back end system right now.
+
+238
+00:32:18.710 --> 00:32:19.920
+Adam White: and
+
+239
+00:32:20.230 --> 00:32:33.070
+Adam White: is defect resolution. Manage the same way, though if it's a front end or back end problem. Yeah, same idea. Some organizations have different defect resolution strategies for third party stuff. Do you guys have that?
+
+240
+00:32:33.860 --> 00:32:39.839
+Adam White: We haven't run into that yet, but I've never. I've never run into enough of.
+
+241
+00:32:39.930 --> 00:32:51.649
+Adam White: even in past organizations. I've never run into into enough of it to have the need for a separate process. But I have definitely I,
+
+242
+00:32:52.380 --> 00:32:54.530
+Adam White: the success
+
+243
+00:32:54.760 --> 00:33:02.579
+Adam White: the success bug I really wanted to talk or talk about was years ago with a third party component. That was
+
+244
+00:33:02.820 --> 00:33:04.559
+Adam White: really interesting. But
+
+245
+00:33:07.180 --> 00:33:13.400
+Adam White: yeah, we we, I think we only ran into one of those. And like, 8 years was like.
+
+246
+00:33:15.350 --> 00:33:21.480
+Adam White: yeah, not not not frequent enough, I guess. No, yeah, it doesn't happen enough to to set out a special thing.
+
+247
+00:33:21.640 --> 00:33:26.360
+Robert Sabourin, Mr: Okay. fair enough. I thank you.
+
+248
+00:33:28.950 --> 00:33:33.889
+Adam White: I think that does it for my questions. Do you have any questions for me? No, I'm good.
+
+249
+00:33:34.090 --> 00:33:46.910
+Robert Sabourin, Mr: Good. Well, it's very, very, very great to hear from you again, Adam, and I appreciate that. I will review my notes afterwards. I might have a couple of follow up questions downstream.
+
+250
+00:33:46.940 --> 00:33:52.189
+Adam White: Okay, sounds good to stop the recording now, though, and we can keep chatting after that. But
+
+251
+00:33:52.460 --> 00:33:54.650
+Adam White: so thank you very much. Thank you.
+
+252
+00:33:57.600 --> 00:33:58.540
+Robert Sabourin, Mr: Stop recording.
+

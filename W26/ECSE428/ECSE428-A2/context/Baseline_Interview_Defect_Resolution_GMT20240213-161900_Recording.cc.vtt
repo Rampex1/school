@@ -1,0 +1,1055 @@
+WEBVTT
+
+00:00:10.000 --> 00:00:20.000
+In English. English. English. So the captions are in English.
+
+00:00:20.000 --> 00:00:22.000
+And it's recording. I'm not.
+
+00:00:22.000 --> 00:00:27.000
+Okay.
+
+00:00:27.000 --> 00:00:28.000
+Good.
+
+00:00:28.000 --> 00:00:35.000
+It says recording. All right. Oh, hi, my name is Rob Saber. I'm interviewing Adam White.
+
+00:00:35.000 --> 00:00:40.000
+On the subject of defect resolution during product development. How are you today, Adam?
+
+00:00:40.000 --> 00:00:42.000
+I'm doing well, how are you, Rob?
+
+00:00:42.000 --> 00:00:48.000
+Quite good. Quite good. Overwhelmed with busyness here, but that's a good thing.
+
+00:00:48.000 --> 00:00:56.000
+I was hoping you could give a quick introduction to who are you and what are you doing these days?
+
+00:00:56.000 --> 00:01:04.000
+Sure. I am currently a product manager for a B to B lead delivery, company.
+
+00:01:04.000 --> 00:01:24.000
+We're developing a product out of the 5 services that the company currently provides. And we're going to bring, bring a sauce product to life with, the knowledge and expertise they've gathered from running the services business.
+
+00:01:24.000 --> 00:01:30.000
+Alright, and you've been in software engineering for many, many years. How long have you been involved in software engineering?
+
+00:01:30.000 --> 00:01:38.000
+I started studying computer science in the late nineties, mid nineties, late nineteenth.
+
+00:01:38.000 --> 00:01:45.000
+And started working in software in 2,001 as a full-time
+
+00:01:45.000 --> 00:01:54.000
+And I took a short sabbatical for one year and was a high school teacher but other than that I've been in technology.
+
+00:01:54.000 --> 00:01:55.000
+For that.
+
+00:01:55.000 --> 00:02:00.000
+So you definitely have around 30 years of software engineering. Experience.
+
+00:02:00.000 --> 00:02:04.000
+Makes me feel old when you say it like that, but yeah. Yeah.
+
+00:02:04.000 --> 00:02:19.000
+Alright, we're gonna be asking you to share some experiences related to defect resolution. During product development And I'm just wondering if you are going to talk about your current company or a recent place you worked out.
+
+00:02:19.000 --> 00:02:30.000
+I am gonna talk about the the recent companies just because they're more top of mind i'll try to keep the names of the companies out
+
+00:02:30.000 --> 00:02:37.000
+Perfect. For the purpose of this. So for the purpose of this discussion, can we just call the company XYZ ink?
+
+00:02:37.000 --> 00:02:38.000
+Sure. Yeah, yeah.
+
+00:02:38.000 --> 00:02:42.000
+Alright, so, XYZ Inc. And all the stories will be from XYZ.
+
+00:02:42.000 --> 00:02:45.000
+Yeah. Yeah.
+
+00:02:45.000 --> 00:02:53.000
+Perfect. All right. So, because we've done this before, I guess,
+
+00:02:53.000 --> 00:03:01.000
+I don't have to explain the process to just so I'm gonna give you a pretty open
+
+00:03:01.000 --> 00:03:02.000
+Sure.
+
+00:03:02.000 --> 00:03:06.000
+Question and I might ask some clarifying questions as you go. And, I'm hoping that you can share.
+
+00:03:06.000 --> 00:03:07.000
+Yeah. Yeah.
+
+00:03:07.000 --> 00:03:17.000
+Stories in the first person so your own personal experience stuff that you're aware of. And we're interested in depict resolution during product development as opposed to depict resolution for field reported bugs after product development.
+
+00:03:17.000 --> 00:03:20.000
+Yeah. Yeah.
+
+00:03:20.000 --> 00:03:21.000
+Yep.
+
+00:03:21.000 --> 00:03:31.000
+To distinguish. The 2. So, would you like to start with the typical case, a success story or a failed story?
+
+00:03:31.000 --> 00:03:32.000
+Perfect. Go ahead.
+
+00:03:32.000 --> 00:03:37.000
+I mean, let's start with the typical one for now. So a typical one would be.
+
+00:03:37.000 --> 00:03:56.000
+I'll talk generically about it is it's a pretty standard thing like the development team is working off of usually a user story or some kind of task in a, in a work item system, usually Jira, in in this case at XYZ, it was Jira.
+
+00:03:56.000 --> 00:04:08.000
+And sometimes there's acceptance criteria written in the issue. To varying levels of detail.
+
+00:04:08.000 --> 00:04:22.000
+And then someone will pick it up it doesn't necessarily have to be someone with the formal title of tester someone will After the development team is done.
+
+00:04:22.000 --> 00:04:32.000
+Writing the code, someone will pick it up and walk through the acceptance criteria just to make sure that it meets the criteria that's outlined.
+
+00:04:32.000 --> 00:04:40.000
+And if they're really skilled and, I try to get everyone to do this as they try to think about.
+
+00:04:40.000 --> 00:04:54.000
+Other areas that the code might have affected. While they were working or while they were developing the new stuff is there any upstream or downstream effects because of the change.
+
+00:04:54.000 --> 00:05:16.000
+So that's a typical one where You know, I, somebody somebody will. Be working on something, we'll go through it and then just make sure that it's working appropriately.
+
+00:05:16.000 --> 00:05:22.000
+Did you wanna give me a specific example?
+
+00:05:22.000 --> 00:05:28.000
+If you can recall one. I think I've got the typical case. Understood here, but.
+
+00:05:28.000 --> 00:05:29.000
+Could you throw me? You remember specific one?
+
+00:05:29.000 --> 00:05:47.000
+Yeah. I can give you, yeah, hold on.
+
+00:05:47.000 --> 00:05:54.000
+Okay, there was one where, I had actually, I was the one who wrote the user story.
+
+00:05:54.000 --> 00:06:02.000
+And the user story was around reporting from the system. And.
+
+00:06:02.000 --> 00:06:08.000
+When the development team finished, I was the one that to take the story and verify it. But then I noticed that I hadn't written down all the things that I needed.
+
+00:06:08.000 --> 00:06:29.000
+To get it was it was related to reporting on a certain aspect of the of the product and so I hadn't been.
+
+00:06:29.000 --> 00:06:38.000
+Development team. First I had to update the ticket with, oh, I forgot to write this down. And then I had to kick that back to the development team and that came back through.
+
+00:06:38.000 --> 00:06:45.000
+So that's a that does happen quite a bit where we kind of.
+
+00:06:45.000 --> 00:06:52.000
+Sometimes it's hard to catch all the requirements at the beginning, right? You don't know until you're going through it and you see it.
+
+00:06:52.000 --> 00:06:59.000
+And I'm saying this under the typical case because it's, it actually happens a lot.
+
+00:06:59.000 --> 00:07:00.000
+Yeah.
+
+00:07:00.000 --> 00:07:01.000
+That's fine. Yeah. But, Great, that's a beautiful example. Thank you.
+
+00:07:01.000 --> 00:07:10.000
+Let me just get go through this.
+
+00:07:10.000 --> 00:07:11.000
+Yeah.
+
+00:07:11.000 --> 00:07:21.000
+Make sure that I that I captured things and I got sort of in the right order. So your generic model is that the you're working on it.
+
+00:07:21.000 --> 00:07:22.000
+Yeah.
+
+00:07:22.000 --> 00:07:25.000
+What you said, a work item, the system like Jira and work items are stories or other tasks.
+
+00:07:25.000 --> 00:07:26.000
+Yeah.
+
+00:07:26.000 --> 00:07:39.000
+Stories or tasks that require a development and testing every work item has in the system that you were using, and acceptance criteria in the item, something that's written down as part of the what people call
+
+00:07:39.000 --> 00:07:40.000
+Take it, right?
+
+00:07:40.000 --> 00:07:42.000
+Yeah.
+
+00:07:42.000 --> 00:07:48.000
+You said pick you picked it up like
+
+00:07:48.000 --> 00:07:56.000
+Would pick it up. I assume that that's a, pull model. So someone you choose the ticket you're going to do, it's not assigned to you.
+
+00:07:56.000 --> 00:08:04.000
+Yeah, so we follow pretty standard Scrum model where the work items will go through different, you know.
+
+00:08:04.000 --> 00:08:07.000
+Progress and then
+
+00:08:07.000 --> 00:08:08.000
+This company.
+
+00:08:08.000 --> 00:08:15.000
+Particular has a ready for review column. And so that's currently where the testing is happening is when
+
+00:08:15.000 --> 00:08:16.000
+Review. Yeah. Perfect.
+
+00:08:16.000 --> 00:08:21.000
+Yeah, and so it's actually, I think it's called product review, which means product management.
+
+00:08:21.000 --> 00:08:27.000
+Is ready to take a look at it.
+
+00:08:27.000 --> 00:08:41.000
+And then. We currently leave the ticket assigned to the person who was originally working on it. I personally don't like that model. I like the ticket to then change.
+
+00:08:41.000 --> 00:08:50.000
+To show that it's been officially. Hand it over to someone. But for now I'm working in the model where I just I watch the product room
+
+00:08:50.000 --> 00:08:51.000
+You a column.
+
+00:08:51.000 --> 00:08:54.000
+And then if something shows up there, then I go through it.
+
+00:08:54.000 --> 00:09:05.000
+So it's basically the same the same person who was developing it is given the act the assignment to to rework it or to test it basically.
+
+00:09:05.000 --> 00:09:10.000
+Yeah, if in one something comes up it would I would just talk
+
+00:09:10.000 --> 00:09:11.000
+To drag it.
+
+00:09:11.000 --> 00:09:14.000
+Back it to in progress and it would stay with them. Yeah.
+
+00:09:14.000 --> 00:09:22.000
+Perfect. Just to continue then, the, so after that, a team member picks it up when it's in this review state.
+
+00:09:22.000 --> 00:09:24.000
+Let's call it the view state. Let's call it the view state.
+
+00:09:24.000 --> 00:09:25.000
+Yeah.
+
+00:09:25.000 --> 00:09:28.000
+Let's call it the view state. And the team member picks it up walks through the acceptance criteria.
+
+00:09:28.000 --> 00:09:30.000
+Yeah.
+
+00:09:30.000 --> 00:09:44.000
+Make sure that the acceptance criteria are met they also look through other areas of the, code that could have been affected, so that means that I suppose that they review what was changed, right?
+
+00:09:44.000 --> 00:09:45.000
+Yep. Yeah.
+
+00:09:45.000 --> 00:09:54.000
+So just does it meet the criteria? You review what was changed.
+
+00:09:54.000 --> 00:10:02.000
+Exercise things that are other areas that could have been affected. Look for any what you called upstream or downstream effects.
+
+00:10:02.000 --> 00:10:04.000
+Yeah.
+
+00:10:04.000 --> 00:10:14.000
+Make sure things work appropriately. And from, from then. If you find a problem, you would kick it back.
+
+00:10:14.000 --> 00:10:15.000
+That's right.
+
+00:10:15.000 --> 00:10:32.000
+To the dev team right . The problem Kick back. To that team. And then I asked you for a specific example.
+
+00:10:32.000 --> 00:10:33.000
+Yeah.
+
+00:10:33.000 --> 00:10:39.000
+And you chose a story, which you'd you'd claim I think that you wrote it yourself the story reporting reporting from a system user story something like that.
+
+00:10:39.000 --> 00:10:44.000
+You took it was developed and then you took it, it was developed and then you took it, it was developed and then you took it and verified it.
+
+00:10:44.000 --> 00:10:53.000
+You found out that there were some things missing some fields were missing list to your term the list was not complete And some of the reporting feels are missing.
+
+00:10:53.000 --> 00:11:00.000
+So you updated the ticket. Kicked it back to the development. This is a case that you says quite typical because it was a missed requirement.
+
+00:11:00.000 --> 00:11:01.000
+Yeah.
+
+00:11:01.000 --> 00:11:09.000
+So it was some it should have been there that wasn't there that you observed when you were doing the testing so that basically the defect.
+
+00:11:09.000 --> 00:11:15.000
+Found and resolved is basically a missing something that was missing in the requirements related to a field. And that's a kickback.
+
+00:11:15.000 --> 00:11:18.000
+Yeah.
+
+00:11:18.000 --> 00:11:23.000
+To the dev team. And I assumed they reworked it.
+
+00:11:23.000 --> 00:11:24.000
+Yes. Yeah.
+
+00:11:24.000 --> 00:11:29.000
+So they reworked it. I don't think I missed any steps. That's typical case.
+
+00:11:29.000 --> 00:11:32.000
+No.
+
+00:11:32.000 --> 00:11:39.000
+Can you just give me an idea the timing of that? How long does it take or did it take in the case of the example to do the rework?
+
+00:11:39.000 --> 00:11:40.000
+Was it a couple of minutes a couple of days or?
+
+00:11:40.000 --> 00:11:55.000
+I mean the actual hands on keyboard work was just a couple of minutes but the issue was just, in that case it took it took longer just because that one developers multi like not multi-task.
+
+00:11:55.000 --> 00:11:56.000
+Yeah, you gotta wait for the guy to be available, right?
+
+00:11:56.000 --> 00:11:59.000
+Yeah, right. His availability is the issue, not the Not the time it.
+
+00:11:59.000 --> 00:12:07.000
+Yeah, that's fine. It was technically not a complex thing to solve, but you have to wait for the right guy to do it.
+
+00:12:07.000 --> 00:12:08.000
+And that's.
+
+00:12:08.000 --> 00:12:11.000
+Right. Yeah. So I, I think the turnaround on that was a few days which
+
+00:12:11.000 --> 00:12:17.000
+Yeah, that's fine. A few, a few seconds of coding that took a few days to fit it into the process.
+
+00:12:17.000 --> 00:12:18.000
+Yeah.
+
+00:12:18.000 --> 00:12:24.000
+Okay, okay. I think that's great. That's the good story.
+
+00:12:24.000 --> 00:12:25.000
+Yep.
+
+00:12:25.000 --> 00:12:33.000
+I do have, I guess. Usually I would ask, how did you learn about it, but you pull it from Jira.
+
+00:12:33.000 --> 00:12:34.000
+Yeah.
+
+00:12:34.000 --> 00:12:42.000
+So. That's how it works and When it was reworked, it was also that you learned through Jira, I guess, that it was.
+
+00:12:42.000 --> 00:12:43.000
+Ready?
+
+00:12:43.000 --> 00:12:51.000
+Yeah, that's right. Yeah, watching the
+
+00:12:51.000 --> 00:12:52.000
+Yep.
+
+00:12:52.000 --> 00:12:55.000
+Yeah, so the workflow management tool is basically doing its job. Yeah. Okay, and that's a typical case.
+
+00:12:55.000 --> 00:12:59.000
+Yeah.
+
+00:12:59.000 --> 00:13:00.000
+Yeah.
+
+00:13:00.000 --> 00:13:06.000
+Beautiful. So thank you for sharing that. I appreciate that. Would you like to Take a pause or check on.
+
+00:13:06.000 --> 00:13:07.000
+No, no, I'm good. No, I'm good. I'm good.
+
+00:13:07.000 --> 00:13:13.000
+Wife? Or would I do next story? Which would you like to share next then? Would you like to share?
+
+00:13:13.000 --> 00:13:18.000
+We start XYZ Inc. A success or a failed DEPECT resolution.
+
+00:13:18.000 --> 00:13:29.000
+Well, you know, I don't know. Exactly how to describe a failed defect resolution because all of them are by choice.
+
+00:13:29.000 --> 00:13:40.000
+So whether we do or don't, fix it. If it's known during development, that's actually a choice.
+
+00:13:40.000 --> 00:13:41.000
+Yeah.
+
+00:13:41.000 --> 00:13:54.000
+So I, I was actually struggling to think of a failed example. I don't know if you mean a failed like where I where I we found something and then we actively decided not to fix it or like we couldn't fix it or
+
+00:13:54.000 --> 00:13:55.000
+Yeah. Well, let me give you this example.
+
+00:13:55.000 --> 00:14:00.000
+You well, I let you choose and you'll tell me what you mean by failed. I wanna bias you.
+
+00:14:00.000 --> 00:14:01.000
+Yeah.
+
+00:14:01.000 --> 00:14:04.000
+I can tell you after the interview, what I would do, but it's it's success from your perspective or failed from your perspective.
+
+00:14:04.000 --> 00:14:05.000
+Yeah, okay, so
+
+00:14:05.000 --> 00:14:10.000
+So, you know, so that's that's what I'm interested in is what's your perspective?
+
+00:14:10.000 --> 00:14:15.000
+I want to learn about that.
+
+00:14:15.000 --> 00:14:16.000
+You went to a failed one?
+
+00:14:16.000 --> 00:14:22.000
+Yeah, I'll give. I'll give this example and then. Maybe as I talk. Well, let me talk it out loud and then I'll see.
+
+00:14:22.000 --> 00:14:31.000
+Well, okay, so, you're, you're gonna tell me if it's built into that I'm gonna classify it for the time being as if it's a failed story and we can change that afterwards.
+
+00:14:31.000 --> 00:14:32.000
+So, all right, so once upon a time, go ahead.
+
+00:14:32.000 --> 00:14:46.000
+Okay. Okay. So once upon a time, Our new system had to send an email. To
+
+00:14:46.000 --> 00:14:49.000
+An actor in the system.
+
+00:14:49.000 --> 00:14:54.000
+We're using a third party API for this.
+
+00:14:54.000 --> 00:15:02.000
+Sorry, I'm slowing down because I feel like you're typing and I want you to catch up.
+
+00:15:02.000 --> 00:15:03.000
+Oh, you, you got it. Okay, so we're using a
+
+00:15:03.000 --> 00:15:13.000
+I, I'm, I'm always, It's a line that I'm always fine mapping, sorry.
+
+00:15:13.000 --> 00:15:14.000
+Right.
+
+00:15:14.000 --> 00:15:24.000
+We're using a third party API to. To send this email out. We had a situation where a certain individual on our team who was a VIP was not receiving an email.
+
+00:15:24.000 --> 00:15:27.000
+But all the rest of us were.
+
+00:15:27.000 --> 00:15:30.000
+And
+
+00:15:30.000 --> 00:15:38.000
+In the troubleshooting of this issue. So we had to have, because it was a VIP.
+
+00:15:38.000 --> 00:15:43.000
+Meaning It was there's no higher VIP that you can get in the organization. And, so.
+
+00:15:43.000 --> 00:15:47.000
+Okay. Pretty important stakeholder.
+
+00:15:47.000 --> 00:15:58.000
+Yeah, yes. So. I convened a group of developers to figure out what was going on with the system.
+
+00:15:58.000 --> 00:16:05.000
+The developer was sending the email and we could see record of the email being sent. But on the IT side, we had a a member of the
+
+00:16:05.000 --> 00:16:13.000
+Team and he could see that that particular member was not getting the email. And. I would say most of us were new to this.
+
+00:16:13.000 --> 00:16:35.000
+To this third party vendor we were using for emails. And As we were talking it through like what would be stopping this like it's not going into spam it's not going but the API was returning a 200 status code.
+
+00:16:35.000 --> 00:16:42.000
+So the developer was quite confident that the email was going out. And so now the question is, where do we look?
+
+00:16:42.000 --> 00:16:57.000
+Do we look more on the, you know, the Google workspace side. That's the email provider we use and or do we look in the third party, they're called email service provider, ESP.
+
+00:16:57.000 --> 00:17:06.000
+So as we're talking, I'm sharing my screen. And somebody mentioned, well, maybe he's on an unsubscribe list.
+
+00:17:06.000 --> 00:17:12.000
+And. I didn't really know my way around the ESP tool, but I was kind of fumbling as everyone was talking.
+
+00:17:12.000 --> 00:17:25.000
+I and I was listening. Come to find out that this VIP was had been on an unsubscribed list since 2022.
+
+00:17:25.000 --> 00:17:29.000
+And
+
+00:17:29.000 --> 00:17:35.000
+That's why they weren't getting the email. Which explain I there was a piece I forgot to tell.
+
+00:17:35.000 --> 00:17:43.000
+Backing up a little bit. We would send him an email. The system would register 200, but he wouldn't get it.
+
+00:17:43.000 --> 00:17:53.000
+So we have aliases at our company. So it worked with the alias, which we found to be very curious behavior.
+
+00:17:53.000 --> 00:18:05.000
+And so the workaround. The immediate workaround was well, let's just keep using his alias email until we figure out what's actually going on within real email.
+
+00:18:05.000 --> 00:18:20.000
+So. Once we found that he was on the global unsubscribed list we realized that the 200 call wasn't actually a successful email sent.
+
+00:18:20.000 --> 00:18:33.000
+It was just a registration that the ESP had. Seen the call kind of thing and that there's a whole series of methods and APIs to get the status of the email back.
+
+00:18:33.000 --> 00:18:44.000
+And so. We have not implemented that yet. So this is recent. This was last week like this is really fresh.
+
+00:18:44.000 --> 00:18:45.000
+Okay, alright. That's really sorry.
+
+00:18:45.000 --> 00:18:49.000
+This is hot off the press like. This was like, I think a week ago to the day.
+
+00:18:49.000 --> 00:19:04.000
+So, So what we did there was It was successful and that we worked around it. It was a failure in that when we designed the system, we didn't add in this ability upfront.
+
+00:19:04.000 --> 00:19:10.000
+To read the status of the emails and figure out whether it was bounced or on an unsubscribed list.
+
+00:19:10.000 --> 00:19:18.000
+And now since then I've learned that there's a whole series of categories that an email could be in.
+
+00:19:18.000 --> 00:19:35.000
+And so I wrote up a follow up some follow up work for that particular feature, which we're calling the notification framework to be.
+
+00:19:35.000 --> 00:19:36.000
+Yeah.
+
+00:19:36.000 --> 00:19:40.000
+Basically read those responses back. The developer did some research because it was baffling him too and so I wrote up future work and put it in the backlog for us to address in a further iteration.
+
+00:19:40.000 --> 00:19:51.000
+So it's it's a conflicting example I feel like it was successful but unsuccessful.
+
+00:19:51.000 --> 00:19:52.000
+Yeah.
+
+00:19:52.000 --> 00:19:59.000
+Oh, ultimately, ultimately the problem. Was was resolved. So, It doesn't doesn't that's so first of all if I could comment on this I love this problem.
+
+00:19:59.000 --> 00:20:00.000
+Okay.
+
+00:20:00.000 --> 00:20:16.000
+Thank you for sharing that one. And this is so close to my heart. I just. Right into young testers and developers who look at the return codes from API calls and think it tells you something about the business logic working.
+
+00:20:16.000 --> 00:20:21.000
+And as it is nothing to do with the business logic working. That's like a handshake protocol.
+
+00:20:21.000 --> 00:20:31.000
+Yeah
+
+00:20:31.000 --> 00:20:36.000
+Right.
+
+00:20:36.000 --> 00:20:37.000
+Yeah.
+
+00:20:37.000 --> 00:20:47.000
+It's How do you test if how do you test if an API says it worked does that mean it worked no the API said it worked maybe the bug is it says it works and it's not working how do you test that so no when you set something to test it you gotta somehow query and hopefully query indirectly too so that you know find 3 different means to assess correctness.
+
+00:20:47.000 --> 00:20:48.000
+Yeah.
+
+00:20:48.000 --> 00:20:56.000
+Trusting return codes are missing the bug that what the return code is wrong and and this this return code you're getting is saying no the API went through but there's a thousand possible states of an email that I did with Google.
+
+00:20:56.000 --> 00:20:59.000
+Yeah.
+
+00:20:59.000 --> 00:21:00.000
+I don't think I did.
+
+00:21:00.000 --> 00:21:03.000
+A huge study of Gmail, didn't you ever see my Gmail study? So what we did is we took, the Gmail.
+
+00:21:03.000 --> 00:21:10.000
+And we identified variables in the in the send. Sending with image attachments of Gmail.
+
+00:21:10.000 --> 00:21:11.000
+Yeah.
+
+00:21:11.000 --> 00:21:21.000
+And we got something like a hundred 40 different variables that are related to that. And then we took a whole bunch of them.
+
+00:21:21.000 --> 00:21:22.000
+Wow.
+
+00:21:22.000 --> 00:21:24.000
+We did an analysis of the variables, including a delayed analysis with equivalent classes. Of the variables and especially the one you're talking about.
+
+00:21:24.000 --> 00:21:30.000
+Which is the 2, right? The 2 one. And classes in there include stuff like you're talking about.
+
+00:21:30.000 --> 00:21:31.000
+Yeah.
+
+00:21:31.000 --> 00:21:34.000
+Like is it on a list? Is it an old one? Is a new one? Is it blocked?
+
+00:21:34.000 --> 00:21:38.000
+Is it a firewall grabbing it? All of these things are cases that you have to test when you do a domain analysis of an email address.
+
+00:21:38.000 --> 00:21:40.000
+Yeah.
+
+00:21:40.000 --> 00:21:47.000
+You also have expired. E-mails, domains that have changed, names that have changed, all sorts of really crazy cases.
+
+00:21:47.000 --> 00:21:51.000
+All of them would give you a 200 code back. Right? Because it's an email we're parsing.
+
+00:21:51.000 --> 00:21:52.000
+Yeah, no, that. Right.
+
+00:21:52.000 --> 00:21:59.000
+The correct thing is it didn't get sent. That's the correct behavior so you get a 200 code.
+
+00:21:59.000 --> 00:22:00.000
+It's like It's No.
+
+00:22:00.000 --> 00:22:03.000
+Yeah, right. That was. It was interesting because we're all the people working on the project.
+
+00:22:03.000 --> 00:22:14.000
+We're all fairly senior and we're all fairly surprised. So.
+
+00:22:14.000 --> 00:22:22.000
+Okay.
+
+00:22:22.000 --> 00:22:23.000
+Yeah.
+
+00:22:23.000 --> 00:22:32.000
+I don't have too many clarified questions, but I do believe that. The fact is that the, your team was naive when they, when they built the, when they used this ESP tool, they were naive and they, they were trusting the API call and they learned the hard way that they forgot to write the business logic around.
+
+00:22:32.000 --> 00:22:33.000
+Yeah. Yeah.
+
+00:22:33.000 --> 00:22:40.000
+Did this email really go through and the sad part of it, I guess, is that it's a high stakeholder that got blocked.
+
+00:22:40.000 --> 00:22:41.000
+Yeah.
+
+00:22:41.000 --> 00:22:49.000
+But fact is you found it inside the company, not outside, which is great. So it's it's You're right, it is both.
+
+00:22:49.000 --> 00:22:50.000
+That's not a failure.
+
+00:22:50.000 --> 00:22:52.000
+Yeah. Yep. Yeah. Well, and I think Yeah, it's also.
+
+00:22:52.000 --> 00:23:03.000
+It was a very, you know, being the product manager when this product goes live, like I need to know if that kind of stuff is happening.
+
+00:23:03.000 --> 00:23:22.000
+So it was a lesson learned for me. As well and we there's some more stuff with that we learned about the ESP like the ESP is being used for other purposes just besides just our product.
+
+00:23:22.000 --> 00:23:23.000
+Good.
+
+00:23:23.000 --> 00:23:26.000
+So when you log into the account the statistics are just for what we're doing. It's There's statistics for other stuff in there so it muddied the waters.
+
+00:23:26.000 --> 00:23:32.000
+I was like, is this that and trying to track it down so.
+
+00:23:32.000 --> 00:23:33.000
+Yeah.
+
+00:23:33.000 --> 00:23:35.000
+So there's lots of other stuff. There's also services in there that you weren't necessarily using but that you had to filter out that noise.
+
+00:23:35.000 --> 00:23:37.000
+Yeah. Yeah.
+
+00:23:37.000 --> 00:23:42.000
+Get through there. Okay, let's see. A couple of questions to just make sure that I didn't miss something.
+
+00:23:42.000 --> 00:23:43.000
+Yeah.
+
+00:23:43.000 --> 00:23:50.000
+So I think I got the idea the. Somehow the, the VIP. I wasn't receiving emails.
+
+00:23:50.000 --> 00:23:57.000
+It was an important stakeholder. They communicated this to you. Did you hear this through Jira or through the personal email or something?
+
+00:23:57.000 --> 00:24:02.000
+Personal email.
+
+00:24:02.000 --> 00:24:03.000
+No.
+
+00:24:03.000 --> 00:24:08.000
+Yeah, so it was not reported in the normal chain, right? It was slow. Email.
+
+00:24:08.000 --> 00:24:13.000
+Which is, when important stakeholders have it, they don't even know how to log in to Jira.
+
+00:24:13.000 --> 00:24:17.000
+Yeah, that's right.
+
+00:24:17.000 --> 00:24:18.000
+Yep.
+
+00:24:18.000 --> 00:24:21.000
+You, you got the gang together. You, you got a group of people together to try to brainstorm on what to do.
+
+00:24:21.000 --> 00:24:37.000
+You studied the, I guess you studied the behavior of the system and finally you eventually discovered that it wasn't On your side it was some sort of third party blocking list.
+
+00:24:37.000 --> 00:24:53.000
+And so which called unsubscribe list. Well, guess there was a lot of trial and errors on this before you got there because your logs looked like you checked your logs the logs were okay the IT guy said that never went through someone suggested it could be, an unsubscribed list.
+
+00:24:53.000 --> 00:24:57.000
+Who was that that suggested that?
+
+00:24:57.000 --> 00:24:58.000
+That's the IT guy?
+
+00:24:58.000 --> 00:25:07.000
+It was someone on the Yeah, it was. Yeah, someone on the call just mentioned it like in passing as we were talking about like We're talking about spam.
+
+00:25:07.000 --> 00:25:13.000
+Right. Just mentioned as possible.
+
+00:25:13.000 --> 00:25:14.000
+You.
+
+00:25:14.000 --> 00:25:18.000
+I think we were talking about spam. Like could it be marked as spam and not. Could it be not even leaving Google's servers?
+
+00:25:18.000 --> 00:25:21.000
+And
+
+00:25:21.000 --> 00:25:22.000
+Huh. Okay. Good, good. All right.
+
+00:25:22.000 --> 00:25:33.000
+And, No, just when because this was reported. Through informal channels. How did this work its way into Jira?
+
+00:25:33.000 --> 00:25:38.000
+Did you eventually created your ticket or something or was that not part of this equation at all?
+
+00:25:38.000 --> 00:25:44.000
+I did when we so because we found the workaround I didn't write up a formal bug.
+
+00:25:44.000 --> 00:25:46.000
+So the workaround was the alias, right?
+
+00:25:46.000 --> 00:25:47.000
+That's right, yeah. So I, I didn't write up a formal bug for it.
+
+00:25:47.000 --> 00:25:55.000
+But I did write up a Jira task for the or maybe I might have wrote it as a story.
+
+00:25:55.000 --> 00:26:06.000
+For the Follow up work to add reading the response codes and
+
+00:26:06.000 --> 00:26:07.000
+To, to, to implement the business logic, right?
+
+00:26:07.000 --> 00:26:14.000
+Right Yeah. And the log in and add the logging and things like that.
+
+00:26:14.000 --> 00:26:21.000
+Excellent. Alright, good. Great story. Anything else you want to add to that or?
+
+00:26:21.000 --> 00:26:22.000
+That's it.
+
+00:26:22.000 --> 00:26:28.000
+That's a great story. Okay, so I'm gonna classify that as a as a failure, but it's It can be looked at many different ways.
+
+00:26:28.000 --> 00:26:30.000
+Yeah.
+
+00:26:30.000 --> 00:26:38.000
+How about a particularly successful, XYZ ink defect resolution during product development.
+
+00:26:38.000 --> 00:27:02.000
+Yeah, give me just give me a second.
+
+00:27:02.000 --> 00:27:06.000
+I got.
+
+00:27:06.000 --> 00:27:09.000
+Hi, changed the project name in Jira and now all my filters are messed up.
+
+00:27:09.000 --> 00:27:12.000
+Sorry, while we're talking, you're actually checking in. Okay, so that's very good.
+
+00:27:12.000 --> 00:27:13.000
+Yeah.
+
+00:27:13.000 --> 00:27:15.000
+This is fresh stuff. Live projects.
+
+00:27:15.000 --> 00:27:24.000
+These are lot, yeah, these are. Yeah. I gave the example of the one where I missed the data.
+
+00:27:24.000 --> 00:27:25.000
+Right. Yeah, I missed it. Yeah, I missed the feeling.
+
+00:27:25.000 --> 00:27:30.000
+Yeah, you missed the field. Yeah, that's right. And you gave the one about the email, Elis, the alias bug.
+
+00:27:30.000 --> 00:27:31.000
+Yeah.
+
+00:27:31.000 --> 00:27:37.000
+With the blocking things because it was on the unsubscribed list.
+
+00:27:37.000 --> 00:27:55.000
+Yeah, just give me one sec.
+
+00:27:55.000 --> 00:27:59.000
+I am having a hard time finding one.
+
+00:27:59.000 --> 00:28:05.000
+Yep. Well, you can also just tell me that the typical case is, is sort of your success case.
+
+00:28:05.000 --> 00:28:06.000
+Well, we
+
+00:28:06.000 --> 00:28:10.000
+You're allowed to do that. You don't have to find an extra story if you don't have one.
+
+00:28:10.000 --> 00:28:15.000
+Yeah, it It's because
+
+00:28:15.000 --> 00:28:27.000
+I never really consider a bug found in development to be a failure. I'm like, yeah, that's a hard one.
+
+00:28:27.000 --> 00:28:36.000
+Yeah, so some people would consider something that was found by the programmer in the IDE before they check in the code.
+
+00:28:36.000 --> 00:28:41.000
+As a success story.
+
+00:28:41.000 --> 00:28:47.000
+So in other words, it's a bug that you find when you're running your own private unit tests before you.
+
+00:28:47.000 --> 00:28:48.000
+Yeah, I see.
+
+00:28:48.000 --> 00:28:53.000
+Check in the code. That's what some people would say that's successful because it was resolved before you.
+
+00:28:53.000 --> 00:28:55.000
+You know, for a third party had to look at the code.
+
+00:28:55.000 --> 00:28:59.000
+Yeah. I got it.
+
+00:28:59.000 --> 00:29:02.000
+But those might not be recorded in Europe.
+
+00:29:02.000 --> 00:29:08.000
+No, they're not. No, I wouldn't. I wouldn't know those. As much.
+
+00:29:08.000 --> 00:29:16.000
+Just hold on, I'm just.
+
+00:29:16.000 --> 00:29:21.000
+But what would be a failure in that case? Like that's the one where looking for here, right?
+
+00:29:21.000 --> 00:29:26.000
+Is like. A failure to me is a bug that we just can't fix.
+
+00:29:26.000 --> 00:29:34.000
+Yeah, or you believe you fixed it and, for example, it instead of being, it was fixed as stated, but it shifted.
+
+00:29:34.000 --> 00:29:35.000
+Hmm, I see. Yeah.
+
+00:29:35.000 --> 00:29:44.000
+Something like that. The classic case would have been what I was doing. Virus scanning software on email attachments.
+
+00:29:44.000 --> 00:29:51.000
+And the bug was related to the first attachment. We fixed that, but then it moved to the third or fourth attachment.
+
+00:29:51.000 --> 00:29:52.000
+Oh, I see.
+
+00:29:52.000 --> 00:29:55.000
+It did the bug didn't really go away. It just shifted over. Much, much less frequent by the way.
+
+00:29:55.000 --> 00:30:00.000
+Yeah, I see. Yeah, yeah.
+
+00:30:00.000 --> 00:30:01.000
+Yeah.
+
+00:30:01.000 --> 00:30:05.000
+It's the first attachment you'll catch it often. But if it's in the third or fourth attachment, wow, those are hard to.
+
+00:30:05.000 --> 00:30:06.000
+Good morning.
+
+00:30:06.000 --> 00:30:07.000
+Yeah. Yeah, I'm looking through the list here. I don't really have a great one.
+
+00:30:07.000 --> 00:30:13.000
+Where this?
+
+00:30:13.000 --> 00:30:20.000
+All right, so why don't we just do the purpose of this interview then say that the success case and the typical case are.
+
+00:30:20.000 --> 00:30:21.000
+Yeah. Yeah.
+
+00:30:21.000 --> 00:30:25.000
+Are the same. The typical case is successful in your organization, right?
+
+00:30:25.000 --> 00:30:27.000
+Yep.
+
+00:30:27.000 --> 00:30:38.000
+So do that. And. See typical case. All right, so that's great.
+
+00:30:38.000 --> 00:30:41.000
+Yeah.
+
+00:30:41.000 --> 00:30:42.000
+Yeah.
+
+00:30:42.000 --> 00:30:49.000
+So I think I've got the workflow. And the dynamic, pretty well understood. If you had a magic wand.
+
+00:30:49.000 --> 00:30:50.000
+No.
+
+00:30:50.000 --> 00:30:56.000
+What would you do different? What would you change the way that, defect revolution, resolution is managed in your organization at XYZ Inc.
+
+00:30:56.000 --> 00:31:02.000
+Geez, I would.
+
+00:31:02.000 --> 00:31:13.000
+I would ask the the people working on the product take a little bit more of a systemic view of the software in the system.
+
+00:31:13.000 --> 00:31:26.000
+As opposed to just thinking about their little chunk So how does this code impact the rest of the system or you know what might need to be redone?
+
+00:31:26.000 --> 00:31:36.000
+Or retested because of this change and just looking at it more from a system-wide impact. Instead of just fixing it in isolation.
+
+00:31:36.000 --> 00:31:39.000
+Yeah, that would.
+
+00:31:39.000 --> 00:31:49.000
+But you're saying that a lot of the work that they're doing is very it's work in isolation and they're not looking at how the might impact other features up and downstream and stuff like that that you said.
+
+00:31:49.000 --> 00:31:58.000
+Yeah, and it's also an interesting stage of the project because we're working We've got a back end team who's kind of creating APIs.
+
+00:31:58.000 --> 00:32:05.000
+We've got a front end team that is. Not connecting to those APIs at the moment. So.
+
+00:32:05.000 --> 00:32:12.000
+I've got different classes of problems depending on which group of people I'm talking to. And so the reporting example falls more under the back end system right now.
+
+00:32:12.000 --> 00:32:25.000
+And.
+
+00:32:25.000 --> 00:32:26.000
+Yeah, same idea.
+
+00:32:26.000 --> 00:32:32.000
+Is defect resolution managed the same way though if it's a print end or back end problem? There some organizations have different defect resolution strategies for third party stuff.
+
+00:32:32.000 --> 00:32:37.000
+Do you guys have that?
+
+00:32:37.000 --> 00:32:38.000
+Yep.
+
+00:32:38.000 --> 00:32:42.000
+We haven't run into that yet, but I've never I've never run into enough of even in past organizations.
+
+00:32:42.000 --> 00:32:52.000
+I've never run into into enough of it to have the need for separate process. But I have definitely.
+
+00:32:52.000 --> 00:33:05.000
+Right. The success. This success bug I really wanted to talk and talk about was years ago with a third party component that was really interesting, but.
+
+00:33:05.000 --> 00:33:16.000
+Yeah, we, I think we only ran into one of those and like 8 years was like.
+
+00:33:16.000 --> 00:33:18.000
+Yeah, not not frequent enough, I guess.
+
+00:33:18.000 --> 00:33:22.000
+No, yeah, it doesn't happen enough to set it with a special thing.
+
+00:33:22.000 --> 00:33:30.000
+Okay, fair enough. I thank you.
+
+00:33:30.000 --> 00:33:33.000
+I think that does it for my questions. Do you have any questions for me?
+
+00:33:33.000 --> 00:33:35.000
+No, I'm good.
+
+00:33:35.000 --> 00:33:41.000
+Good. Well, it's very, very, very, great to hear from you again, Adam, and I appreciate that.
+
+00:33:41.000 --> 00:33:46.000
+I will review my notes afterwards. I might have a couple of follow-up questions. Put your line downstream.
+
+00:33:46.000 --> 00:33:49.000
+Sure. Okay, sounds good. Yeah. Yep.
+
+00:33:49.000 --> 00:33:54.000
+I'm gonna stop the recording now though and we can keep chatting after that but So thank you very much.
+
+00:33:54.000 --> 00:33:55.000
+Thank you.
+
+00:33:55.000 --> 00:33:59.000
+Stop
+
